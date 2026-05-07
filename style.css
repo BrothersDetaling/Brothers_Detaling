@@ -2,10 +2,13 @@ body {
     background-color: #AC9C8D;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-header {
-    color: #535353;
-    background-color: black;
+menu {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+a {
+    text-decoration: none;
 }
 main {
     margin: 20px;
@@ -13,14 +16,15 @@ main {
     padding: 10px;
     border-radius: 40px;
 }
+div.footer {
+    display: inline-block;
+}
 
 footer {
-    
-    bottom: 0;
-    left: 50%;
+    position: fixed;
+    right: 0;
     margin: 20px;
     border-radius: 10px;
     background-color: #9e9a97;
     box-shadow: 0 0 20px #5e5146;
-    
 }
