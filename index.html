@@ -27,10 +27,13 @@
       scroll-behavior: smooth;
     }
 
+    text {
+      text-align: end;
+    }
     :root {
       --lime: #c1ff72;
       --card: #0d0d0d;
-      --border: #1f1f1f;
+      --border: #2f2f2f;
       --text: #a1a1aa;
     }
 
@@ -263,6 +266,7 @@
     }
     a {
       text-decoration: none;
+      color: inherit;
     }
 
   </style>
@@ -283,7 +287,7 @@
   </section>
 
   <section>
-    <div class="container">
+    <div class="container" id="uslugi">
       <div class="section-title">
         <div class="line"></div>
         <h2>Usługi</h2>
@@ -302,22 +306,48 @@
           </div>
 
           <p>
-            Dokładne mycie karoserii, felg, opon oraz usuwanie robaków.
+            Dokładne mycie karoserii, szyb, felg, opon oraz usuwanie robaków.
           </p>
         </div>
 
-        <div class="card">
+        <!---------------------------------->
+        <div class="card" id="dressing-opon">
+          <div class="card-top">
+            <h3>Dressing Opon</h3>
+            <div class="price">40zł</div>
+          </div>
+
+          <p>
+            Odżywienie opon, które przywraca im głęboką czerń.
+          </p>
+        </div>
+        
+        <!---------------------------------->
+        <div class="card" id="detaling-wnetrza">
           <div class="card-top">
             <h3>Detailing Wnętrza</h3>
             <div class="price">od 120 zł</div>
           </div>
 
           <p>
-            Kompleksowe czyszczenie wnętrza pojazdu wraz z odkurzaniem, pielęgnacją plastików i szyb.
+            Kompleksowe czyszczenie wnętrza pojazdu wraz z odkurzaniem.
           </p>
         </div>
 
-        <div class="card">
+        <!---------------------------------->
+        <div class="card" id="detaling-wnetrza">
+          <div class="card-top">
+            <h3>Detailing Wnętrza +</h3>
+            <div class="price">od 150 zł</div>
+          </div>
+
+          <p>
+            Kompleksowe czyszczenie wnętrza pojazdu, progów wraz z odkurzaniem, pielęgnacją plastików i szyb.
+          </p>
+        </div>
+
+        <!---------------------------------->
+        <div class="card" id="pranie-dywanikow">
           <div class="card-top">
             <h3>Pranie dywaników</h3>
             <div class="price">od 80 zł</div>
@@ -328,7 +358,8 @@
           </p>
         </div>
 
-        <div class="card">
+        <!---------------------------------->
+        <div class="card" id="pranie-foteli">
           <div class="card-top">
             <h3>Pranie Foteli</h3>
             <div class="price">od 230zł</div>
@@ -339,6 +370,7 @@
           </p>
         </div>
 
+        <!---------------------------------->
         <div class="card">
           <div class="card-top">
             <h3>nazwa</h3>
@@ -379,9 +411,8 @@
 
           <ul class="package-list">
             <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')"><li><div class="dot"></div>Mycie zewnętrzne</li></a>
-            <li><div class="dot"></div>Czyszczenie wnętrza</li>
-            <li><div class="dot"></div>Mycie szyb</li>
-            <li><div class="dot"></div>Pielęgnacja opon</li>
+            <a href="#detaling-wnetrza" onclick="highlightCard('detaling-wnetrza')"><li><div class="dot"></div>Detaling wnętrza</li></a>
+            <a href="#dressing-opon" onclick="highlightCard('dressing-opon')"><li><div class="dot"></div>Dressing opon</li></a>
           </ul>
         </div>
 
@@ -508,12 +539,12 @@
     // odpalenie highlight OD RAZU po kliknięciu
     setTimeout(() => {
       el.classList.add("highlight");
-    }, 300);
+    }, 500);
 
     // usunięcie efektu
     setTimeout(() => {
       el.classList.remove("highlight");
-    }, 1500);
+    }, 2000);
   }
 </script>
 
