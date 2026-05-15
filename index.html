@@ -116,6 +116,14 @@
       border-radius: 30px;
       padding: 35px;
       transition: 0.3s ease;
+      scroll-margin-top: 25vh;
+    }
+
+    
+    .card.highlight {
+      border-color: var(--lime);
+      box-shadow: 0 0 35px rgba(193, 255, 114, 0.35);
+      transform: scale(1.02);
     }
 
     .card:hover {
@@ -253,6 +261,10 @@
         max-width:900px;
         line-height:1.7; 
     }
+    a {
+      text-decoration: none;
+    }
+
   </style>
 </head>
 <body>
@@ -283,7 +295,7 @@
 
       <div class="grid">
 
-        <div class="card">
+        <div class="card" id="mycie-zewnetrzne">
           <div class="card-top">
             <h3>Mycie Zewnętrzne</h3>
             <div class="price">od 100 zł</div>
@@ -366,7 +378,7 @@
           </p>
 
           <ul class="package-list">
-            <li><div class="dot"></div>Mycie zewnętrzne</li>
+            <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')"><li><div class="dot"></div>Mycie zewnętrzne</li></a>
             <li><div class="dot"></div>Czyszczenie wnętrza</li>
             <li><div class="dot"></div>Mycie szyb</li>
             <li><div class="dot"></div>Pielęgnacja opon</li>
@@ -481,6 +493,29 @@
 
     </div>
   </footer>
+
+<script>
+  function highlightCard(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    // scroll do elementu
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // reset efektu
+    el.classList.remove("highlight");
+
+    // odpalenie highlight OD RAZU po kliknięciu
+    setTimeout(() => {
+      el.classList.add("highlight");
+    }, 300);
+
+    // usunięcie efektu
+    setTimeout(() => {
+      el.classList.remove("highlight");
+    }, 1500);
+  }
+</script>
 
 </body>
 </html>
