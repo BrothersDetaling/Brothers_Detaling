@@ -92,7 +92,7 @@ section {
     background: var(--lime);
 }
 .logo-line {
-    width: 400px;
+    width:55%;
     height: 5px;
     background: #c1ff72;
     margin: auto;
