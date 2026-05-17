@@ -31,6 +31,7 @@ text {
     --border: #2f2f2f;
     --text: #a1a1aa;
     --premium: #e7af46;
+    --pranie: #2aa7e0;
 
 .container {
     width: 100%;
@@ -127,6 +128,12 @@ section {
     white-space: nowrap;
 }
 
+.podpunkt-header-pranie {
+    font-size: 32px;
+    color: var(--pranie);
+    white-space: nowrap;
+}
+
 .podpunkt-linia {
     width:100%;
     height:3px;
@@ -135,7 +142,7 @@ section {
 }
 
 .card {
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 30px;
     padding: 35px;
     transition: 0.3s ease;
@@ -149,22 +156,9 @@ section {
         #1d2710);
 }
 
-.premium {
-    background-image: linear-gradient(to bottom right,
-        #0d0d0d,
-        #0d0d0d,
-        #3a3914);
-}
-
 .normal.highlight {
     border-color: var(--lime);
     box-shadow: 0 0 50px rgba(193, 255, 114, 0.35);
-    transform: scale(1.1);
-}
-
-.premium.highlight {
-    border-color: var(--lime);
-    box-shadow: 0 0 50px rgba(83, 109, 48, 0.35);
     transform: scale(1.1);
 }
 
@@ -176,6 +170,43 @@ section {
         #0d0d0d,
         #0d0d0d,
         #32411e);
+}
+
+.pranie {
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #204b64);
+}
+
+.pranie.highlight {
+    border-color: var(--pranie);
+    box-shadow: 0 0 50px #204b64;
+    transform: scale(1.1);
+}
+
+.pranie:hover {
+    border-color: var(--pranie);
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(193, 255, 114, 0.08);
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #265e7e);
+}
+
+
+.premium {
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #3a3914);
+}
+
+.premium.highlight {
+    border-color: var(--premium);
+    box-shadow: 0 0 50px rgba(83, 109, 48, 0.35);
+    transform: scale(1.1);
 }
 
 .premium:hover {
@@ -203,6 +234,13 @@ section {
 
 .price-normal {
     color: var(--lime);
+    font-size: 22px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.price-pranie {
+    color: var(--pranie);
     font-size: 22px;
     font-weight: 800;
     white-space: nowrap;

@@ -33,6 +33,50 @@
   </div>
 </section>
   
+  <section><!--Pakiety-->
+    <div class="container">
+      <div class="section-title">
+        <div class="line"></div>
+        <h2>Pakiety</h2>
+      </div>
+  
+  
+      <div class="grid">
+  
+        <div class="card normal">
+          <div class="card-top">
+            <h3>Nazwa</h3>
+            <div class="price-normal">Cena</div>
+          </div>
+  
+          <p>
+            Opis
+          </p>
+  
+          <ul class="package-list">
+            <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')">
+              <li>
+                <div class="dot"></div>Mycie zewnętrzne
+              </li>
+            </a>
+            <a href="#detaling-wnetrza" onclick="highlightCard('detaling-wnetrza')">
+              <li>
+                <div class="dot"></div>Detaling wnętrza
+              </li>
+            </a>
+            <a href="#dressing-opon" onclick="highlightCard('dressing-opon')">
+              <li>
+                <div class="dot"></div>Dressing opon
+              </li>
+            </a>
+          </ul>
+        </div>
+  
+  
+      </div>
+    </div>
+  </section>
+
 <section><!--Usługi-->
 <div class="container">
   <div class="section-title">
@@ -47,7 +91,45 @@
 
   <div class="podpunkt">
     <h3 class="podpunkt-header">
-      Zewnętrzne
+      Zewnętrze
+    </h3>
+    <div class="podpunkt-linia"></div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card normal" id="mycie-zewnetrzne">
+      <div class="card-top">
+        <h3>Mycie Zewnetrzne</h3>
+        <div class="price-normal">od 155 zł</div>
+      </div>
+      <p>
+        Dokładne usuwanie zabrudzeń owadów oraz mycie aktywną pianą,
+        wraz z czyszczeniem szyb dla pełnego odświeżenia wyglądu
+        auta.
+      </p>
+    </div>
+
+
+    <div class="card premium" id="mycie-zewnetrzne-premium">
+      <div class="card-top">
+        <h3>Mycie Zewnetrzne <span class="premium-text">PREMIUM</span></h3>
+        <div class="price-premium">od 205 zł</div>
+      </div>
+      <p>
+        Dokładne usuwanie zabrudzeń owadów oraz mycie aktywną pianą, 
+        wraz z czyszczeniem szyb,<span class="premium-text"> dokładnym czyszczeniem felg
+        oraz opon</span> dla pełnego odświeżenia
+        wyglądu
+        auta.
+      </p>
+    </div>
+
+  </div><!--Grid-->
+
+  <div class="podpunkt">
+    <h3 class="podpunkt-header">
+      Wewnętrzne
     </h3>
     <div class="podpunkt-linia"></div>
   </div>
@@ -64,8 +146,8 @@
         zanieczyszczenia.
       </p>
     </div>
-
-
+    
+    
     <div class="card normal" id="czyszczenie-plastikow">
       <div class="card-top">
         <h3>Czyszcznie Plastików</h3>
@@ -76,87 +158,56 @@
         zanieczyszczenia.
       </p>
     </div>
-
-
-    <div class="card premium" id="czyszczenie-plastikow+">
+    
+    
+    <div class="card premium" id="czyszczenie-plastikow-premium">
       <div class="card-top">
         <h3>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></h3>
         <div class="price-premium">od 70zł</div>
       </div>
       <p>
         Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy, usuwające kurz i codzienne
-        zanieczyszczenia, <span class="premium-text">zakończone aplikacją QD nadającego świeży wygląd i lekką warstwę ochronną.</span>
+        zanieczyszczenia, <span class="premium-text">zakończone aplikacją QD nadającego świeży wygląd i lekką warstwę
+          ochronną.</span>
       </p>
     </div>
 
   </div><!--Grid-->
 
   <div class="podpunkt">
-    <h3 class="podpunkt-header">
-      Wewnętrzne
+    <h3 class="podpunkt-header-pranie">
+      Pranie
     </h3>
     <div class="podpunkt-linia"></div>
   </div>
 
   <div class="grid">
-
-    <div class="card normal">
+    
+    <div class="card pranie" id="pranie-dywanikow">
       <div class="card-top">
-        <h3>Nazwa</h3>
-        <div class="price price-normal">Cena</div>
+        <h3>Pranie Dywaników</h3>
+        <div class="price price-pranie">od 40zł</div>
       </div>
       <p>
-        Opis
+        Dokładne pranie i odświeżenie dywaników samochodowych, usuwające brud, plamy oraz nieprzyjemne zapachy.
       </p>
     </div>
 
-
-    <div class="card premium">
+    <div class="card premium" id="pranie-dywanikow-premium">
       <div class="card-top">
-        <h3>Nazwa</h3>
-        <div class="price-premium">Cena</div>
+        <h3>Pranie Dywaników <span class="premium-text">PREMIUM</span></h3>
+        <div class="price price-premium">od 145zł</div>
       </div>
       <p>
-        Opis
+        Dokładne pranie i odświeżenie dywaników samochodowych <span class="premium-text">oraz podłogi pod dywanikami</span>, usuwające brud, plamy oraz nieprzyjemne zapachy.
       </p>
     </div>
 
   </div><!--Grid-->
 
+
 </div>
 </section>
-
-  <section><!--Pakiety-->
-    <div class="container">
-      <div class="section-title">
-        <div class="line"></div>
-        <h2>Pakiety</h2>
-      </div>
-
-
-      <div class="grid">
-
-        <div class="card normal">
-          <div class="card-top">
-            <h3>Nazwa</h3>
-            <div class="price-normal">Cena</div>
-        </div>
-
-          <p>
-            Opis
-          </p>
-
-          <ul class="package-list">
-            <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')"><li><div class="dot"></div>Mycie zewnętrzne</li></a>
-            <a href="#detaling-wnetrza" onclick="highlightCard('detaling-wnetrza')"><li><div class="dot"></div>Detaling wnętrza</li></a>
-            <a href="#dressing-opon" onclick="highlightCard('dressing-opon')"><li><div class="dot"></div>Dressing opon</li></a>
-          </ul>
-        </div>
-
-
-      </div>
-    </div>
-  </section>
 
   <section><!--Umowa-->
     <div class="container">
