@@ -149,6 +149,18 @@ section {
     scroll-margin-top: 25vh;
 }
 
+.small {
+    grid-column: span 1;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.small .price-pranie {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
 .normal {
     background-image: linear-gradient(to bottom right,
         #0d0d0d,
