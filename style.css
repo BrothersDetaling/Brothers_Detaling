@@ -219,9 +219,9 @@ section {
 
 .full {
     background-image: linear-gradient(to bottom right,
-            #0d0d0d,
-            #0d0d0d,
-            #4b1010);
+        #0d0d0d,
+        #0d0d0d,
+        #4b1010);
 }
 
 .full.highlight {
@@ -235,16 +235,16 @@ section {
     transform: translateY(-5px);
     box-shadow: 0 0 30px #85151514;
     background-image: linear-gradient(to bottom right,
-            #0d0d0d,
-            #0d0d0d,
-            #641313);
+        #0d0d0d,
+        #0d0d0d,
+        #641313);
 }
 
 .dressing {
     background-image: linear-gradient(to bottom right,
-            #0d0d0d,
-            #0d0d0d,
-            #562064);
+        #0d0d0d,
+        #0d0d0d,
+        #562064);
 }
 
 .dressing.highlight {
@@ -258,9 +258,9 @@ section {
     transform: translateY(-5px);
     box-shadow: 0 0 30px #562064;
     background-image: linear-gradient(to bottom right,
-            #0d0d0d,
-            #0d0d0d,
-            #642574);
+        #0d0d0d,
+        #0d0d0d,
+        #642574);
 }
 
 .pranie {
