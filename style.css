@@ -33,6 +33,7 @@ text {
     --premium: #e7af46;
     --pranie: #2aa7e0;
     --skora: #854621;
+    --dressing: #a33abd;
 
 .container {
     width: 100%;
@@ -180,6 +181,17 @@ section {
     column-span: 2;
 }
 
+.giga {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+@media (max-width: 740px) {
+    .giga {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
 
 .normal {
     background-image: linear-gradient(to bottom right,
@@ -204,18 +216,28 @@ section {
         #32411e);
 }
 
-.giga {
-    grid-column: span 2;
-    grid-row: span 2;
+.dressing {
+    background-image: linear-gradient(to bottom right,
+            #0d0d0d,
+            #0d0d0d,
+            #562064);
 }
 
-@media (max-width: 740px) {
-    .giga {
-        grid-column: span 1;
-        grid-row: span 1;
-    }
+.dressing.highlight {
+    border-color: var(--lime);
+    box-shadow: 0 0 50px #562064;
+    transform: scale(1.1);
 }
 
+.dressing:hover {
+    border-color: var(--dressing);
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px #562064;
+    background-image: linear-gradient(to bottom right,
+            #0d0d0d,
+            #0d0d0d,
+            #642574);
+}
 
 .pranie {
     background-image: linear-gradient(to bottom right,
@@ -306,6 +328,13 @@ section {
     white-space: nowrap;
 }
 
+.price-dressing {
+    color: var(--dressing);
+    font-size: 22px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
 .price-skora {
     color: var(--skora);
     font-size: 22px;
@@ -331,6 +360,9 @@ section {
     color: var(--premium)
 }
 
+.dressing-text {
+    color: var(--dressing)
+}
 
 .card p {
     color: var(--text);
@@ -362,6 +394,14 @@ section {
     width: 8px;
     height: 8px;
     background: var(--lime);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-dressing {
+    width: 8px;
+    height: 8px;
+    background: var(--dressing);
     border-radius: 50%;
     flex-shrink: 0;
 }
