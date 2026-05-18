@@ -249,7 +249,7 @@ section {
 
 .skora.highlight {
     border-color: var(--skora);
-    box-shadow: 0 0 50px #204b64;
+    box-shadow: 0 0 50px #532b13;
     transform: scale(1.1);
 }
 
@@ -351,12 +351,41 @@ section {
     align-items: center;
     gap: 12px;
     color: #d4d4d8;
+    transition: 0.3s ease;
+}
+
+.package-list li:hover {
+    transform:translatex(10px);
 }
 
 .dot {
     width: 8px;
     height: 8px;
     background: var(--lime);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-pranie {
+    width: 8px;
+    height: 8px;
+    background: var(--pranie);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-skora {
+    width: 8px;
+    height: 8px;
+    background: var(--skora);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-premium {
+    width: 8px;
+    height: 8px;
+    background: var(--premium);
     border-radius: 50%;
     flex-shrink: 0;
 }
