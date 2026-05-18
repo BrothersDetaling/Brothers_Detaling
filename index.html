@@ -4,16 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
-  <meta property="og:title" content="Brothers Detailing">
-  <meta property="og:description" content="Profesjonalny detailing samochodowy — wnętrze, pranie tapicerki, mycie i pielęgnacja auta.">
-  <meta property="og:image" content="Img/mini.png">
-  <meta property="og:url" content="https://brothersdetaling.github.io/Brothers_Detaling/">
-  <meta property="og:type" content="website">
-  
-  <meta name="theme-color" content="#111111">
-  <meta property="og:image" content="Img/mini.png">
-
   <title>Brothers Detailing</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,14 +38,67 @@
 
 <section><!--Pakiety-->
 <div class="container">
-
   <div class="section-title">
     <div class="line"></div>
     <h2>Pakiety</h2>
   </div>
   
-  
   <div class="grid">
+
+    <div class="card normal">
+      <div class="card-top">
+        <h3>Basic</h3>
+        <div class="price-normal">od 130zł</div>
+      </div>
+    
+      <p>
+        Pakiet obejmuje odkurzanie wnętrza pojazdu oraz czyszczenie plastików, przywracające świeży wygląd
+        i czystość całemu wnętrzu samochodu.
+      </p>
+    
+      <ul class="package-list">
+        <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+          <li>
+            <div class="dot"></div>Odkurzanie Wnętrza
+          </li>
+        </a>
+        <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
+          <li>
+            <div class="dot"></div>Czyszczenie Plastoków
+          </li>
+        </a>
+      </ul>
+    </div>
+
+  <div class="card normal">
+    <div class="card-top">
+      <h3>Standard</h3>
+      <div class="price-normal">od 255zł</div>
+    </div>
+  
+    <p>
+      Mycie zewnętrzne pojazdu, odkurzanie wnętrza pojazdu oraz czyszczenie plastików, przywracające świeży wygląd
+      i czystość całemu wnętrzu samochodu.
+    </p>
+  
+    <ul class="package-list">
+      <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+        <li>
+          <div class="dot"></div>Odkurzanie Wnętrza
+        </li>
+      </a>
+      <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
+        <li>
+          <div class="dot"></div>Czyszczenie Plastoków
+        </li>
+      </a>
+      <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')">
+        <li>
+          <div class="dot"></div>Mycie Zewnętrzne
+        </li>
+      </a>
+    </ul>
+  </div>
   
     <div class="card pranie">
       <div class="card-top">
@@ -120,13 +163,14 @@
           <li>
             <div class="dot-skora"></div>Czyszczenie Boczków Drzwi
           </li>
+        </a>
       </ul>
     </div>
 
-    <div class="card skora">
+    <div class="card premium">
       <div class="card-top">
-        <h3>Skóra</h3>
-        <div class="price-skora">od 365zł</div>
+        <h3>Skóra <span class="premium-text">PREMIUM</span></h3>
+        <div class="price-premium">od 365zł</div>
       </div>
     
       <p>
