@@ -169,6 +169,9 @@ section {
     transition: 0.3s ease;
     scroll-margin-top: 25vh;
 }
+.card:has(input:checked) {
+  transform: scale(1.02);
+}
 
 .small {
     border: 2px solid var(--border);
@@ -203,7 +206,7 @@ section {
 
 .normal.highlight {
     border-color: var(--lime);
-    box-shadow: 0 0 50px rgba(193, 255, 114, 0.35);
+    box-shadow: 0 0 50px #c1ff7259;
     transform: scale(1.1);
 }
 
@@ -215,6 +218,12 @@ section {
         #0d0d0d,
         #0d0d0d,
         #32411e);
+}
+
+.normal:has(input:checked) {
+    border: 2px solid var(--lime);
+    box-shadow: 0 0 25px #c1ff7259;
+    transform: scale(1.02);
 }
 
 .full {
@@ -238,6 +247,12 @@ section {
         #0d0d0d,
         #0d0d0d,
         #641313);
+}
+
+.full:has(input:checked) {
+    border: 2px solid var(--full);
+    box-shadow: 0 0 25px #af1c1c;
+    transform: scale(1.02);
 }
 
 .dressing {
@@ -286,6 +301,12 @@ section {
         #265e7e);
 }
 
+.pranie:has(input:checked) {
+    border: 2px solid var(--pranie);
+    box-shadow: 0 0 25px #204b64;
+    transform: scale(1.02);
+}
+
 .skora {
     background-image: linear-gradient(to bottom right,
         #0d0d0d,
@@ -318,18 +339,24 @@ section {
 
 .premium.highlight {
     border-color: var(--premium);
-    box-shadow: 0 0 50px rgba(83, 109, 48, 0.35);
+    box-shadow: 0 0 50px #6d673059;
     transform: scale(1.1);
 }
 
 .premium:hover {
     border-color: var(--premium);
     transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(193, 255, 114, 0.08);
+    box-shadow: 0 0 30px #6d673059;
     background-image: linear-gradient(to bottom right,
         #0d0d0d,
         #0d0d0d,
         #4e4d1d);
+}
+
+.premium:has(input:checked) {
+  border: 2px solid var(--premium);
+  box-shadow: 0 0 25px #c1ff7259;
+  transform: scale(1.02);
 }
 
 .card-top {
@@ -556,4 +583,26 @@ a {
     text-decoration: none;
     color: inherit;
 }
+}
+
+.sidebar {
+    padding: 20px;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: 0.3s;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+    z-index: 999;
+    opacity: 1;
+}
+
+.sidebar.show {
+    opacity: 0.9;
+    transform: translateX(0);
+}
+
+.total {
+    margin-top: 10px;
 }

@@ -21,6 +21,18 @@
 
 <body>
 
+  <section class="sidebar container" id="sidebar">
+    <div class="card normal">
+  <h3 class="card-top">Podsumowanie</h3>
+
+  <div style="color: var(--text);" id="list"></div>
+
+  <div class="total catd-top">
+      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+    </div>
+    </div>
+  </section>
+
 <section class="hero">
   <div class="container">
 
@@ -41,10 +53,15 @@
     <div class="line"></div>
     <h2>Pakiety</h2>
   </div>
-  
+
+
+
+
   <div class="grid">
 
-    <div class="card normal">
+    <label class="card normal">
+    <input type="radio" name="pakiet" value="Basic" hidden data-price="110">
+
       <div class="card-top">
         <h3>Basic</h3>
         <div class="price-normal">od 110zł</div>
@@ -67,9 +84,10 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
 
-    <div class="card normal">
+    <label class="card normal">
+    <input type="radio" name="pakiet" value="Standard" hidden data-price="205">
     <div class="card-top">
       <h3>Standard</h3>
       <div class="price-normal">od 205zł</div>
@@ -97,9 +115,10 @@
         </li>
       </a>
     </ul>
-    </div>
+    </label>
 
-    <div class="card premium">
+    <label class="card premium">
+    <input type="radio" name="pakiet" value="StandardP" hidden>
       <div class="card-top">
         <h3>Standard <span class="premium-text">PREMIUM</span></h3>
         <div class="price-premium">od 280zł</div>
@@ -133,9 +152,10 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
   
-    <div class="card pranie">
+    <label class="card pranie">
+    <input type="radio" name="pakiet" value="Pranie" hidden>
       <div class="card-top">
         <h3>Pranie</h3>
         <div class="price-pranie">od 285zł</div>
@@ -164,9 +184,10 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
 
-    <div class="card premium">
+    <label class="card premium">
+    <input type="radio" name="pakiet" value="SkoraP" hidden>
       <div class="card-top">
         <h3>Skóra <span class="premium-text">PREMIUM</span></h3>
         <div class="price-premium">od 435zł</div>
@@ -206,9 +227,10 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
 
-    <div class="card full">
+    <label class="card full">
+    <input type="radio" name="pakiet" value="FullPakiet" hidden>
       <div class="card-top">
         <h3>Full Pakiet</h3>
         <div class="price-full">od 505zł</div>
@@ -258,9 +280,10 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
 
-    <div class="card full">
+    <label class="card full">
+    <input type="radio" name="pakiet" value="FullPakietSkora" hidden>
       <div class="card-top">
         <h3>Full Pakiet Skóra</h3>
         <div class="price-full">od 570zł</div>
@@ -328,10 +351,9 @@
           </li>
         </a>
       </ul>
-    </div>
+    </label>
 
   </div>
-</div>
 </section>
 
 <section><!--Usługi-->
@@ -355,7 +377,8 @@
 
   <div class="grid">
 
-    <div class="card normal" id="mycie-zewnetrzne">
+    <label class="card normal" id="mycie-zewnetrzne">
+    <input type="checkbox" value="Mycie Zewnątrz" data-price="105" hidden>
       <div class="card-top">
         <h3>Mycie Zewnętrzne</h3>
         <div class="price-normal">od 105zł</div>
@@ -365,9 +388,9 @@
         wraz z czyszczeniem szyb, dla pełnego odświeżenia wyglądu
         auta.
       </p>
-    </div>
+    </label>
 
-    <div class="card premium" id="mycie-zewnetrzne-premium">
+    <label class="card premium" id="mycie-zewnetrzne-premium">
       <div class="card-top">
         <h3>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></h3>
         <div class="price-premium">od 160zł</div>
@@ -379,7 +402,7 @@
         wyglądu
         auta.
       </p>
-    </div>
+    </label>
 
   </div><!--Grid-->
 
@@ -392,7 +415,7 @@
 
   <div class="grid">
 
-    <div class="card normal" id="odkurzanie-wnetrza">
+    <label class="card normal" id="odkurzanie-wnetrza">
       <div class="card-top">
         <h3>Odkurzanie Wnętrza</h3>
         <div class="price price-normal">od 55zł</div>
@@ -401,10 +424,10 @@
         Dokładne odkurzenie dywaników, podłogi, foteli, wnęk drzwi oraz bagażnika, usuwające kurz, piasek i drobne
         zanieczyszczenia.
       </p>
-    </div>
+    </label>
     
     
-    <div class="card normal" id="czyszczenie-plastikow">
+    <label class="card normal" id="czyszczenie-plastikow">
       <div class="card-top">
         <h3>Czyszczenie Plastików</h3>
         <div class="price price-normal">od 65zł</div>
@@ -413,10 +436,10 @@
         Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy, usuwające kurz i codzienne
         zanieczyszczenia.
       </p>
-    </div>
+    </label>
     
     
-    <div class="card premium" id="czyszczenie-plastikow-premium">
+    <label class="card premium" id="czyszczenie-plastikow-premium">
       <div class="card-top">
         <h3>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></h3>
         <div class="price-premium">od 95zł</div>
@@ -426,7 +449,7 @@
         zanieczyszczenia, <span class="premium-text">zakończone aplikacją QD nadającego świeży wygląd i lekką warstwę
           ochronną.</span>
       </p>
-    </div>
+    </label>
 
   </div><!--Grid-->
 
@@ -450,27 +473,27 @@
       </p><br>
       <div class="container">
         <div class="grid-small">
-          <div class="card pranie">
+          <label class="card pranie">
             <h3>Pojedyńczy Fotel</h3>
             <div class="price-pranie">40zł</div>
-          </div>
-          <div class="card pranie">
+          </label>
+          <label class="card pranie">
             <h3>Komplet Przód</h3>
             <div class="price-pranie">65zł</div>
-          </div>
-          <div class="card pranie">
+          </label>
+          <label class="card pranie">
             <h3>Tylna Kanapa</h3>
             <div class="price-pranie">od 85zł</div>
-          </div>
-          <div class="card pranie" id="wszystkie-fotele">
+          </label>
+          <label class="card pranie" id="wszystkie-fotele">
             <h3>Wszytkie Fotele</h3>
             <div class="price-pranie">od 140zł</div>
-          </div>
+          </label>
         </div>
       </div>
     </div>
     
-    <div class="card pranie" id="pranie-dywanikow">
+    <label class="card pranie" id="pranie-dywanikow">
       <div class="card-top">
         <h3>Pranie Dywaników</h3>
         <div class="price price-pranie">od 40zł</div>
@@ -478,9 +501,9 @@
       <p>
         Dokładne pranie i odświeżenie dywaników samochodowych, usuwające brud, plamy oraz nieprzyjemne zapachy.
       </p>
-    </div>
+    </label>
 
-    <div class="card premium" id="pranie-dywanikow-premium">
+    <label class="card premium" id="pranie-dywanikow-premium">
       <div class="card-top">
         <h3>Pranie Dywaników <span class="premium-text">PREMIUM</span></h3>
         <div class="price price-premium">od 75zł</div>
@@ -488,9 +511,9 @@
       <p>
         Dokładne pranie i odświeżenie dywaników samochodowych <span class="premium-text">oraz podłogi pod dywanikami</span>, usuwające brud, plamy oraz nieprzyjemne zapachy.
       </p>
-    </div>
+    </label>
 
-    <div class="card pranie" id="pranie-drzwi">
+    <label class="card pranie" id="pranie-drzwi">
       <div class="card-top">
         <h3>Pranie Podłokietników</h3>
         <div class="price-pranie">od 55zł</div>
@@ -498,7 +521,7 @@
       <p>
         Dokładne pranie materiałowych boczków drzwi, podłokietników usuwające zabrudzenia, plamy oraz odświeżające wnętrze samochodu.
       </p>
-    </div>
+    </label>
 
 
   </div><!--Grid-->
@@ -629,6 +652,8 @@
     </div>
 </footer>
 
+
+
 <script>
   function highlightCard(id) {
     const el = document.getElementById(id);
@@ -650,6 +675,67 @@
       el.classList.remove("highlight");
     }, 2000);
   }
+
+const cards = document.querySelectorAll(".card");
+const sidebar = document.getElementById("sidebar");
+const list = document.getElementById("list");
+const totalEl = document.getElementById("total");
+
+function update() {
+
+  let total = 0;
+  let items = [];
+
+  document.querySelectorAll("input").forEach(input => {
+
+    const card = input.closest(".card");
+
+    if (input.type === "radio") {
+      if (input.checked) {
+        total += parseInt(input.dataset.price);
+        items.push(input.value);
+
+        document.querySelectorAll('input[type="radio"]').forEach(r => {
+          r.closest(".card").classList.remove("selected");
+        });
+
+        card.classList.add("selected");
+      }
+    }
+
+    if (input.type === "checkbox") {
+      if (input.checked) {
+        total += parseInt(input.dataset.price);
+        items.push(input.value);
+        card.classList.add("selected");
+      } else {
+        card.classList.remove("selected");
+      }
+    }
+  });
+
+  totalEl.textContent = total;
+
+  list.innerHTML = "";
+  items.forEach(i => {
+    const div = document.createElement("div");
+    div.className = "item";
+    div.textContent = i;
+    list.appendChild(div);
+  });
+
+  if (items.length > 0) {
+    sidebar.classList.add("show");
+  } else {
+    sidebar.classList.remove("show");
+  }
+}
+
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("change", update);
+});
+
+
 </script>
 
 </body>
