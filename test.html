@@ -1,0 +1,70 @@
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<div id="calendar"></div>
+
+<script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+        "https://dvaeypdoxkldomgewvyf.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk"
+    );
+
+    const calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
+        initialView: "timeGridWeek",
+        slotMinTime: "08:00:00",
+        slotMaxTime: "18:00:00",
+        allDaySlot: false,
+
+        dateClick: (info) => {
+            localStorage.setItem("date", info.dateStr);
+            window.location.href = "form.html";
+        }
+    });
+
+    calendar.render();
+
+    // POBIERANIE ZAJĘTYCH TERMINÓW
+    const { data } = await supabase
+        .from("bookings")
+        .select("booking_date, booking_time");
+
+    data.forEach(b => {
+        calendar.addEvent({
+            title: "Zajęte",
+            start: `${b.booking_date}T${b.booking_time}`,
+            color: "red"
+        });
+    });
+</script>
+
+<input id="name" placeholder="Imię">
+<input id="phone" placeholder="Telefon">
+
+<select id="service">
+    <option>Basic</option>
+    <option>Standard</option>
+    <option>Premium</option>
+</select>
+
+<input type="time" id="time">
+
+<button onclick="goPay()">Zapłać 10 zł</button>
+
+<script>
+    function goPay() {
+
+        const booking = {
+            name: name.value,
+            phone: phone.value,
+            service: service.value,
+            booking_date: localStorage.getItem("date"),
+            booking_time: time.value
+        };
+
+        localStorage.setItem("booking", JSON.stringify(booking));
+
+        window.location.href = "pay.html";
+    }
+</script>

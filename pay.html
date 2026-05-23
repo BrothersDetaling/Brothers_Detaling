@@ -1,0 +1,14 @@
+<h1>Przekierowanie do płatności...</h1>
+
+<script>
+    const booking = JSON.parse(localStorage.getItem("booking"));
+
+    fetch("https://dvaeypdoxkldomgewvyf.supabase.co/functions/v1/super-endpoint", {
+        method: "POST",
+        body: JSON.stringify(booking)
+    })
+        .then(r => r.json())
+        .then(d => {
+            window.location.href = d.url;
+        });
+</script>
