@@ -23,13 +23,14 @@
 
   <section class="sidebar container" id="sidebar">
     <div class="card normal">
-  <h3 class="card-top">Podsumowanie</h3>
+      <h3 class="card-top">Podsumowanie</h3>
 
-  <div style="color: var(--text);" id="list"></div>
+      <div style="color: var(--text);" id="list"></div>
 
-  <div class="total catd-top">
-      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
-    </div>
+      <div class="total catd-top">
+          Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+      </div><br>
+      <button>Przenieś do Podsumowania</button>
     </div>
   </section>
 
@@ -593,6 +594,27 @@
 </div>
 </section>
 
+<section>
+  <div class="container">
+  <div class="card normal">
+  <form>
+    <label>
+      Imię Nazwisko
+      <input type="text">
+    </label><br>
+    <label>
+      Numer Telefonu
+      <input type="text">
+    </label><br>
+    <label>
+      Stan Samochodu
+      <label><input type="radio" name="opcja" value="opcja1">Zadbany</label>
+    </label>
+  </form>
+  </div>
+  </div>
+</section>
+
 <section><!--Umowa-->
     <div class="container">
       <div class="contract">
@@ -735,6 +757,11 @@ document.querySelectorAll("input").forEach(input => {
   input.addEventListener("change", update);
 });
 
+function scrollToForm() {
+  document.querySelector("form").scrollIntoView({
+    behavior:"smooth"
+  })
+}
 
 </script>
 

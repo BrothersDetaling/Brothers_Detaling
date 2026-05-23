@@ -586,16 +586,16 @@ a {
 }
 
 .sidebar {
+    
     padding: 20px;
     border-radius: 12px;
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateY(-30px);
     transition: 0.3s;
     height: fit-content;
     position: sticky;
     top: 20px;
     z-index: 999;
-    opacity: 1;
 }
 
 .sidebar.show {
