@@ -1,70 +1,97 @@
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<!DOCTYPE html>
+<html lang="pl">
 
-<div id="calendar"></div>
-
-<script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
-    const supabase = createClient(
-        "https://dvaeypdoxkldomgewvyf.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk"
-    );
-
-    const calendar = new FullCalendar.Calendar(document.getElementById("calendar"), {
-        initialView: "timeGridWeek",
-        slotMinTime: "08:00:00",
-        slotMaxTime: "18:00:00",
-        allDaySlot: false,
-
-        dateClick: (info) => {
-            localStorage.setItem("date", info.dateStr);
-            window.location.href = "form.html";
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formularz</title>
+    <style>
+        * {
+            box-sizing: border-box;
         }
-    });
 
-    calendar.render();
+        body {
+            margin: 0;
+            padding: 40px 16px;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #666;
+        }
 
-    // POBIERANIE ZAJĘTYCH TERMINÓW
-    const { data } = await supabase
-        .from("bookings")
-        .select("booking_date, booking_time");
+        .form-box {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-    data.forEach(b => {
-        calendar.addEvent({
-            title: "Zajęte",
-            start: `${b.booking_date}T${b.booking_time}`,
-            color: "red"
-        });
-    });
-</script>
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 22px;
+        }
 
-<input id="name" placeholder="Imię">
-<input id="phone" placeholder="Telefon">
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
 
-<select id="service">
-    <option>Basic</option>
-    <option>Standard</option>
-    <option>Premium</option>
-</select>
+        .field input {
+            border: none;
+            border-bottom: 1px solid #cfcfcf;
+            padding: 8px 4px 6px;
+            font-size: 15px;
+            color: #444;
+            background: transparent;
+            outline: none;
+        }
 
-<input type="time" id="time">
+        .field input::placeholder {
+            color: #8a8a8a;
+        }
 
-<button onclick="goPay()">Zapłać 10 zł</button>
+        .field input:focus {
+            border-bottom-color: #888;
+        }
 
-<script>
-    function goPay() {
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 
-        const booking = {
-            name: name.value,
-            phone: phone.value,
-            service: service.value,
-            booking_date: localStorage.getItem("date"),
-            booking_time: time.value
-        };
+<body>
+    <div class="form-box">
+        <form class="form-grid">
+            <div class="field">
+                <input type="text" placeholder="Imię" />
+            </div>
 
-        localStorage.setItem("booking", JSON.stringify(booking));
+            <div class="field">
+                <input type="text" placeholder="Nazwisko" />
+            </div>
 
-        window.location.href = "pay.html";
-    }
-</script>
+            <div class="field">
+                <input type="tel" placeholder="+48Numer telefonu" />
+            </div>
+
+            <div class="field">
+                <input type="text" placeholder="Numer domu/bloku" />
+            </div>
+
+            <div class="field">
+                <input type="text" placeholder="Ulica" />
+            </div>
+
+            <div class="field">
+                <input type="text" placeholder="Kod pocztowy" />
+            </div>
+
+            <div class="field">
+                <input type="text" placeholder="Miejscowość" />
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -640,11 +640,15 @@
           <span>Brudny</span>
         </label>
       
-        <label class="radio-option">
-          <input type="radio" name="carState" value="uwalony">
-          <span>Uwalony jak nieszczęście</span>
-        </label>
+        <label for="cars">Stan</label>
+        <select id="cars" name="cars">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="fiat">Fiat</option>
+          <option value="audi">Audi</option>
+        </select>
       </div>
+      <div><button>Podsumowanie</button></div>
     </form>
   </div>
 
@@ -868,6 +872,13 @@
     update();
 
   });
+
+
+function goPay() {
+
+  window.location.href = "pay.html";
+  }
+
 
 </script>
 

@@ -672,3 +672,20 @@ input::placeholder {
 input:focus {
     border-bottom-color: var(--lime);
 }
+button {
+    padding: 10px;
+    color: var(--text);
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #1d2710);
+    border: 2px solid var(--border);
+    border-radius: 30px;
+    transition: 0.3s ease;
+    scroll-margin-top: 25vh;
+}
+button:hover {
+    scale: 1.02;
+    color: var(--lime);
+    border-color: var(--lime);
+}
