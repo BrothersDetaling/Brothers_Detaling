@@ -116,6 +116,12 @@ section {
     gap: 25px;
 }
 
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+}
+
 .grid-small {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -693,4 +699,8 @@ button:hover, select:hover {
 
 form {
     scroll-margin-top: 50vh;
+}
+
+.error {
+    color: #ff3b3b;
 }
