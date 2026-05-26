@@ -46,7 +46,7 @@
     <div class="total catd-top">
       Suma: <span class="price-normal"><span id="total">0</span>zł</span>
     </div><br>
-    <button>Przenieś do Podsumowania</button>
+    <button>Przenieś do Zamówienia</button>
     <button id="clear-cart" class="clear-btn">Wyczyść</button>
   </div>
   </div>
@@ -590,10 +590,10 @@
         estetyczny wygląd elementów wnętrza.
       </p>
     </div>
-
+ 
   </div><!--Grid-->
 </div>
-
+</section>
 </section>
 <section><!--Zamawianie-->
   <div class="container">
@@ -601,7 +601,6 @@
       <div class="line"></div>
       <h2>Zamawianie Usługi</h2>
     </div>
-
     <p class="note">
       Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
       ustalana jest indywidualnie.
@@ -609,6 +608,15 @@
 
 
   <div class="card normal">
+    <div id="sidebar">
+    <h3 class="card-top">Podsumowanie</h3>
+  
+    <div style="color: var(--text);" id="list"></div>
+  
+    <div class="total catd-top">
+      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+    </div></div><br>
+    
     <form class="zamowienie">
 
       <div class="form-group">
@@ -628,27 +636,36 @@
       </div>
       
       <div class="form-group">
-        <p class="radio-title">Stan samochodu</p>
-      
-        <label class="radio-option">
-          <input type="radio" name="carState" value="zadbany">
-          <span>Zadbany</span>
-        </label>
-      
-        <label class="radio-option">
-          <input type="radio" name="carState" value="brudny">
-          <span>Brudny</span>
-        </label>
-      
-        <label for="cars">Stan</label>
-        <select id="cars" name="cars">
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
-          <option value="audi">Audi</option>
+        <label for="stan"><p>Stan auta</p>
+        <select id="stan" name="stan" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
         </select>
+        </label>
       </div>
-      <div><button>Podsumowanie</button></div>
+
+      <div class="form-group">
+        <label for="dzien"><p>Dzień</p>
+        <select id="dzien" name="dzien" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
+        </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="godzina"><p>Godzina</p>
+        <select id="godzina" name="godzina" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
+        </select>
+        </label>
+      </div>
+
+      <div><button onclick="goPay(event)"><h2>Zarezerwuj</h2></button></div>
     </form>
   </div>
 
@@ -714,7 +731,6 @@
 </footer>
 
 
-
 <script>
   function highlightCard(id) {
     const el = document.getElementById(id);
@@ -757,127 +773,159 @@
       }, 2000);
     }
 
-    const sidebar = document.getElementById("sidebar");
-    const list = document.getElementById("list");
-    const totalEl = document.getElementById("total");
+const sidebar = document.getElementById("sidebar");
+const listEls = document.querySelectorAll("#list, #list-form");
+const totalEls = document.querySelectorAll("#total, #total-form");
 
-    /* TYLKO INPUTY Z KART */
-    const serviceInputs = document.querySelectorAll(
-      '.card input[data-price]'
-    );
+// wszystkie inputy z ceną
+const serviceInputs = document.querySelectorAll('.card input[data-price]');
 
-    function update() {
+// aktualizacja koszyka
+function update() {
+  let total = 0;
+  let items = [];
 
-      let total = 0;
-      let items = [];
+  // reset zaznaczeń kart
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.remove("selected");
+  });
 
-      /* RESET SELECTED */
-      document.querySelectorAll(".card").forEach(card => {
-        card.classList.remove("selected");
+  serviceInputs.forEach(input => {
+    const card = input.closest(".card");
+    const price = parseInt(input.dataset.price) || 0;
+
+    if (!card) return;
+
+    // RADIO (pakiety)
+    if (input.type === "radio" && input.checked) {
+      total += price;
+
+      items.push({
+        name: input.value,
+        price
       });
 
-      serviceInputs.forEach(input => {
+      card.classList.add("selected");
+    }
 
-        const card = input.closest(".card");
+    // CHECKBOX (usługi)
+    if (input.type === "checkbox" && input.checked) {
+      total += price;
 
-        if (!card) return;
-
-        const price = parseInt(input.dataset.price) || 0;
-
-        /* RADIO */
-        if (input.type === "radio" && input.checked) {
-
-          total += price;
-
-          items.push({
-            name: input.value,
-            price: price
-          });
-
-          card.classList.add("selected");
-        }
-
-        /* CHECKBOX */
-        if (input.type === "checkbox") {
-
-          if (input.checked) {
-
-            total += price;
-
-            items.push({
-              name: input.value,
-              price: price
-            });
-
-            card.classList.add("selected");
-          }
-        }
-
+      items.push({
+        name: input.value,
+        price
       });
 
-      totalEl.textContent = total;
+      card.classList.add("selected");
+    }
+  });
 
-      list.innerHTML = "";
+  // 🔥 aktualizacja wszystkich totali
+  totalEls.forEach(el => {
+    el.textContent = total;
+  });
 
-      items.forEach(item => {
+  // 🔥 aktualizacja wszystkich list
+  listEls.forEach(el => {
+    el.innerHTML = "";
 
-        const div = document.createElement("div");
-
-        div.className = "item";
-
-        div.innerHTML = `
+    items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
         <span>${item.name}</span>
         <span>${item.price}zł</span>
       `;
-
-        list.appendChild(div);
-
-      });
-
-      if (items.length > 0) {
-        sidebar.classList.add("show");
-      } else {
-        sidebar.classList.remove("show");
-      }
-    }
-
-    serviceInputs.forEach(input => {
-      input.addEventListener("change", update);
+      el.appendChild(div);
     });
-
-    /* PRZYCISK -> FORMULARZ */
-
-    const sidebarBtn = sidebar.querySelector("button");
-
-    sidebarBtn.addEventListener("click", () => {
-
-      const formSection = document.querySelector("form");
-
-      formSection.scrollIntoView({
-        behavior: "smooth"
-      });
-
-    });
-
-  const clearBtn = document.getElementById("clear-cart");
-
-  clearBtn.addEventListener("click", () => {
-
-    serviceInputs.forEach(input => {
-
-      input.checked = false;
-
-    });
-
-    update();
-
   });
 
-
-function goPay() {
-
-  window.location.href = "pay.html";
+  // pokaz / ukryj sidebar
+  if (items.length > 0) {
+    sidebar.classList.add("show");
+  } else {
+    sidebar.classList.remove("show");
   }
+}
+
+// nasłuchiwanie zmian
+serviceInputs.forEach(input => {
+  input.addEventListener("change", update);
+});
+
+// przycisk -> scroll do formularza
+const sidebarBtn = sidebar.querySelector("button");
+
+sidebarBtn.addEventListener("click", () => {
+  document.querySelector("form").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+// czyszczenie koszyka
+document.getElementById("clear-cart").addEventListener("click", () => {
+  serviceInputs.forEach(input => {
+    input.checked = false;
+  });
+
+  update();
+});
+
+// start
+update();
+
+function goPay(event) {
+  event.preventDefault();
+
+  const firstName = document.getElementById("firstName");
+  const lastName = document.getElementById("lastName");
+  const phone = document.getElementById("phone");
+  const email = document.getElementById("email");
+
+  // Czyści stare błędy
+  document.querySelectorAll(".error").forEach(el => el.remove());
+
+  let valid = true;
+
+  function showError(input, message) {
+    const error = document.createElement("div");
+    error.className = "error";
+    error.innerText = message;
+
+    input.parentElement.appendChild(error);
+    valid = false;
+  }
+
+  // Imię
+  if (firstName.value.trim().length < 2) {
+    showError(firstName, "Wpisz poprawne imię");
+  }
+
+  // Nazwisko
+  if (lastName.value.trim().length < 2) {
+    showError(lastName, "Wpisz poprawne nazwisko");
+  }
+
+  // Telefon
+  const phoneRegex = /^[0-9]{9}$/;
+
+  if (!phoneRegex.test(phone.value.trim())) {
+    showError(phone, "Numer musi mieć 9 cyfr");
+  }
+
+  // Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email.value.trim())) {
+    showError(email, "Wpisz poprawny e-mail");
+  }
+
+  // Jeśli wszystko poprawne
+  if (valid) {
+    window.location.href = "pay.html";
+  }
+}
 
 
 </script>

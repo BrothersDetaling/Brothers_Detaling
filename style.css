@@ -613,18 +613,18 @@ a {
     align-items: center;
 
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.08);
 
     color: var(--text);
 }
 
 .arrow {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 
-    border-right: 3px solid var(--lime);
-    border-bottom: 3px solid var(--lime);
-
+    border-right: 5px solid var(--lime);
+    border-bottom: 5px solid var(--lime);
+    
     transform: rotate(45deg);
 
     animation: bounce 1.5s infinite;
@@ -672,20 +672,25 @@ input::placeholder {
 input:focus {
     border-bottom-color: var(--lime);
 }
-button {
+button, select {
     padding: 10px;
     color: var(--text);
     background-image: linear-gradient(to bottom right,
         #0d0d0d,
         #0d0d0d,
         #1d2710);
+    background-color: var(--card);
     border: 2px solid var(--border);
     border-radius: 30px;
     transition: 0.3s ease;
     scroll-margin-top: 25vh;
 }
-button:hover {
+button:hover, select:hover {
     scale: 1.02;
     color: var(--lime);
     border-color: var(--lime);
+}
+
+form {
+    scroll-margin-top: 50vh;
 }
