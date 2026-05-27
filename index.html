@@ -665,6 +665,9 @@
         </label>
       </div>
 </div>
+      <div class="zapoznanie">
+        <input type="checkbox" required><p>Zapoznałem sie z <a href="#umowa"> umową użytkownika</a></p>
+      </div>
       <div><button onclick="goPay(event)"><h2>Zarezerwuj</h2></button></div>
     </form>
   </div>
@@ -676,11 +679,15 @@
       <div class="contract">
 
         <div class="section-title">
-          <div class="line"></div>
+          <div class="line" id="umowa"></div>
           <h2>Umowa Usługi</h2>
         </div>
 
         <div class="contract-content">
+          <p>
+            Zamówienie terminu usługi kosztuje 10zł, koszt ten zostanie odjęty od całkowietego kosztu usługi
+          </p>
+          
           <p>
             Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie wybranych usług.
           </p>
@@ -883,6 +890,16 @@ function goPay(event) {
   const phone = document.getElementById("phone");
   const email = document.getElementById("email");
 
+  // WYBRANE USŁUGI
+  const checkedServices = document.querySelectorAll(
+    '.card input[data-price]:checked'
+  );
+
+  // CHECKBOX UMOWY
+  const agreement = document.querySelector(
+    '.zapoznanie input[type="checkbox"]'
+  );
+
   // Czyści stare błędy
   document.querySelectorAll(".error").forEach(el => el.remove());
 
@@ -890,10 +907,13 @@ function goPay(event) {
 
   function showError(input, message) {
     const error = document.createElement("div");
+
     error.className = "error";
+
     error.innerText = message;
 
     input.parentElement.appendChild(error);
+
     valid = false;
   }
 
@@ -921,7 +941,35 @@ function goPay(event) {
     showError(email, "Wpisz poprawny e-mail");
   }
 
-  // Jeśli wszystko poprawne
+  // CZY WYBRANO USŁUGĘ
+  if (checkedServices.length === 0) {
+
+    const error = document.createElement("div");
+
+    error.className = "error";
+
+    error.innerText = "Wybierz przynajmniej jedną usługę";
+
+    document.getElementById("list").appendChild(error);
+
+    valid = false;
+  }
+
+  // CZY ZAAKCEPTOWANO UMOWĘ
+  if (!agreement.checked) {
+
+    const error = document.createElement("div");
+
+    error.className = "error";
+
+    error.innerText = "Musisz zaakceptować umowę";
+
+    agreement.parentElement.appendChild(error);
+
+    valid = false;
+  }
+
+  // GOTOWE
   if (valid) {
     window.location.href = "pay.html";
   }
