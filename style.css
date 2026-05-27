@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-margin-top: 25vh;
 }
 
 body {
@@ -600,18 +599,12 @@ a {
     transition: 0.3s;
     height: fit-content;
     position: sticky;
+    top: 40px;
     z-index: 999;
-
-}
-
-.sidebar.show:hover{
-    opacity: 1;
 }
 
 .sidebar.show {
-    top: 40px;
-    position: sticky;
-    opacity: 0.7;
+    opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
@@ -710,17 +703,4 @@ form {
 
 .error {
     color: #ff3b3b;
-}
-.zapoznanie {
-        padding: 10px;
-    color: var(--text);
-    background-image: linear-gradient(to bottom right,
-        #0d0d0d,
-        #0d0d0d,
-        #1d2710);
-    background-color: var(--card);
-    border: 2px solid var(--border);
-    border-radius: 30px;
-    transition: 0.3s ease;
-    scroll-margin-top: 25vh;
 }
