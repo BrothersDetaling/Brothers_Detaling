@@ -618,32 +618,27 @@
     </div></div><br>
     
     <form class="zamowienie">
-      <h2>Uzupełnij</h2>
+      <h2>Uzupełnij dane</h2>
       <div class="form-group">
+        <label for="firstName">Imię *</label>
         <input type="text" id="firstName" placeholder="Wpisz imię" required>
       </div>
       
       <div class="form-group">
+        <label for="lastName">Nazwisko *</label>
         <input type="text" id="lastName" placeholder="Wpisz nazwisko" required>
       </div>
       
       <div class="form-group">
+        <label for="phone">Numer telefonu *</label>
         <input type="tel" id="phone" placeholder="Wpisz numer telefonu" required>
       </div>
       
       <div class="form-group">
+        <label for="email">Email *</label>
         <input type="email" id="email" name="email" placeholder="np. kontakt@gmail.com" required>
       </div>
       <div class="grid-form">
-      <div class="form-group">
-        <label for="stan"><p>Stan auta</p>
-        <select id="stan" name="stan" required>
-          <option value="zadbany">Zadbany</option>
-          <option value="normalny">Normalny</option>
-          <option value="Brudny">Brudny</option>
-        </select>
-        </label>
-      </div>
 
       <div class="form-group">
         <label for="dzien"><p>Dzień</p>
@@ -677,10 +672,11 @@
         <div id="time-selected" class="day-picker__selected">Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny</div>
       </div>
 </div>
-      <div class="zapoznanie">
-        <input type="checkbox" required><p>Zapoznałem sie z <a href="#umowa"> umową użytkownika</a></p>
-      </div>
-      <div><button onclick="goPay(event)"><h2>Zarezerwuj</h2></button></div>
+      <label class="zapoznanie">
+        <input type="checkbox" required>
+        <span>Zapoznałem się z <a href="#umowa">umową użytkownika</a></span>
+      </label>
+      <div class="submit-container"><button onclick="goPay(event)" class="btn-rezerwuj">Zarezerwuj</button></div>
     </form>
   </div>
 
