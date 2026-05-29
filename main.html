@@ -647,22 +647,36 @@
 
       <div class="form-group">
         <label for="dzien"><p>Dzień</p>
-        <select id="dzien" name="dzien" required>
-          <option value="zadbany">Zadbany</option>
-          <option value="normalny">Normalny</option>
-          <option value="Brudny">Brudny</option>
-        </select>
+        <input type="hidden" id="dzien" name="dzien" required>
+        <div class="day-picker" aria-label="Kalendarz wyboru dnia">
+          <div class="day-picker__header">
+            <button type="button" id="day-prev" aria-label="Poprzedni miesiac">&lsaquo;</button>
+            <div id="day-month" class="day-picker__month">Wczytywanie...</div>
+            <button type="button" id="day-next" aria-label="Nastepny miesiac">&rsaquo;</button>
+          </div>
+          <div class="day-picker__weekdays">
+            <span>Pn</span>
+            <span>Wt</span>
+            <span>Sr</span>
+            <span>Cz</span>
+            <span>Pt</span>
+            <span>Sb</span>
+            <span>Nd</span>
+          </div>
+          <div id="day-grid" class="day-picker__grid"></div>
+        </div>
+        <div id="day-selected" class="day-picker__selected">Wybierz dzien z kalendarza</div>
         </label>
       </div>
 
       <div class="form-group">
-        <label for="godzina"><p>Godzina</p>
-        <select id="godzina" name="godzina" required>
-          <option value="zadbany">Zadbany</option>
-          <option value="normalny">Normalny</option>
-          <option value="Brudny">Brudny</option>
-        </select>
-        </label>
+        <p>Godzina</p>
+        <input type="hidden" id="godzina" name="godzina" required>
+        <div class="time-picker" aria-label="Dostępne godziny">
+          <div class="time-picker__title">Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny</div>
+          <div id="time-list" class="time-picker__list"></div>
+        </div>
+        <div id="time-selected" class="day-picker__selected">Nie wybrano godziny</div>
       </div>
 </div>
       <div class="zapoznanie">
@@ -783,6 +797,439 @@
 const sidebar = document.getElementById("sidebar");
 const listEls = document.querySelectorAll("#list, #list-form");
 const totalEls = document.querySelectorAll("#total, #total-form");
+const dzienSelect = document.getElementById("dzien");
+
+// Konfiguracja Supabase do pobierania dostępnych dni.
+// Jeśli Twoja tabela lub kolumny mają inne nazwy, zmień je tutaj.
+const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
+const DAYS_TABLE = "workinghours";
+const DAY_VALUE_COLUMN = "date";
+const DAY_LABEL_COLUMN = "date";
+const START_TIME_COLUMN = "start_time";
+const END_TIME_COLUMN = "end_time";
+
+function setDayOptions(message) {
+  if (!dzienSelect) return;
+
+  dzienSelect.innerHTML = "";
+
+  const option = document.createElement("option");
+  option.value = "";
+  option.textContent = message;
+  dzienSelect.appendChild(option);
+}
+
+async function loadDaysFromSupabase() {
+  if (!dzienSelect) return;
+
+  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+    setDayOptions("Uzupełnij klucz Supabase");
+    return;
+  }
+
+  setDayOptions("Wczytywanie...");
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${DAY_LABEL_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          Accept: "application/json"
+        }
+      }
+    );
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+    }
+
+    const rows = await response.json();
+
+    console.log("Pobrane dni z Supabase:", rows);
+
+    if (!Array.isArray(rows) || rows.length === 0) {
+      setDayOptions("Brak rekordów lub brak dostępu");
+      console.warn(
+        "Supabase zwrócił pustą tablicę. Jeśli rekordy istnieją, sprawdź RLS i politykę SELECT dla tabeli workinghours."
+      );
+      return;
+    }
+
+    dzienSelect.innerHTML = "";
+
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "Wybierz dzień";
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    dzienSelect.appendChild(placeholder);
+
+    rows.forEach((row) => {
+      const value = row[DAY_VALUE_COLUMN] ?? row.value ?? row.nazwa ?? row.name ?? "";
+      const label = row[DAY_LABEL_COLUMN] ?? row.nazwa ?? row.name ?? row.value ?? value;
+
+      if (!value) return;
+
+      const option = document.createElement("option");
+      option.value = String(value);
+      option.textContent = String(label);
+      dzienSelect.appendChild(option);
+    });
+
+  } catch (error) {
+    console.error("Nie udało się pobrać dni z Supabase:", error);
+    setDayOptions("Błąd pobierania dni");
+  }
+}
+
+const dzienInput = document.getElementById("dzien");
+const dayMonthEl = document.getElementById("day-month");
+const dayGridEl = document.getElementById("day-grid");
+const daySelectedEl = document.getElementById("day-selected");
+const dayPrevBtn = document.getElementById("day-prev");
+const dayNextBtn = document.getElementById("day-next");
+
+const monthNamesPl = [
+  "stycznia",
+  "lutego",
+  "marca",
+  "kwietnia",
+  "maja",
+  "czerwca",
+  "lipca",
+  "sierpnia",
+  "września",
+  "października",
+  "listopada",
+  "grudnia"
+];
+
+let allowedDays = new Set();
+let allowedDayList = [];
+let selectedDay = "";
+let visibleMonth = new Date();
+visibleMonth.setDate(1);
+visibleMonth.setHours(0, 0, 0, 0);
+
+function toDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseDateKey(value) {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function startOfMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+function sameMonth(a, b) {
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+}
+
+function updateSelectedDay(value) {
+  selectedDay = value;
+
+  if (dzienInput) {
+    dzienInput.value = value;
+  }
+
+  if (daySelectedEl) {
+    daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+  }
+}
+
+function renderCalendar() {
+  if (!dayMonthEl || !dayGridEl) return;
+
+  if (!allowedDayList.length) {
+    dayMonthEl.textContent = "Brak dostępnych dni";
+    dayGridEl.innerHTML = '<div class="day-picker__empty">Brak rekordów lub brak dostępu.</div>';
+    if (dayPrevBtn) dayPrevBtn.disabled = true;
+    if (dayNextBtn) dayNextBtn.disabled = true;
+    updateSelectedDay("");
+    return;
+  }
+
+  const minMonth = startOfMonth(parseDateKey(allowedDayList[0]));
+  const maxMonth = startOfMonth(parseDateKey(allowedDayList[allowedDayList.length - 1]));
+
+  if (visibleMonth < minMonth) visibleMonth = new Date(minMonth);
+  if (visibleMonth > maxMonth) visibleMonth = new Date(maxMonth);
+
+  dayMonthEl.textContent = `${monthNamesPl[visibleMonth.getMonth()]} ${visibleMonth.getFullYear()}`;
+
+  if (dayPrevBtn) dayPrevBtn.disabled = sameMonth(visibleMonth, minMonth);
+  if (dayNextBtn) dayNextBtn.disabled = sameMonth(visibleMonth, maxMonth);
+
+  const firstDay = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
+  const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
+  const offset = (firstDay.getDay() + 6) % 7;
+  const cells = [];
+
+  for (let i = 0; i < offset; i += 1) {
+    cells.push('<div class="day-picker__cell day-picker__cell--empty"></div>');
+  }
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
+    const key = toDateKey(date);
+    const isAllowed = allowedDays.has(key);
+    const isSelected = key === selectedDay;
+
+    if (isAllowed) {
+      cells.push(
+        `<button type="button" class="day-picker__day${isSelected ? " is-selected" : ""}" data-date="${key}" aria-pressed="${isSelected}">${day}</button>`
+      );
+    } else {
+      cells.push(
+        `<button type="button" class="day-picker__day is-disabled" disabled aria-disabled="true">${day}</button>`
+      );
+    }
+  }
+
+  dayGridEl.innerHTML = cells.join("");
+
+  dayGridEl.querySelectorAll("[data-date]").forEach((button) => {
+    button.addEventListener("click", () => {
+      updateSelectedDay(button.dataset.date);
+      renderCalendar();
+    });
+  });
+}
+
+function moveMonth(step) {
+  visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + step, 1);
+  renderCalendar();
+}
+
+if (dayPrevBtn) {
+  dayPrevBtn.addEventListener("click", () => moveMonth(-1));
+}
+
+if (dayNextBtn) {
+  dayNextBtn.addEventListener("click", () => moveMonth(1));
+}
+
+async function loadDaysFromSupabase() {
+  if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+
+  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+    dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+    return;
+  }
+
+  dayMonthEl.textContent = "Wczytywanie...";
+  dayGridEl.innerHTML = "";
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          Accept: "application/json"
+        }
+      }
+    );
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+    }
+
+    const rows = await response.json();
+    console.log("Pobrane dni z Supabase:", rows);
+
+    const dates = Array.isArray(rows)
+      ? rows
+          .map((row) => String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim())
+          .filter(Boolean)
+      : [];
+
+    allowedDayList = dates;
+    allowedDays = new Set(dates);
+
+    if (!allowedDayList.length) {
+      dayMonthEl.textContent = "Brak dostępnych dni";
+      dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych dat.</div>';
+      updateSelectedDay("");
+      return;
+    }
+
+    const todayKey = toDateKey(new Date());
+    const initialKey = allowedDays.has(todayKey) ? todayKey : allowedDayList[0];
+    visibleMonth = startOfMonth(parseDateKey(initialKey));
+    updateSelectedDay(allowedDays.has(todayKey) ? todayKey : "");
+    renderCalendar();
+  } catch (error) {
+    console.error("Nie udało się pobrać dni z Supabase:", error);
+    dayMonthEl.textContent = "Błąd pobierania dni";
+    dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+  }
+}
+
+const godzinaInput = document.getElementById("godzina");
+const timeListEl = document.getElementById("time-list");
+const timeSelectedEl = document.getElementById("time-selected");
+
+let availabilityByDate = new Map();
+let selectedTime = "";
+
+function formatTime(value) {
+  return String(value || "").slice(0, 5);
+}
+
+function setTimeSelection(value, label) {
+  selectedTime = value;
+
+  if (godzinaInput) {
+    godzinaInput.value = value;
+  }
+
+  if (timeSelectedEl) {
+    timeSelectedEl.textContent = label ? `Wybrano godzinę: ${label}` : "Nie wybrano godziny";
+  }
+}
+
+function renderTimeSlots() {
+  if (!timeListEl) return;
+
+  if (!selectedDay) {
+    timeListEl.innerHTML = '<div class="time-picker__empty">Najpierw wybierz dzień.</div>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Nie wybrano godziny";
+    return;
+  }
+
+  const slots = availabilityByDate.get(selectedDay) || [];
+
+  if (!slots.length) {
+    timeListEl.innerHTML = '<div class="time-picker__empty">Brak godzin dla wybranego dnia.</div>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Nie wybrano godziny";
+    return;
+  }
+
+  timeListEl.innerHTML = slots.map((slot) => {
+    const value = `${slot.start_time}-${slot.end_time}`;
+    const label = `${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}`;
+    const isSelected = value === selectedTime;
+    return `<button type="button" class="time-picker__slot${isSelected ? " is-selected" : ""}" data-time="${value}" data-label="${label}" aria-pressed="${isSelected}">${label}</button>`;
+  }).join("");
+
+  timeListEl.querySelectorAll("[data-time]").forEach((button) => {
+    button.addEventListener("click", () => {
+      setTimeSelection(button.dataset.time, button.dataset.label);
+      renderTimeSlots();
+    });
+  });
+}
+
+function updateSelectedDay(value) {
+  selectedDay = value;
+
+  if (dzienInput) {
+    dzienInput.value = value;
+  }
+
+  if (daySelectedEl) {
+    daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+  }
+
+  setTimeSelection("", "");
+  renderTimeSlots();
+}
+
+async function loadDaysFromSupabase() {
+  if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+
+  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+    dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+    return;
+  }
+
+  const todayKey = toDateKey(new Date());
+  dayMonthEl.textContent = "Wczytywanie...";
+  dayGridEl.innerHTML = "";
+
+  if (timeListEl) {
+    timeListEl.innerHTML = '<div class="time-picker__empty">Wczytywanie godzin...</div>';
+  }
+
+  try {
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${START_TIME_COLUMN},${END_TIME_COLUMN}&${DAY_VALUE_COLUMN}=gte.${todayKey}&order=${DAY_VALUE_COLUMN}.asc&order=${START_TIME_COLUMN}.asc`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          Accept: "application/json"
+        }
+      }
+    );
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+    }
+
+    const rows = await response.json();
+    console.log("Pobrane dni z Supabase:", rows);
+
+    const normalizedRows = Array.isArray(rows)
+      ? rows
+          .map((row) => ({
+            date: String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim(),
+            start_time: String(row?.[START_TIME_COLUMN] ?? row?.start_time ?? "").trim(),
+            end_time: String(row?.[END_TIME_COLUMN] ?? row?.end_time ?? "").trim()
+          }))
+          .filter((row) => row.date)
+      : [];
+
+    if (!normalizedRows.length) {
+      allowedDays = new Set();
+      allowedDayList = [];
+      availabilityByDate = new Map();
+      dayMonthEl.textContent = "Brak dostępnych dni";
+      dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych przyszłych dat.</div>';
+      if (timeListEl) timeListEl.innerHTML = '<div class="time-picker__empty">Brak godzin do wyświetlenia.</div>';
+      updateSelectedDay("");
+      return;
+    }
+
+    availabilityByDate = new Map();
+    normalizedRows.forEach((row) => {
+      if (!availabilityByDate.has(row.date)) {
+        availabilityByDate.set(row.date, []);
+      }
+
+      if (row.start_time && row.end_time) {
+        availabilityByDate.get(row.date).push(row);
+      }
+    });
+
+    allowedDayList = [...new Set(normalizedRows.map((row) => row.date))].sort();
+    allowedDays = new Set(allowedDayList);
+
+    const initialKey = allowedDayList[0];
+    visibleMonth = startOfMonth(parseDateKey(initialKey));
+    updateSelectedDay(initialKey);
+    renderCalendar();
+  } catch (error) {
+    console.error("Nie udało się pobrać dni z Supabase:", error);
+    dayMonthEl.textContent = "Błąd pobierania dni";
+    dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+    if (timeListEl) timeListEl.innerHTML = '<div class="time-picker__empty">Nie udało się pobrać godzin.</div>';
+  }
+}
 
 // wszystkie inputy z ceną
 const serviceInputs = document.querySelectorAll('.card input[data-price]');
@@ -881,6 +1328,7 @@ document.getElementById("clear-cart").addEventListener("click", () => {
 
 // start
 update();
+loadDaysFromSupabase();
 
 function goPay(event) {
   event.preventDefault();
@@ -889,6 +1337,8 @@ function goPay(event) {
   const lastName = document.getElementById("lastName");
   const phone = document.getElementById("phone");
   const email = document.getElementById("email");
+  const dayValue = document.getElementById("dzien");
+  const timeValue = document.getElementById("godzina");
 
   // WYBRANE USŁUGI
   const checkedServices = document.querySelectorAll(
@@ -939,6 +1389,16 @@ function goPay(event) {
 
   if (!emailRegex.test(email.value.trim())) {
     showError(email, "Wpisz poprawny e-mail");
+  }
+
+  // DZIEŃ
+  if (!dayValue.value || !allowedDays.has(dayValue.value)) {
+    showError(daySelectedEl, "Wybierz dostępny dzień z kalendarza");
+  }
+
+  // GODZINA
+  if (!timeValue.value || !selectedTime) {
+    showError(timeSelectedEl, "Wybierz dostępną godzinę");
   }
 
   // CZY WYBRANO USŁUGĘ
