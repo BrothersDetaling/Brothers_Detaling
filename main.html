@@ -671,12 +671,10 @@
 
       <div class="form-group">
         <p>Godzina</p>
-        <input type="hidden" id="godzina" name="godzina" required>
-        <div class="time-picker" aria-label="Dostępne godziny">
-          <div class="time-picker__title">Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny</div>
-          <div id="time-list" class="time-picker__list"></div>
-        </div>
-        <div id="time-selected" class="day-picker__selected">Nie wybrano godziny</div>
+        <select id="godzina" name="godzina" required disabled>
+          <option value="">Wybierz dzień z kalendarza</option>
+        </select>
+        <div id="time-selected" class="day-picker__selected">Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny</div>
       </div>
 </div>
       <div class="zapoznanie">
@@ -1079,14 +1077,29 @@ async function loadDaysFromSupabase() {
 }
 
 const godzinaInput = document.getElementById("godzina");
-const timeListEl = document.getElementById("time-list");
 const timeSelectedEl = document.getElementById("time-selected");
 
 let availabilityByDate = new Map();
+let allowedTimesForSelectedDay = [];
 let selectedTime = "";
 
 function formatTime(value) {
   return String(value || "").slice(0, 5);
+}
+
+function timeToMinutes(value) {
+  const [hours, minutes] = String(value || "0:0").slice(0, 5).split(":").map(Number);
+  return (hours * 60) + minutes;
+}
+
+function minutesToTime(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+}
+
+function roundUpToStep(minutes, step) {
+  return Math.ceil(minutes / step) * step;
 }
 
 function setTimeSelection(value, label) {
@@ -1101,35 +1114,92 @@ function setTimeSelection(value, label) {
   }
 }
 
-function renderTimeSlots() {
-  if (!timeListEl) return;
+function updateTimePickerBounds() {
+  if (!godzinaInput) return;
 
   if (!selectedDay) {
-    timeListEl.innerHTML = '<div class="time-picker__empty">Najpierw wybierz dzień.</div>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Nie wybrano godziny";
+    godzinaInput.disabled = true;
+    godzinaInput.value = "";
+    selectedTime = "";
+    godzinaInput.innerHTML = '<option value="">Wybierz dzień z kalendarza</option>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny";
     return;
   }
 
   const slots = availabilityByDate.get(selectedDay) || [];
 
   if (!slots.length) {
-    timeListEl.innerHTML = '<div class="time-picker__empty">Brak godzin dla wybranego dnia.</div>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Nie wybrano godziny";
+    godzinaInput.disabled = true;
+    godzinaInput.value = "";
+    selectedTime = "";
+    godzinaInput.innerHTML = '<option value="">Brak godzin dla wybranego dnia</option>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin dla wybranego dnia";
+    allowedTimesForSelectedDay = [];
     return;
   }
 
-  timeListEl.innerHTML = slots.map((slot) => {
-    const value = `${slot.start_time}-${slot.end_time}`;
-    const label = `${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}`;
-    const isSelected = value === selectedTime;
-    return `<button type="button" class="time-picker__slot${isSelected ? " is-selected" : ""}" data-time="${value}" data-label="${label}" aria-pressed="${isSelected}">${label}</button>`;
-  }).join("");
+  const slotDuration = 30;
+  const timeOptions = [];
 
-  timeListEl.querySelectorAll("[data-time]").forEach((button) => {
-    button.addEventListener("click", () => {
-      setTimeSelection(button.dataset.time, button.dataset.label);
-      renderTimeSlots();
-    });
+  slots.forEach((slot) => {
+    const startMinutes = timeToMinutes(slot.start_time);
+    const endMinutes = timeToMinutes(slot.end_time);
+
+    if (Number.isNaN(startMinutes) || Number.isNaN(endMinutes) || endMinutes <= startMinutes) {
+      return;
+    }
+
+    const firstStart = roundUpToStep(startMinutes, slotDuration);
+    const lastStart = endMinutes - slotDuration;
+
+    for (let minutes = firstStart; minutes <= lastStart; minutes += slotDuration) {
+      timeOptions.push(minutesToTime(minutes));
+    }
+  });
+
+  allowedTimesForSelectedDay = [...new Set(timeOptions)];
+
+  if (!allowedTimesForSelectedDay.length) {
+    godzinaInput.disabled = true;
+    godzinaInput.value = "";
+    selectedTime = "";
+    godzinaInput.innerHTML = '<option value="">Brak półgodzinnych slotów w wybranym dniu</option>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Brak półgodzinnych slotów w wybranym dniu";
+    return;
+  }
+
+  godzinaInput.disabled = false;
+  godzinaInput.innerHTML = [
+    '<option value="">Wybierz godzinę</option>',
+    ...allowedTimesForSelectedDay.map((time) => `<option value="${time}">${time}</option>`)
+  ].join("");
+
+  const currentValue = godzinaInput.value;
+  if (currentValue && !allowedTimesForSelectedDay.includes(currentValue)) {
+    godzinaInput.value = "";
+    setTimeSelection("", "");
+  }
+
+  if (!godzinaInput.value) {
+    if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+  } else {
+    setTimeSelection(godzinaInput.value, godzinaInput.value);
+  }
+}
+
+if (godzinaInput) {
+  godzinaInput.addEventListener("change", () => {
+    const value = godzinaInput.value;
+
+    if (!value || !allowedTimesForSelectedDay.includes(value)) {
+      setTimeSelection("", "");
+      if (timeSelectedEl) {
+        timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+      }
+      return;
+    }
+
+    setTimeSelection(value, value);
   });
 }
 
@@ -1145,7 +1215,7 @@ function updateSelectedDay(value) {
   }
 
   setTimeSelection("", "");
-  renderTimeSlots();
+  updateTimePickerBounds();
 }
 
 async function loadDaysFromSupabase() {
@@ -1160,8 +1230,8 @@ async function loadDaysFromSupabase() {
   dayMonthEl.textContent = "Wczytywanie...";
   dayGridEl.innerHTML = "";
 
-  if (timeListEl) {
-    timeListEl.innerHTML = '<div class="time-picker__empty">Wczytywanie godzin...</div>';
+  if (timeSelectedEl) {
+    timeSelectedEl.textContent = "Wczytywanie godzin...";
   }
 
   try {
@@ -1200,7 +1270,7 @@ async function loadDaysFromSupabase() {
       availabilityByDate = new Map();
       dayMonthEl.textContent = "Brak dostępnych dni";
       dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych przyszłych dat.</div>';
-      if (timeListEl) timeListEl.innerHTML = '<div class="time-picker__empty">Brak godzin do wyświetlenia.</div>';
+      if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin do wyświetlenia.";
       updateSelectedDay("");
       return;
     }
@@ -1227,7 +1297,7 @@ async function loadDaysFromSupabase() {
     console.error("Nie udało się pobrać dni z Supabase:", error);
     dayMonthEl.textContent = "Błąd pobierania dni";
     dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
-    if (timeListEl) timeListEl.innerHTML = '<div class="time-picker__empty">Nie udało się pobrać godzin.</div>';
+    if (timeSelectedEl) timeSelectedEl.textContent = "Nie udało się pobrać godzin.";
   }
 }
 
