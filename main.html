@@ -37,7 +37,19 @@
 </a>
 
 <section>
-
+  <div class="sidebar container" id="sidebar">
+  <div class="card normal">
+    <h3 class="card-top">Podsumowanie</h3>
+  
+    <div style="color: var(--text);" id="list"></div>
+  
+    <div class="total catd-top">
+      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+    </div><br>
+    <button>Przenieś do Zamówienia</button>
+    <button id="clear-cart" class="clear-btn">Wyczyść</button>
+  </div>
+  </div>
 
 <section id="pakiety"><!--Pakiety-->
 <div class="container">
@@ -582,6 +594,84 @@
   </div><!--Grid-->
 </div>
 </section>
+</section>
+<section><!--Zamawianie-->
+  <div class="container">
+    <div class="section-title">
+      <div class="line"></div>
+      <h2>Zamawianie Usługi</h2>
+    </div>
+    <p class="note">
+      Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
+      ustalana jest indywidualnie.
+    </p>
+
+
+  <div class="card normal">
+    <div id="sidebar">
+    <h3 class="card-top">Podsumowanie</h3>
+  
+    <div style="color: var(--text);" id="list"></div>
+  
+    <div class="total catd-top">
+      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+    </div></div><br>
+    
+    <form class="zamowienie">
+      <h2>Uzupełnij</h2>
+      <div class="form-group">
+        <input type="text" id="firstName" placeholder="Wpisz imię" required>
+      </div>
+      
+      <div class="form-group">
+        <input type="text" id="lastName" placeholder="Wpisz nazwisko" required>
+      </div>
+      
+      <div class="form-group">
+        <input type="tel" id="phone" placeholder="Wpisz numer telefonu" required>
+      </div>
+      
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="np. kontakt@gmail.com" required>
+      </div>
+      <div class="grid-form">
+      <div class="form-group">
+        <label for="stan"><p>Stan auta</p>
+        <select id="stan" name="stan" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
+        </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="dzien"><p>Dzień</p>
+        <select id="dzien" name="dzien" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
+        </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="godzina"><p>Godzina</p>
+        <select id="godzina" name="godzina" required>
+          <option value="zadbany">Zadbany</option>
+          <option value="normalny">Normalny</option>
+          <option value="Brudny">Brudny</option>
+        </select>
+        </label>
+      </div>
+</div>
+      <div class="zapoznanie">
+        <input type="checkbox" required><p>Zapoznałem sie z <a href="#umowa"> umową użytkownika</a></p>
+      </div>
+      <div><button onclick="goPay(event)"><h2>Zarezerwuj</h2></button></div>
+    </form>
+  </div>
+
 </section>
 
 <section><!--Umowa-->

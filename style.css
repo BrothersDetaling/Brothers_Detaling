@@ -597,10 +597,10 @@ a {
     opacity: 0;
     transform: translateY(-30px);
     transition: 0.3s;
-    height: fit-content;
     position: sticky;
+    height: fit-content;
     z-index: 999;
-
+    opacity: 1;
 }
 
 .sidebar.show:hover{
