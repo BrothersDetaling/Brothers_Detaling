@@ -784,39 +784,7 @@ footer a:hover {
     }
 
     .sidebar-floating {
-        display: block !important;
-        position: static !important;
-        width: 100%;
-        max-height: none;
-        overflow: visible;
-        margin: 0 0 18px;
-        padding: 0 30px;
-        transform: none !important;
-        opacity: 1 !important;
-        pointer-events: auto;
-        z-index: 2;
-        will-change: auto;
-    }
-
-    .sidebar-floating.show,
-    .sidebar-floating.is-hidden {
-        position: static !important;
-        transform: none !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-
-    .sidebar-floating .card {
-        padding: 18px;
-        border-radius: 24px;
-    }
-
-    .sidebar-floating #list {
-        display: none;
-    }
-
-    .card.normal > #sidebar {
-        display: none;
+        display: none !important;
     }
 
     .grid {
@@ -1165,39 +1133,7 @@ a {
 
 @media (max-width: 900px) {
     .sidebar-floating {
-        display: block !important;
-        position: static !important;
-        width: 100%;
-        max-height: none;
-        overflow: visible;
-        margin: 0 0 18px;
-        padding: 0 30px;
-        transform: none !important;
-        opacity: 1 !important;
-        pointer-events: auto;
-        z-index: 2;
-        will-change: auto;
-    }
-
-    .sidebar-floating.show,
-    .sidebar-floating.is-hidden {
-        position: static !important;
-        transform: none !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
-
-    .sidebar-floating .card {
-        padding: 18px;
-        border-radius: 24px;
-    }
-
-    .sidebar-floating #list {
-        display: none;
-    }
-
-    .card.normal > #sidebar {
-        display: none;
+        display: none !important;
     }
 }
 
