@@ -97,6 +97,7 @@
   
     <div class="total catd-top">
       Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+      <div class="service-duration" style="margin: 8px 0 0;">Czas: <span id="total-time">0 min</span></div>
     </div></div><br>
     
     <form class="zamowienie">
@@ -119,6 +120,10 @@
       <div class="form-group">
         <label for="email">Email *</label>
         <input type="email" id="email" name="email" placeholder="np. kontakt@gmail.com" required>
+      </div>
+      <div class="form-group">
+        <label for="carModel">Model samochodu *</label>
+        <input type="text" id="carModel" name="carModel" placeholder="np. BMW E90" required>
       </div>
       <div class="grid-form">
 
@@ -273,6 +278,7 @@
 const sidebar = document.getElementById("sidebar");
 const listEls = document.querySelectorAll("#list, #list-form");
 const totalEls = document.querySelectorAll("#total, #total-form");
+const timeTotalEls = document.querySelectorAll("#total-time, #total-time-form");
 const dzienSelect = document.getElementById("dzien");
 const packagesRoot = document.getElementById("packages-root");
 
@@ -584,7 +590,8 @@ function renderPackages(packages, packageItems, services) {
         (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
         0
       );
-      const durationText = `Czas: ${formatDuration(computedDurationMinutes)}`;
+      const totalDurationMinutes = computedDurationMinutes;
+      const durationText = `Czas: ${formatDuration(totalDurationMinutes)}`;
 
       const itemsHtml = displayItems.length
         ? displayItems
@@ -615,7 +622,7 @@ function renderPackages(packages, packageItems, services) {
 
       return `
         <label class="${cardClasses}" id="${packageId}">
-          <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}">
+          <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}" data-duration="${totalDurationMinutes}">
           <div class="card-top">
             <h3>${packageRow.name_html || ""}</h3>
             <div class="${priceClass}">${priceText}</div>
@@ -678,7 +685,7 @@ function renderServices(categories, services) {
 
           return `
             <label class="${cardClasses}" id="${id}">
-              <input type="checkbox" value="${id}" data-price="${service.price_amount ?? 0}" hidden>
+              <input type="checkbox" value="${id}" data-price="${service.price_amount ?? 0}" data-duration="${service.duration_minutes ?? 0}" hidden>
               <div class="card-top">
                 <h3>${service.name_html || ""}</h3>
                 <div class="${priceClass}">${service.price_html || ""}</div>
@@ -1201,6 +1208,7 @@ async function loadDaysFromSupabase() {
 // aktualizacja koszyka
 function update() {
   let total = 0;
+  let totalMinutes = 0;
   let items = [];
 
   // reset zaznaczeń kart
@@ -1211,6 +1219,7 @@ function update() {
   getServiceInputs().forEach(input => {
     const card = input.closest(".card");
     const price = Number(input.dataset.price) || 0;
+    const duration = Number(input.dataset.duration) || 0;
 
     if (!card) return;
     const itemName = getCardTitleHtml(card) || input.value;
@@ -1218,6 +1227,7 @@ function update() {
     // RADIO (pakiety)
     if (input.type === "radio" && input.checked) {
       total += price;
+      totalMinutes += duration;
 
       items.push({
         name: itemName,
@@ -1230,6 +1240,7 @@ function update() {
     // CHECKBOX (usługi)
     if (input.type === "checkbox" && input.checked) {
       total += price;
+      totalMinutes += duration;
 
       items.push({
         name: itemName,
@@ -1243,6 +1254,10 @@ function update() {
   // 🔥 aktualizacja wszystkich totali
   totalEls.forEach(el => {
     el.textContent = total;
+  });
+
+  timeTotalEls.forEach(el => {
+    el.textContent = formatDuration(totalMinutes);
   });
 
   // 🔥 aktualizacja wszystkich list
@@ -1304,6 +1319,7 @@ function goPay(event) {
   const lastName = document.getElementById("lastName");
   const phone = document.getElementById("phone");
   const email = document.getElementById("email");
+  const carModel = document.getElementById("carModel");
   const dayValue = document.getElementById("dzien");
   const timeValue = document.getElementById("godzina");
 
@@ -1358,6 +1374,11 @@ function goPay(event) {
     showError(email, "Wpisz poprawny e-mail");
   }
 
+  // Model auta
+  if (carModel.value.trim().length < 2) {
+    showError(carModel, "Wpisz model samochodu");
+  }
+
   // DZIEŃ
   if (!dayValue.value || !allowedDays.has(dayValue.value)) {
     showError(daySelectedEl, "Wybierz dostępny dzień z kalendarza");
@@ -1398,6 +1419,28 @@ function goPay(event) {
 
   // GOTOWE
   if (valid) {
+    const selectedItems = Array.from(checkedServices).map((input) => {
+      const card = input.closest(".card");
+      return {
+        name: getCardTitleHtml(card) || input.value,
+        price: Number(input.dataset.price) || 0
+      };
+    });
+
+    localStorage.setItem(
+      "booking",
+      JSON.stringify({
+        firstName: firstName.value.trim(),
+        lastName: lastName.value.trim(),
+        phone: phone.value.trim(),
+        email: email.value.trim(),
+        carModel: carModel.value.trim(),
+        day: dayValue.value,
+        time: timeValue.value,
+        items: selectedItems
+      })
+    );
+
     window.location.href = "pay.html";
   }
 }
