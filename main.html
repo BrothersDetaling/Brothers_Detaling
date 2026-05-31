@@ -501,6 +501,22 @@ function getPackageItemDotClass(service) {
   return "dot";
 }
 
+function formatDuration(minutes) {
+  const totalMinutes = Number(minutes ?? 0);
+
+  if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) {
+    return "0 min";
+  }
+
+  if (totalMinutes <= 60) {
+    return `${totalMinutes} min`;
+  }
+
+  const hours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  return `${hours}:${String(mins).padStart(2, "0")}`;
+}
+
 function renderPackages(packages, packageItems, services) {
   if (!packagesRoot) return;
 
@@ -567,7 +583,7 @@ function renderPackages(packages, packageItems, services) {
         (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
         0
       );
-      const durationText = computedDurationMinutes > 0 ? `Czas: ${computedDurationMinutes} min` : "Czas: 0 min";
+      const durationText = `Czas: ${formatDuration(computedDurationMinutes)}`;
 
       const itemsHtml = displayItems.length
         ? displayItems
@@ -657,7 +673,7 @@ function renderServices(categories, services) {
           const priceClass = getServicePriceClass(service, category);
           const id = String(service.slug || "");
           const durationMinutes = Number(service.duration_minutes ?? 0);
-          const durationText = durationMinutes > 0 ? `Czas: ${durationMinutes} min` : "Czas ustalany indywidualnie";
+          const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
 
           return `
             <label class="${cardClasses}" id="${id}">
