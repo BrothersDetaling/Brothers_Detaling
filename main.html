@@ -37,9 +37,9 @@
 </a>
 
 <section>
-  <div class="sidebar container" id="sidebar">
+  <div class="sidebar sidebar-floating" id="sidebar">
   <div class="card normal">
-    <h3 class="card-top">Podsumowanie</h3>
+    <h3 class="sidebar-title">Podsumowanie</h3>
   
     <div style="color: var(--text);" id="list"></div>
   
@@ -91,7 +91,7 @@
 
   <div class="card normal">
     <div id="sidebar">
-    <h3 class="card-top">Podsumowanie</h3>
+    <h3 class="sidebar-title">Podsumowanie</h3>
   
     <div style="color: var(--text);" id="list"></div>
   
@@ -281,6 +281,32 @@ const totalEls = document.querySelectorAll("#total, #total-form");
 const timeTotalEls = document.querySelectorAll("#total-time, #total-time-form");
 const dzienSelect = document.getElementById("dzien");
 const packagesRoot = document.getElementById("packages-root");
+const checkoutForm = document.querySelector("form.zamowienie");
+let isCheckoutVisible = false;
+
+function syncFloatingSidebarVisibility() {
+  if (!sidebar) return;
+
+  const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
+  const shouldShow = hasItems && !isCheckoutVisible;
+
+  sidebar.classList.toggle("show", shouldShow);
+  sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
+}
+
+if (checkoutForm && "IntersectionObserver" in window) {
+  const checkoutObserver = new IntersectionObserver(
+    ([entry]) => {
+      isCheckoutVisible = Boolean(entry?.isIntersecting);
+      syncFloatingSidebarVisibility();
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  checkoutObserver.observe(checkoutForm);
+}
 
 // Konfiguracja Supabase do pobierania dostępnych dni.
 // Jeśli Twoja tabela lub kolumny mają inne nazwy, zmień je tutaj.
@@ -451,6 +477,28 @@ function getCardTitleHtml(card) {
   return card?.querySelector(".card-top h3")?.innerHTML || card?.querySelector("h3")?.innerHTML || "";
 }
 
+function toggleCardSelection(card) {
+  if (!card) return;
+
+  const input = card.querySelector('input[data-price]');
+  if (!input) return;
+
+  if (input.type === "radio") {
+    const groupName = input.name;
+    const wasChecked = input.checked;
+
+    document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach((radio) => {
+      radio.checked = false;
+    });
+
+    input.checked = !wasChecked;
+  } else {
+    input.checked = !input.checked;
+  }
+
+  update();
+}
+
 function getServicePriceClass(service, category) {
   const classList = new Set([
     ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
@@ -506,6 +554,44 @@ function getPackageItemDotClass(service) {
   if (classList.has("premium")) return "dot-premium";
 
   return "dot";
+}
+
+function getAccentClass(source) {
+  const classList = new Set([
+    ...(Array.isArray(source?.css_classes) ? source.css_classes : [])
+  ]);
+
+  if (classList.has("dressing")) return "dressing";
+  if (classList.has("full")) return "full";
+  if (classList.has("premium")) return "premium";
+  if (classList.has("pranie")) return "pranie";
+  if (classList.has("skora")) return "skora";
+  if (classList.has("normal")) return "normal";
+
+  return "normal";
+}
+
+function getCardButtonClass(source) {
+  return `add-to-cart add-to-cart--${getAccentClass(source)}`;
+}
+
+function getCardButtonStyle(source) {
+  const accent = getAccentClass(source);
+  const accentValue =
+    accent === "premium" ? "var(--premium)" :
+    accent === "pranie" ? "var(--pranie)" :
+    accent === "skora" ? "var(--skora)" :
+    accent === "full" ? "var(--full)" :
+    accent === "dressing" ? "var(--dressing)" :
+    "var(--lime)";
+
+  return `style="--add-to-cart-accent: ${accentValue};"`;
+}
+
+function getCardButtonHtml(isSelected = false) {
+  return `
+    <span class="add-to-cart__label">${isSelected ? "W koszyku" : "Dodaj do koszyka"}</span>
+  `;
 }
 
 function formatDuration(minutes) {
@@ -583,6 +669,7 @@ function renderPackages(packages, packageItems, services) {
 
       const cardClasses = getPackageCardClasses(packageRow);
       const priceClass = getPackagePriceClass(packageRow);
+      const buttonClass = getCardButtonClass(packageRow);
       const packageId = String(packageRow.slug || packageRow.id || "");
       const priceValue = Number(packageRow.total_price_amount ?? 0);
       const priceText = Number.isFinite(priceValue) ? `od ${priceValue}zł` : "od 0zł";
@@ -621,7 +708,7 @@ function renderPackages(packages, packageItems, services) {
         `;
 
       return `
-        <label class="${cardClasses}" id="${packageId}">
+        <div class="${cardClasses}" id="${packageId}">
           <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}" data-duration="${totalDurationMinutes}">
           <div class="card-top">
             <h3>${packageRow.name_html || ""}</h3>
@@ -632,7 +719,8 @@ function renderPackages(packages, packageItems, services) {
           <ul class="package-list">
             ${itemsHtml}
           </ul>
-        </label>
+          <button type="button" class="${buttonClass}" ${getCardButtonStyle(packageRow)} data-toggle-cart>${getCardButtonHtml(false)}</button>
+        </div>
       `;
     })
     .filter(Boolean)
@@ -679,12 +767,13 @@ function renderServices(categories, services) {
         .map((service) => {
           const cardClasses = getServiceCardClasses(service, category);
           const priceClass = getServicePriceClass(service, category);
+          const buttonClass = getCardButtonClass(service);
           const id = String(service.slug || "");
           const durationMinutes = Number(service.duration_minutes ?? 0);
           const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
 
           return `
-            <label class="${cardClasses}" id="${id}">
+            <div class="${cardClasses}" id="${id}">
               <input type="checkbox" value="${id}" data-price="${service.price_amount ?? 0}" data-duration="${service.duration_minutes ?? 0}" hidden>
               <div class="card-top">
                 <h3>${service.name_html || ""}</h3>
@@ -692,7 +781,8 @@ function renderServices(categories, services) {
               </div>
               <div class="service-duration">${durationText}</div>
               <p>${service.description_html || ""}</p>
-            </label>
+              <button type="button" class="${buttonClass}" ${getCardButtonStyle(service)} data-toggle-cart>${getCardButtonHtml(false)}</button>
+            </div>
           `;
         })
         .join("");
@@ -1223,6 +1313,8 @@ function update() {
 
     if (!card) return;
     const itemName = getCardTitleHtml(card) || input.value;
+    const toggleButton = card.querySelector("[data-toggle-cart]");
+    const isSelected = input.checked;
 
     // RADIO (pakiety)
     if (input.type === "radio" && input.checked) {
@@ -1249,6 +1341,12 @@ function update() {
 
       card.classList.add("selected");
     }
+
+    if (toggleButton) {
+      toggleButton.innerHTML = getCardButtonHtml(isSelected);
+      toggleButton.classList.toggle("is-selected", isSelected);
+      toggleButton.setAttribute("aria-pressed", String(isSelected));
+    }
   });
 
   // 🔥 aktualizacja wszystkich totali
@@ -1261,26 +1359,19 @@ function update() {
   });
 
   // 🔥 aktualizacja wszystkich list
-  listEls.forEach(el => {
-    el.innerHTML = "";
+  const listHtml = items.map((item) => `
+    <div class="item">
+      <span>${item.name}</span>
+      <span>${item.price}zł</span>
+    </div>
+  `).join("");
 
-    items.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "item";
-      div.innerHTML = `
-        <span>${item.name}</span>
-        <span>${item.price}zł</span>
-      `;
-      el.appendChild(div);
-    });
+  listEls.forEach(el => {
+    el.innerHTML = listHtml;
   });
 
   // pokaz / ukryj sidebar
-  if (items.length > 0) {
-    sidebar.classList.add("show");
-  } else {
-    sidebar.classList.remove("show");
-  }
+  syncFloatingSidebarVisibility();
 }
 
 // nasłuchiwanie zmian
@@ -1288,6 +1379,17 @@ document.addEventListener("change", (event) => {
   if (event.target.matches('.card input[data-price]')) {
     update();
   }
+});
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-toggle-cart]");
+  if (!button) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const card = button.closest(".card");
+  toggleCardSelection(card);
 });
 
 // przycisk -> scroll do formularza
