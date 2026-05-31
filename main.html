@@ -563,6 +563,11 @@ function renderPackages(packages, packageItems, services) {
       const packageId = String(packageRow.slug || packageRow.id || "");
       const priceValue = Number(packageRow.total_price_amount ?? 0);
       const priceText = Number.isFinite(priceValue) ? `od ${priceValue}zł` : "od 0zł";
+      const computedDurationMinutes = displayItems.reduce(
+        (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
+        0
+      );
+      const durationText = computedDurationMinutes > 0 ? `Czas: ${computedDurationMinutes} min` : "Czas: 0 min";
 
       const itemsHtml = displayItems.length
         ? displayItems
@@ -598,6 +603,7 @@ function renderPackages(packages, packageItems, services) {
             <h3>${packageRow.name_html || ""}</h3>
             <div class="${priceClass}">${priceText}</div>
           </div>
+          <div class="package-duration">${durationText}</div>
           <p>${packageRow.description_html || ""}</p>
           <ul class="package-list">
             ${itemsHtml}
@@ -650,6 +656,8 @@ function renderServices(categories, services) {
           const cardClasses = getServiceCardClasses(service, category);
           const priceClass = getServicePriceClass(service, category);
           const id = String(service.slug || "");
+          const durationMinutes = Number(service.duration_minutes ?? 0);
+          const durationText = durationMinutes > 0 ? `Czas: ${durationMinutes} min` : "Czas ustalany indywidualnie";
 
           return `
             <label class="${cardClasses}" id="${id}">
@@ -658,6 +666,7 @@ function renderServices(categories, services) {
                 <h3>${service.name_html || ""}</h3>
                 <div class="${priceClass}">${service.price_html || ""}</div>
               </div>
+              <div class="service-duration">${durationText}</div>
               <p>${service.description_html || ""}</p>
             </label>
           `;
@@ -716,7 +725,7 @@ async function loadServicesFromSupabase() {
         }
       ),
       fetch(
-        `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}?select=id,slug,name_html,description_html,display_order,css_classes,total_price_amount,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active))&is_active=eq.true&order=display_order.asc`,
+        `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}?select=id,slug,name_html,description_html,display_order,css_classes,total_price_amount,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,duration_minutes))&is_active=eq.true&order=display_order.asc`,
         {
           headers: {
             apikey: SUPABASE_ANON_KEY,

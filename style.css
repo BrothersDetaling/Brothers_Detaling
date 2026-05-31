@@ -420,6 +420,24 @@ section {
     white-space: nowrap;
 }
 
+.service-duration {
+    margin-top: -12px;
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.package-duration {
+    margin-top: -12px;
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
 .premium-text {
     color: var(--premium)
 }
