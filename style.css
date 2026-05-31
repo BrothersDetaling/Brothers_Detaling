@@ -784,18 +784,7 @@ footer a:hover {
     }
 
     .sidebar-floating {
-        display: block !important;
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        right: 8px;
-        width: auto;
-        max-height: 30vh;
-        overflow: auto;
-        margin: 0;
-        padding: 0;
-        z-index: 1000;
-        transform: translate3d(0, 0, 0);
+        display: none !important;
     }
 
     .grid {
@@ -852,7 +841,9 @@ footer a:hover {
     }
 
     .card .add-to-cart {
-        margin-top: 20px;
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
     }
 
     .card-collapse-toggle {
@@ -1142,61 +1133,7 @@ a {
 
 @media (max-width: 900px) {
     .sidebar-floating {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        width: auto;
-        max-height: 32vh;
-        overflow: auto;
-        margin: 0;
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-        will-change: auto;
-    }
-
-    .sidebar-floating .card {
-        padding: 16px;
-    }
-
-    .sidebar-floating .card {
-        border-radius: 20px;
-    }
-
-    .sidebar-title {
-        font-size: 16px;
-    }
-
-    .sidebar #list,
-    .sidebar #list-form {
-        gap: 8px;
-    }
-
-    .item {
-        padding: 10px 12px;
-        border-radius: 14px;
-        gap: 10px;
-    }
-
-    .item-main span:first-child {
-        font-size: 13px;
-    }
-
-    .item-main span:last-child {
-        font-size: 13px;
-    }
-
-    .total .price-normal,
-    .total .price-premium,
-    .total .price-pranie,
-    .total .price-skora,
-    .total .price-full {
-        font-size: 18px;
-    }
-
-    .sidebar .card button {
-        padding: 10px 12px;
-        border-radius: 14px;
+        display: none !important;
     }
 }
 
