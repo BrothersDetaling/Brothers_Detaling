@@ -365,6 +365,68 @@ section {
   transform: scale(1.02);
 }
 
+.card.selected {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.card.normal.selected,
+.card.selectn.selected {
+    border-color: var(--lime);
+    box-shadow: 0 0 25px #c1ff7259;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #32411e);
+}
+
+.card.premium.selected,
+.card.selectpr.selected {
+    border-color: var(--premium);
+    box-shadow: 0 0 25px #6d673059;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #4e4d1d);
+}
+
+.card.pranie.selected,
+.card.selectp.selected {
+    border-color: var(--pranie);
+    box-shadow: 0 0 25px #204b64;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #265e7e);
+}
+
+.card.skora.selected {
+    border-color: var(--skora);
+    box-shadow: 0 0 25px #532b13;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #532b13);
+}
+
+.card.full.selected,
+.card.selectf.selected {
+    border-color: var(--full);
+    box-shadow: 0 0 25px #af1c1c;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #641313);
+}
+
+.card.dressing.selected {
+    border-color: var(--dressing);
+    box-shadow: 0 0 25px #562064;
+    background-image: linear-gradient(to bottom right,
+        #0d0d0d,
+        #0d0d0d,
+        #642574);
+}
+
 .card-top {
     display: flex;
     justify-content: space-between;
@@ -618,7 +680,6 @@ a {
     position: sticky;
     height: fit-content;
     z-index: 999;
-    opacity: 1;
 }
 
 .sidebar.show:hover{
