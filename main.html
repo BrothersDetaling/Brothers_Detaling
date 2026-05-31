@@ -288,10 +288,11 @@ function syncFloatingSidebarVisibility() {
   if (!sidebar) return;
 
   const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
-  const shouldShow = hasItems && !isCheckoutVisible;
+  const isMobileLayout = window.matchMedia("(max-width: 900px)").matches;
+  const shouldShow = hasItems && (isMobileLayout ? true : !isCheckoutVisible);
 
   sidebar.classList.toggle("show", shouldShow);
-  sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
+  sidebar.classList.toggle("is-hidden", !isMobileLayout && hasItems && isCheckoutVisible);
 }
 
 if (checkoutForm && "IntersectionObserver" in window) {

@@ -850,6 +850,10 @@ footer a:hover {
         padding: 7px 10px !important;
         font-size: 11px !important;
     }
+
+    .size-switcher {
+        display: none;
+    }
 }
 
 .note {
@@ -897,18 +901,18 @@ a {
     overflow: auto;
     padding: 0;
     transform: translate3d(16px, 0, 0);
-    transition: opacity 0.24s ease, transform 0.24s ease;
-    will-change: opacity, transform;
+    transition: opacity 0.18s ease;
+    will-change: opacity;
 }
 
 .sidebar-floating.show {
     position: fixed;
-    transform: translate3d(0, 0, 0);
+    transform: none;
 }
 
 .sidebar-floating.is-hidden {
     opacity: 0;
-    transform: translate3d(16px, -8px, 0);
+    transform: none;
     pointer-events: none;
 }
 
@@ -916,12 +920,12 @@ a {
     padding: 22px;
     border-radius: 24px;
     border: 2px solid var(--border);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 .sidebar-floating .card:hover {
     border-color: var(--lime);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24), 0 0 18px rgba(193, 255, 114, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    box-shadow: none;
 }
 
 .sidebar-floating .card.normal:hover,
