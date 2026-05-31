@@ -178,8 +178,11 @@ section {
 
 .grid .card {
     position: relative;
-    padding-bottom: 88px;
-    overflow: hidden;
+    padding-bottom: 35px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .select:has(input:checked) {
   transform: scale(1.02);
@@ -376,9 +379,7 @@ section {
 }
 
 .card .add-to-cart {
-    position: absolute;
-    left: 18px;
-    bottom: 18px;
+    position: static;
     z-index: 2;
     display: inline-flex;
     align-items: center;
@@ -388,10 +389,10 @@ section {
     width: fit-content;
     padding: 9px 14px;
     border-radius: 14px;
-    border: 1px solid var(--border) !important;
+    border: 1px solid var(--add-to-cart-accent, var(--border)) !important;
     background-color: transparent !important;
     background-image: none !important;
-    color: var(--text) !important;
+    color: var(--add-to-cart-accent, var(--text)) !important;
     font-family: inherit;
     font-size: 12px;
     font-weight: 800;
@@ -401,6 +402,8 @@ section {
     opacity: 0.9;
     transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     appearance: none;
+    align-self: flex-start;
+    margin-top: auto;
 }
 
 .card .add-to-cart__label {
@@ -411,6 +414,7 @@ section {
 .card .add-to-cart:hover {
     transform: none !important;
     opacity: 1;
+    background-color: color-mix(in srgb, var(--add-to-cart-accent, var(--lime)) 10%, transparent) !important;
 }
 
 .card .add-to-cart.is-selected.add-to-cart--normal {
@@ -512,7 +516,12 @@ section {
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 0;
+}
+
+.card-top--compact {
+    align-items: center;
+    margin-top: 12px;
 }
 
 .card h3 {
@@ -563,7 +572,7 @@ section {
 }
 
 .service-duration {
-    margin-top: -12px;
+    margin-top: 18px;
     margin-bottom: 18px;
     color: rgba(255, 255, 255, 0.72);
     font-size: 14px;
@@ -572,7 +581,7 @@ section {
 }
 
 .package-duration {
-    margin-top: -12px;
+    margin-top: 18px;
     margin-bottom: 18px;
     color: rgba(255, 255, 255, 0.72);
     font-size: 14px;
@@ -595,11 +604,50 @@ section {
 }
 
 .package-list {
-    margin-top: 30px;
+    margin-top: 24px;
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.card-top--compact .service-duration,
+.card-top--compact .package-duration {
+    margin: 0;
+}
+
+.card-collapse {
+    margin-top: 16px;
+    margin-bottom: 22px;
+}
+
+.card-collapse p {
+    margin-bottom: 0;
+}
+
+.card-collapse .package-list {
+    margin-bottom: 0;
+}
+
+.card-collapse-toggle {
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 8px 12px !important;
+    border-radius: 999px !important;
+    border: 1px solid var(--add-to-cart-accent, rgba(255, 255, 255, 0.12)) !important;
+    background: transparent !important;
+    color: var(--add-to-cart-accent, var(--text)) !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.card-collapse-toggle:hover {
+    border-color: var(--add-to-cart-accent, var(--lime)) !important;
+    color: var(--add-to-cart-accent, var(--lime)) !important;
+    background: transparent !important;
 }
 
 .package-list li {
@@ -843,6 +891,21 @@ a {
     min-height: 24px;
 }
 
+.sidebar #list-form .item {
+    margin-bottom: 4px;
+}
+
+.card.normal > #sidebar #list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 24px;
+}
+
+.card.normal > #sidebar #list .item {
+    margin-bottom: 4px;
+}
+
 .total {
     margin-top: 4px;
     padding-top: 16px;
@@ -863,8 +926,8 @@ a {
 .item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: center;
+    gap: 12px;
     padding: 12px 14px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
@@ -872,18 +935,95 @@ a {
     color: var(--text);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     contain: content;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
-.item span:first-child {
+.item:hover {
+    border-color: var(--lime);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.item-main span:first-child {
     flex: 1;
     line-height: 1.4;
     font-weight: 600;
 }
 
-.item span:last-child {
+.item-main span:last-child {
     white-space: nowrap;
     color: var(--lime);
     font-weight: 800;
+}
+
+.item-remove {
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    color: transparent !important;
+    border: none !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(4px);
+    transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.item:hover .item-remove {
+    opacity: 1;
+    color: var(--full) !important;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.item-remove:hover {
+    color: var(--full) !important;
+    transform: translateX(0);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.sidebar .card button.item-remove,
+.sidebar .card button.item-remove:not(.clear-btn) {
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin-left: auto !important;
+    background: transparent !important;
+    color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-transform: uppercase;
+}
+
+.sidebar .card .item:hover .item-remove {
+    color: var(--full) !important;
+    opacity: 1 !important;
+}
+
+.sidebar .card .item .item-remove:hover {
+    text-shadow: 0 0 10px rgba(211, 45, 45, 0.18);
+    letter-spacing: 0.04em;
 }
 
 .sidebar .service-duration {

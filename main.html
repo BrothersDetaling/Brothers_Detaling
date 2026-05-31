@@ -499,6 +499,28 @@ function toggleCardSelection(card) {
   update();
 }
 
+function toggleCardCollapse(button) {
+  if (!button) return;
+
+  const card = button.closest(".card");
+  if (!card) return;
+
+  const targetId = button.getAttribute("aria-controls");
+  const collapse = targetId ? document.getElementById(targetId) : card.querySelector(".card-collapse");
+  if (!collapse) return;
+
+  const isOpen = !collapse.hasAttribute("hidden");
+  if (isOpen) {
+    collapse.setAttribute("hidden", "");
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "Opis";
+  } else {
+    collapse.removeAttribute("hidden");
+    button.setAttribute("aria-expanded", "true");
+    button.textContent = "Zwiń";
+  }
+}
+
 function getServicePriceClass(service, category) {
   const classList = new Set([
     ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
@@ -714,11 +736,16 @@ function renderPackages(packages, packageItems, services) {
             <h3>${packageRow.name_html || ""}</h3>
             <div class="${priceClass}">${priceText}</div>
           </div>
-          <div class="package-duration">${durationText}</div>
-          <p>${packageRow.description_html || ""}</p>
-          <ul class="package-list">
-            ${itemsHtml}
-          </ul>
+          <div class="card-top card-top--compact">
+            <div class="package-duration">${durationText}</div>
+            <button type="button" class="card-collapse-toggle" ${getCardButtonStyle(packageRow)} data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
+          </div>
+          <div class="card-collapse" id="collapse-${packageId}" hidden>
+            <p>${packageRow.description_html || ""}</p>
+            <ul class="package-list">
+              ${itemsHtml}
+            </ul>
+          </div>
           <button type="button" class="${buttonClass}" ${getCardButtonStyle(packageRow)} data-toggle-cart>${getCardButtonHtml(false)}</button>
         </div>
       `;
@@ -779,8 +806,13 @@ function renderServices(categories, services) {
                 <h3>${service.name_html || ""}</h3>
                 <div class="${priceClass}">${service.price_html || ""}</div>
               </div>
-              <div class="service-duration">${durationText}</div>
-              <p>${service.description_html || ""}</p>
+              <div class="card-top card-top--compact">
+                <div class="service-duration">${durationText}</div>
+                <button type="button" class="card-collapse-toggle" ${getCardButtonStyle(service)} data-toggle-collapse aria-expanded="false" aria-controls="collapse-${id}">Opis</button>
+              </div>
+              <div class="card-collapse" id="collapse-${id}" hidden>
+                <p>${service.description_html || ""}</p>
+              </div>
               <button type="button" class="${buttonClass}" ${getCardButtonStyle(service)} data-toggle-cart>${getCardButtonHtml(false)}</button>
             </div>
           `;
@@ -1323,7 +1355,9 @@ function update() {
 
       items.push({
         name: itemName,
-        price
+        price,
+        value: input.value,
+        type: input.type
       });
 
       card.classList.add("selected");
@@ -1336,7 +1370,9 @@ function update() {
 
       items.push({
         name: itemName,
-        price
+        price,
+        value: input.value,
+        type: input.type
       });
 
       card.classList.add("selected");
@@ -1360,9 +1396,12 @@ function update() {
 
   // 🔥 aktualizacja wszystkich list
   const listHtml = items.map((item) => `
-    <div class="item">
-      <span>${item.name}</span>
-      <span>${item.price}zł</span>
+    <div class="item" data-cart-value="${item.value}" data-cart-type="${item.type}">
+      <div class="item-main">
+        <span>${item.name}</span>
+        <span>${item.price}zł</span>
+      </div>
+      <button type="button" class="item-remove" data-remove-cart-item aria-label="Usuń z koszyka">Usuń</button>
     </div>
   `).join("");
 
@@ -1382,6 +1421,32 @@ document.addEventListener("change", (event) => {
 });
 
 document.addEventListener("click", (event) => {
+  const collapseButton = event.target.closest("[data-toggle-collapse]");
+  if (collapseButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleCardCollapse(collapseButton);
+    return;
+  }
+
+  const removeButton = event.target.closest("[data-remove-cart-item]");
+  if (removeButton) {
+    const cartItem = removeButton.closest(".item");
+    const value = cartItem?.dataset.cartValue;
+    const type = cartItem?.dataset.cartType;
+    const input = [...document.querySelectorAll('.card input[data-price]')].find((candidate) => (
+      candidate.type === type &&
+      candidate.value === value &&
+      candidate.checked
+    ));
+
+    if (input) {
+      input.checked = false;
+      update();
+    }
+    return;
+  }
+
   const button = event.target.closest("[data-toggle-cart]");
   if (!button) return;
 
