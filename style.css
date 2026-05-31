@@ -784,7 +784,15 @@ footer a:hover {
     }
 
     .sidebar-floating {
-        display: none !important;
+        display: block !important;
+        position: sticky;
+        top: 12px;
+        width: min(100%, calc(100vw - 16px));
+        max-height: 38vh;
+        overflow: auto;
+        margin: 0 auto 16px;
+        padding: 0;
+        z-index: 998;
     }
 
     .grid {
@@ -1131,12 +1139,13 @@ a {
 
 @media (max-width: 900px) {
     .sidebar-floating {
-        position: static;
-        width: 100%;
-        max-height: none;
-        overflow: hidden;
+        position: sticky;
+        top: 12px;
+        width: min(100%, calc(100vw - 16px));
+        max-height: 38vh;
+        overflow: auto;
+        margin: 0 auto 16px;
         transform: none;
-        margin-bottom: 20px;
         opacity: 1;
         will-change: auto;
     }
