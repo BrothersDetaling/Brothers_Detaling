@@ -114,6 +114,7 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
+    align-items: start;
 }
 
 .grid-form {
@@ -182,7 +183,9 @@ section {
     overflow: visible;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto;
+    align-self: start;
+    min-height: 300px;
 }
 .select:has(input:checked) {
   transform: scale(1.02);
@@ -522,11 +525,14 @@ section {
 .card-top--compact {
     align-items: center;
     margin-top: 12px;
+    min-height: 40px;
 }
 
 .card h3 {
     font-size: 28px;
     font-weight: 700;
+    line-height: 1.15;
+    min-height: 48px;
 }
 
 .price-normal {
@@ -802,8 +808,8 @@ a {
 .sidebar {
     padding: 10px 0;
     opacity: 0;
-    transform: translateY(-30px);
-    transition: 0.3s;
+    transform: translateY(-16px);
+    transition: opacity 0.24s ease, transform 0.24s ease;
     position: sticky;
     height: fit-content;
     z-index: 999;
@@ -826,21 +832,23 @@ a {
     position: fixed;
     top: 24px;
     right: 24px;
-    width: min(320px, calc(100vw - 48px));
+    width: min(280px, calc(100vw - 24px));
     max-height: calc(100vh - 48px);
     overflow: auto;
     padding: 0;
-    transform: translateX(24px);
+    transform: translate3d(16px, 0, 0);
+    transition: opacity 0.24s ease, transform 0.24s ease;
+    will-change: opacity, transform;
 }
 
 .sidebar-floating.show {
     position: fixed;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
 }
 
 .sidebar-floating.is-hidden {
     opacity: 0;
-    transform: translateX(24px) translateY(-12px);
+    transform: translate3d(16px, -8px, 0);
     pointer-events: none;
 }
 
@@ -1068,9 +1076,11 @@ a {
         position: static;
         width: 100%;
         max-height: none;
-        overflow: visible;
+        overflow: hidden;
         transform: none;
         margin-bottom: 20px;
+        opacity: 1;
+        will-change: auto;
     }
 
     .sidebar-floating .card {
