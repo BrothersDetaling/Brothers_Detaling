@@ -450,6 +450,7 @@ function getServicePriceClass(service, category) {
     ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
   ]);
 
+  if (classList.has("dressing")) return "price-dressing";
   if (classList.has("premium")) return "price-premium";
   if (classList.has("pranie")) return "price-pranie";
   if (classList.has("skora")) return "price-skora";
