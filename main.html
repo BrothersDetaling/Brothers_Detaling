@@ -16,7 +16,6 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-  
 </head>
 
 <body>
@@ -27,7 +26,7 @@
 
     <h1>BROTHERS</h1>
     <div class="logo-line"></div>
-    <h1 style="padding-top: 20px;">DETAILING</h1>
+    <h1 class="hero-detailing">DETAILING</h1>
     <p>
       Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
     </p><br>
@@ -41,7 +40,7 @@
   <div class="card normal">
     <h3 class="sidebar-title">Podsumowanie</h3>
   
-    <div style="color: var(--text);" id="list"></div>
+    <div class="text-muted" id="list"></div>
   
     <div class="total catd-top">
       Suma: <span class="price-normal"><span id="total">0</span>zł</span>
@@ -64,16 +63,20 @@
 
 <section><!--Usługi-->
 <div class="container">
-  <div class="section-title">
-      <div class="line"></div>
-      <h2>Usługi</h2>
-  </div>
+  <details class="services-collapse">
+    <summary class="section-title">
+      <div class="services-toggle-mark arrow" aria-hidden="true"></div>
+      <h2>Pojedyńcze Usługi</h2>
+    </summary> 
 
-  <p class="note">
-      Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
-      ustalana jest indywidualnie.
-  </p>
-  <div id="services-root"></div>
+    <div class="services-collapse__content">
+      <p class="note">
+          Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
+          ustalana jest indywidualnie.
+      </p>
+      <div id="services-root"></div>
+    </div>
+  </details>
 </div>
 </section>
 </section>
@@ -93,11 +96,11 @@
     <div id="sidebar">
     <h3 class="sidebar-title">Podsumowanie</h3>
   
-    <div style="color: var(--text);" id="list"></div>
+    <div class="text-muted" id="list"></div>
   
     <div class="total catd-top">
       Suma: <span class="price-normal"><span id="total">0</span>zł</span>
-      <div class="service-duration" style="margin: 8px 0 0;">Czas: <span id="total-time">0 min</span></div>
+      <div class="service-duration service-duration--compact">Czas: <span id="total-time">0 min</span></div>
     </div></div><br>
     
     <form class="zamowienie">
@@ -288,11 +291,10 @@ function syncFloatingSidebarVisibility() {
   if (!sidebar) return;
 
   const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
-  const isMobileLayout = window.matchMedia("(max-width: 900px)").matches;
-  const shouldShow = hasItems && (isMobileLayout ? true : !isCheckoutVisible);
+  const shouldShow = hasItems && !isCheckoutVisible;
 
   sidebar.classList.toggle("show", shouldShow);
-  sidebar.classList.toggle("is-hidden", !isMobileLayout && hasItems && isCheckoutVisible);
+  sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
 }
 
 if (checkoutForm && "IntersectionObserver" in window) {
@@ -401,6 +403,22 @@ const daySelectedEl = document.getElementById("day-selected");
 const dayPrevBtn = document.getElementById("day-prev");
 const dayNextBtn = document.getElementById("day-next");
 const servicesRoot = document.getElementById("services-root");
+const servicesCollapse = document.querySelector("details.services-collapse");
+
+function syncServicesToggleMark() {
+  if (!servicesCollapse) return;
+
+  const mark = servicesCollapse.querySelector(".services-toggle-mark");
+  if (!mark) return;
+
+  mark.classList.toggle("arrow", !servicesCollapse.open);
+  mark.classList.toggle("line", servicesCollapse.open);
+}
+
+if (servicesCollapse) {
+  servicesCollapse.addEventListener("toggle", syncServicesToggleMark);
+  syncServicesToggleMark();
+}
 
 const SERVICE_CATEGORIES_TABLE = "service_categories";
 const SERVICES_TABLE = "services";
@@ -598,19 +616,6 @@ function getCardButtonClass(source) {
   return `add-to-cart add-to-cart--${getAccentClass(source)}`;
 }
 
-function getCardButtonStyle(source) {
-  const accent = getAccentClass(source);
-  const accentValue =
-    accent === "premium" ? "var(--premium)" :
-    accent === "pranie" ? "var(--pranie)" :
-    accent === "skora" ? "var(--skora)" :
-    accent === "full" ? "var(--full)" :
-    accent === "dressing" ? "var(--dressing)" :
-    "var(--lime)";
-
-  return `style="--add-to-cart-accent: ${accentValue};"`;
-}
-
 function getCardButtonHtml(isSelected = false) {
   return `
     <span class="add-to-cart__label">${isSelected ? "W koszyku" : "Dodaj do koszyka"}</span>
@@ -725,7 +730,7 @@ function renderPackages(packages, packageItems, services) {
             })
             .join("")
         : `
-          <li class="note" style="list-style: none; padding-left: 0;">
+          <li class="note note-reset">
             Brak aktywnych usług w tym pakiecie
           </li>
         `;
@@ -739,7 +744,7 @@ function renderPackages(packages, packageItems, services) {
           </div>
           <div class="card-top card-top--compact">
             <div class="package-duration">${durationText}</div>
-            <button type="button" class="card-collapse-toggle" ${getCardButtonStyle(packageRow)} data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
+  <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(packageRow)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
           </div>
           <div class="card-collapse" id="collapse-${packageId}" hidden>
             <p>${packageRow.description_html || ""}</p>
@@ -747,7 +752,7 @@ function renderPackages(packages, packageItems, services) {
               ${itemsHtml}
             </ul>
           </div>
-          <button type="button" class="${buttonClass}" ${getCardButtonStyle(packageRow)} data-toggle-cart>${getCardButtonHtml(false)}</button>
+  <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
         </div>
       `;
     })
@@ -809,12 +814,12 @@ function renderServices(categories, services) {
               </div>
               <div class="card-top card-top--compact">
                 <div class="service-duration">${durationText}</div>
-                <button type="button" class="card-collapse-toggle" ${getCardButtonStyle(service)} data-toggle-collapse aria-expanded="false" aria-controls="collapse-${id}">Opis</button>
+  <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(service)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${id}">Opis</button>
               </div>
               <div class="card-collapse" id="collapse-${id}" hidden>
                 <p>${service.description_html || ""}</p>
               </div>
-              <button type="button" class="${buttonClass}" ${getCardButtonStyle(service)} data-toggle-cart>${getCardButtonHtml(false)}</button>
+  <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
             </div>
           `;
         })

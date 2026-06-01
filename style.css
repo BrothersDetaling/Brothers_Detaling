@@ -77,6 +77,14 @@ section {
     line-height: 1.8;
 }
 
+.hero-detailing {
+    padding-top: 20px;
+}
+
+.text-muted {
+    color: var(--text);
+}
+
 .kontakt {
     position: absolute;
     top: 20px;
@@ -414,6 +422,36 @@ section {
     white-space: nowrap;
 }
 
+.card .add-to-cart--normal,
+.card-collapse-toggle--normal {
+    --add-to-cart-accent: var(--lime);
+}
+
+.card .add-to-cart--premium,
+.card-collapse-toggle--premium {
+    --add-to-cart-accent: var(--premium);
+}
+
+.card .add-to-cart--pranie,
+.card-collapse-toggle--pranie {
+    --add-to-cart-accent: var(--pranie);
+}
+
+.card .add-to-cart--skora,
+.card-collapse-toggle--skora {
+    --add-to-cart-accent: var(--skora);
+}
+
+.card .add-to-cart--full,
+.card-collapse-toggle--full {
+    --add-to-cart-accent: var(--full);
+}
+
+.card .add-to-cart--dressing,
+.card-collapse-toggle--dressing {
+    --add-to-cart-accent: var(--dressing);
+}
+
 .card .add-to-cart:hover {
     transform: none !important;
     opacity: 1;
@@ -584,6 +622,10 @@ section {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.02em;
+}
+
+.sidebar .service-duration.service-duration--compact {
+    margin: 8px 0 0;
 }
 
 .package-duration {
@@ -861,6 +903,11 @@ footer a:hover {
     margin-bottom: 60px;
     max-width: 900px;
     line-height: 1.7;
+}
+
+.note-reset {
+    list-style: none;
+    padding-left: 0;
 }
 
 a {
@@ -1462,4 +1509,127 @@ form {
     padding: 18px 12px;
     text-align: center;
     color: var(--text);
+}
+/* Services collapse styles moved from main.html */
+.services-collapse {
+  display: block;
+}
+
+.services-toggle-mark {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-right: 2px;
+  flex: 0 0 auto;
+  display: block;
+  color: inherit;
+}
+
+.services-collapse__content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 520ms ease,
+    opacity 420ms ease,
+    transform 520ms ease;
+}
+
+.services-collapse__content-inner {
+  overflow: hidden;
+}
+
+.services-collapse[open] .services-collapse__content {
+  max-height: 5000px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services-toggle-mark::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  background: transparent;
+  transform-origin: center;
+  translate: -50% -50%;
+  transition:
+    transform 520ms ease,
+    width 520ms ease,
+    height 520ms ease,
+    opacity 240ms ease,
+    background 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.services-toggle-mark::after {
+  content: "";
+  display: none;
+}
+
+.services-collapse:not([open]) .services-toggle-mark::before {
+  transform: translate(-50%, -62%) rotate(45deg);
+}
+
+.services-collapse[open] .services-toggle-mark::before {
+  width: 16px;
+  height: 2px;
+  border-right: 0;
+  border-bottom: 0;
+  background: currentColor;
+  translate: -50% -50%;
+}
+
+.form-page {
+    margin: 0;
+    padding: 40px 16px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #666;
+}
+
+.form-page .form-box {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-page .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 22px;
+}
+
+.form-page .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-page .field input {
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    padding: 8px 4px 6px;
+    font-size: 15px;
+    color: #444;
+    background: transparent;
+    outline: none;
+}
+
+.form-page .field input::placeholder {
+    color: #8a8a8a;
+}
+
+.form-page .field input:focus {
+    border-bottom-color: #888;
+}
+
+@media (max-width: 600px) {
+    .form-page .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
