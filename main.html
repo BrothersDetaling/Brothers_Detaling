@@ -64,7 +64,7 @@
 
           <div class="vehicle-size-grid" role="radiogroup" aria-label="Wielkość samochodu">
             <label class="vehicle-size-option vehicle-size-option--small">
-              <input type="radio" name="carSize" value="small" checked>
+              <input type="radio" name="carSize" value="small">
               <span class="vehicle-size-option__icon" aria-hidden="true">
                 <svg viewBox="0 0 72 48" role="img" focusable="false">
                   <path d="M14 30h40c4.6 0 7.8 1.8 9 5l2 5H6l2-5c1.2-3.2 4.4-5 6-5Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
@@ -81,7 +81,7 @@
             </label>
 
             <label class="vehicle-size-option vehicle-size-option--medium">
-              <input type="radio" name="carSize" value="medium">
+              <input type="radio" name="carSize" value="medium" checked>
               <span class="vehicle-size-option__icon" aria-hidden="true">
                 <svg viewBox="0 0 72 48" role="img" focusable="false">
                   <path d="M6 31h52c4.8 0 8.4 1.9 10 5.8L69 40H3l1.2-3.2C5.4 32.9 7.6 31 6 31Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
@@ -359,15 +359,28 @@
     const packagesRoot = document.getElementById("packages-root");
     const checkoutForm = document.querySelector("form.zamowienie");
     let isCheckoutVisible = false;
+    let cachedServiceCategories = [];
+    let cachedServices = [];
+    let cachedPackages = [];
+    let cachedPackageItems = [];
+    const CAR_SIZE_DEFAULT = "medium";
     const CAR_SIZE_LABELS = {
       small: "Mały",
       medium: "Średni",
       large: "Duży"
     };
 
+    function normalizeCarSize(value) {
+      if (value === "small" || value === "medium" || value === "large") {
+        return value;
+      }
+
+      return CAR_SIZE_DEFAULT;
+    }
+
     function getSelectedCarSize() {
       const selected = document.querySelector('input[name="carSize"]:checked');
-      const value = selected?.value || "small";
+      const value = normalizeCarSize(selected?.value);
 
       return {
         value,
@@ -384,8 +397,192 @@
       });
     }
 
+    function getSizedNumber(row, baseName, size) {
+      const normalizedSize = normalizeCarSize(size);
+      const sizedKey = `${baseName}_${normalizedSize}`;
+      const fallbackKey = baseName;
+
+      const sizedValue = row?.[sizedKey];
+      if (sizedValue !== undefined && sizedValue !== null && sizedValue !== "") {
+        const parsed = Number(sizedValue);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      const fallbackValue = row?.[fallbackKey];
+      if (fallbackValue !== undefined && fallbackValue !== null && fallbackValue !== "") {
+        const parsed = Number(fallbackValue);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      return 0;
+    }
+
+    function formatMoneyAmount(value) {
+      const number = Number(value);
+      const safeValue = Number.isFinite(number) ? number : 0;
+      return `${safeValue.toLocaleString("pl-PL", {
+        minimumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2
+      })}zł`;
+    }
+
+    async function fetchSupabaseJsonWithFallback(basePath, selectQueries, label, extraQuery = "") {
+      let lastError = null;
+
+      for (const selectQuery of selectQueries) {
+        const response = await fetch(
+          `${basePath}?select=${selectQuery}${extraQuery}`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (response.ok) {
+          return response.json();
+        }
+
+        const details = await response.text();
+        lastError = new Error(`${label} HTTP ${response.status}: ${details}`);
+      }
+
+      throw lastError || new Error(`Nie udało się pobrać danych: ${label}`);
+    }
+
+    function getServicePriceForSize(service, size) {
+      return getSizedNumber(service, "price_amount", size);
+    }
+
+    function getServiceDurationForSize(service, size) {
+      return getSizedNumber(service, "duration_minutes", size);
+    }
+
+    function getPackagePriceForSize(packageRow, size) {
+      return getSizedNumber(packageRow, "total_price_amount", size);
+    }
+
+    function getPackageItemsForRow(packageRow, servicesById, servicesBySlug) {
+      const sourceItems = Array.isArray(packageRow?.package_items) && packageRow.package_items.length
+        ? packageRow.package_items
+        : (cachedPackageItems || []).filter((item) => item?.package_id === packageRow?.id);
+
+      const activeItems = sourceItems
+        .map((item) => {
+          const service =
+            servicesById.get(item?.service_id) ||
+            item?.service ||
+            item?.services ||
+            item?.service_details ||
+            servicesBySlug.get(item?.service?.slug);
+
+          if (!service?.is_active) return null;
+          return { ...item, service };
+        })
+        .filter(Boolean)
+        .sort((a, b) => (a.item_order ?? 0) - (b.item_order ?? 0));
+
+      if (activeItems.length) {
+        return activeItems;
+      }
+
+      return (PACKAGE_SERVICE_SLUGS[packageRow?.slug] || [])
+        .map((slug, index) => {
+          const service = servicesBySlug.get(slug);
+          if (!service?.is_active) return null;
+          return { item_order: index + 1, service };
+        })
+        .filter(Boolean);
+    }
+
+    function updatePricingForSelectedCarSize() {
+      const { value: carSize } = getSelectedCarSize();
+      const servicesById = new Map(
+        cachedServices
+          .filter((service) => service?.id)
+          .map((service) => [service.id, service])
+      );
+      const servicesBySlug = new Map(
+        cachedServices
+          .filter((service) => service?.slug)
+          .map((service) => [service.slug, service])
+      );
+
+      cachedServices.forEach((service) => {
+        if (!service?.slug) return;
+
+        const card = document.getElementById(service.slug);
+        if (!card) return;
+
+        const price = getServicePriceForSize(service, carSize);
+        const duration = getServiceDurationForSize(service, carSize);
+        const input = card.querySelector('input[data-price]');
+        const priceEl = card.querySelector("[data-service-price]");
+        const durationEl = card.querySelector("[data-service-duration]");
+
+        if (input) {
+          input.dataset.price = String(price);
+          input.dataset.duration = String(duration);
+        }
+
+        if (priceEl) {
+          priceEl.textContent = `${formatMoneyAmount(price)}`;
+        }
+
+        if (durationEl) {
+          durationEl.textContent = duration > 0
+            ? `Czas: ${formatDuration(duration)}`
+            : "Czas ustalany indywidualnie";
+        }
+      });
+
+      cachedPackages.forEach((packageRow) => {
+        const packageId = String(packageRow?.slug || packageRow?.id || "");
+        if (!packageId) return;
+
+        const card = document.getElementById(packageId);
+        if (!card) return;
+
+        const price = getPackagePriceForSize(packageRow, carSize);
+        const displayItems = getPackageItemsForRow(packageRow, servicesById, servicesBySlug);
+        const computedDuration = displayItems.reduce(
+          (sum, item) => sum + getServiceDurationForSize(item?.service, carSize),
+          0
+        );
+        const duration = computedDuration || Number(packageRow?.total_duration_minutes ?? 0);
+        const input = card.querySelector('input[data-price]');
+        const priceEl = card.querySelector("[data-package-price]");
+        const durationEl = card.querySelector("[data-package-duration]");
+
+        if (input) {
+          input.dataset.price = String(price);
+          input.dataset.duration = String(duration);
+        }
+
+        if (priceEl) {
+          priceEl.textContent = `${formatMoneyAmount(price)}`;
+        }
+
+        if (durationEl) {
+          durationEl.textContent = `Czas: ${formatDuration(duration)}`;
+        }
+      });
+
+      syncCarSizeSelection();
+      update();
+    }
+
+    function selectWithFilter(basePath, selectQueries, label, extraQuery = "") {
+      return fetchSupabaseJsonWithFallback(basePath, selectQueries, label, extraQuery);
+    }
+
     carSizeOptions.forEach((input) => {
-      input.addEventListener("change", syncCarSizeSelection);
+      input.addEventListener("change", () => {
+        syncCarSizeSelection();
+        updatePricingForSelectedCarSize();
+      });
     });
     syncCarSizeSelection();
 
@@ -758,6 +955,8 @@
         return;
       }
 
+      const selectedCarSize = getSelectedCarSize().value;
+
       const servicesById = new Map(
         services
           .filter((service) => service?.id)
@@ -776,48 +975,19 @@
         .map((packageRow) => {
           if (!packageRow?.is_active) return "";
 
-          const sourceItems = Array.isArray(packageRow.package_items) && packageRow.package_items.length
-            ? packageRow.package_items
-            : (packageItems || []).filter((item) => item?.package_id === packageRow.id);
-
-          const activeItems = sourceItems
-            .map((item) => {
-              const service =
-                item?.service ||
-                item?.services ||
-                item?.service_details ||
-                servicesById.get(item?.service_id);
-              if (!service?.is_active) return null;
-              return { ...item, service };
-            })
-            .filter(Boolean)
-            .sort((a, b) => (a.item_order ?? 0) - (b.item_order ?? 0));
-
-          const fallbackItems = !activeItems.length
-            ? (PACKAGE_SERVICE_SLUGS[packageRow.slug] || [])
-              .map((slug, index) => {
-                const service =
-                  servicesBySlug.get(slug) ||
-                  services.find((row) => row?.slug === slug);
-                if (!service?.is_active) return null;
-                return { item_order: index + 1, service };
-              })
-              .filter(Boolean)
-            : [];
-
-          const displayItems = activeItems.length ? activeItems : fallbackItems;
+          const displayItems = getPackageItemsForRow(packageRow, servicesById, servicesBySlug);
 
           const cardClasses = getPackageCardClasses(packageRow);
           const priceClass = getPackagePriceClass(packageRow);
           const buttonClass = getCardButtonClass(packageRow);
           const packageId = String(packageRow.slug || packageRow.id || "");
-          const priceValue = Number(packageRow.total_price_amount ?? 0);
-          const priceText = Number.isFinite(priceValue) ? `od ${priceValue}zł` : "od 0zł";
+          const priceValue = getPackagePriceForSize(packageRow, selectedCarSize);
+          const priceText = `${formatMoneyAmount(priceValue)}`;
           const computedDurationMinutes = displayItems.reduce(
-            (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
+            (sum, item) => sum + getServiceDurationForSize(item?.service, selectedCarSize),
             0
           );
-          const totalDurationMinutes = computedDurationMinutes;
+          const totalDurationMinutes = computedDurationMinutes || Number(packageRow.total_duration_minutes ?? 0);
           const durationText = `Czas: ${formatDuration(totalDurationMinutes)}`;
 
           const itemsHtml = displayItems.length
@@ -852,11 +1022,11 @@
           <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}" data-duration="${totalDurationMinutes}">
           <div class="card-top">
             <h3>${packageRow.name_html || ""}</h3>
-            <div class="${priceClass}">${priceText}</div>
+            <div class="${priceClass}" data-package-price>${priceText}</div>
           </div>
           <div class="card-top card-top--compact">
-            <div class="package-duration">${durationText}</div>
-  <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(packageRow)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
+            <div class="package-duration" data-package-duration>${durationText}</div>
+   <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(packageRow)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
           </div>
           <div class="card-collapse" id="collapse-${packageId}" hidden>
             <p>${packageRow.description_html || ""}</p>
@@ -904,6 +1074,8 @@
 
           if (!categoryServices.length) return "";
 
+          const selectedCarSize = getSelectedCarSize().value;
+
           const headerClass = Array.isArray(category.css_classes) && category.css_classes.length
             ? category.css_classes.join(" ")
             : "podpunkt-header";
@@ -914,23 +1086,25 @@
               const priceClass = getServicePriceClass(service, category);
               const buttonClass = getCardButtonClass(service);
               const id = String(service.slug || "");
-              const durationMinutes = Number(service.duration_minutes ?? 0);
+              const durationMinutes = getServiceDurationForSize(service, selectedCarSize);
+              const priceAmount = getServicePriceForSize(service, selectedCarSize);
               const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
+              const priceText = `${formatMoneyAmount(priceAmount)}`;
 
               return `
             <div class="${cardClasses}" id="${id}">
-              <input type="checkbox" value="${id}" data-price="${service.price_amount ?? 0}" data-duration="${service.duration_minutes ?? 0}" hidden>
+              <input type="checkbox" value="${id}" data-price="${priceAmount}" data-duration="${durationMinutes}" hidden>
               <div class="card-top">
                 <h3>${service.name_html || ""}</h3>
-                <div class="${priceClass}">${service.price_html || ""}</div>
+                <div class="${priceClass}" data-service-price>${priceText}</div>
               </div>
               <div class="card-top card-top--compact">
-                <div class="service-duration">${durationText}</div>
+                <div class="service-duration" data-service-duration>${durationText}</div>
               </div>
               <div class="card-collapse">
                 <p>${service.description_html || ""}</p>
               </div>
-  <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
+   <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
             </div>
           `;
             })
@@ -972,91 +1146,56 @@
       if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Wczytywanie pakietów...</div>';
 
       try {
-        const [categoriesResponse, servicesResponse, packagesResponse, packageItemsResponse] = await Promise.all([
-          fetch(
-            `${SUPABASE_URL}/rest/v1/${SERVICE_CATEGORIES_TABLE}?select=id,slug,name_html,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
-            {
-              headers: {
-                apikey: SUPABASE_ANON_KEY,
-                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                Accept: "application/json"
-              }
-            }
+        const [categories, services, packages, packageItems] = await Promise.all([
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${SERVICE_CATEGORIES_TABLE}`,
+            ["id,slug,name_html,display_order,css_classes"],
+            "Supabase categories",
+            "&is_active=eq.true&order=display_order.asc"
           ),
-          fetch(
-            `${SUPABASE_URL}/rest/v1/${SERVICES_TABLE}?select=id,category_id,slug,name_html,description_html,price_html,price_amount,duration_minutes,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
-            {
-              headers: {
-                apikey: SUPABASE_ANON_KEY,
-                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                Accept: "application/json"
-              }
-            }
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${SERVICES_TABLE}`,
+            [
+              "id,category_id,slug,name_html,description_html,price_amount_small,price_amount_medium,price_amount_large,duration_minutes_small,duration_minutes_medium,duration_minutes_large,display_order,css_classes",
+              "id,category_id,slug,name_html,description_html,display_order,css_classes"
+            ],
+            "Supabase services",
+            "&is_active=eq.true&order=display_order.asc"
           ),
-          fetch(
-            `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}?select=id,slug,name_html,description_html,display_order,css_classes,total_price_amount,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,duration_minutes))&is_active=eq.true&order=display_order.asc`,
-            {
-              headers: {
-                apikey: SUPABASE_ANON_KEY,
-                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                Accept: "application/json"
-              }
-            }
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}`,
+            [
+              "id,slug,name_html,description_html,display_order,css_classes,total_price_amount_small,total_price_amount_medium,total_price_amount_large,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,price_amount_small,price_amount_medium,price_amount_large,duration_minutes_small,duration_minutes_medium,duration_minutes_large))",
+              "id,slug,name_html,description_html,display_order,css_classes,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active))"
+            ],
+            "Supabase packages",
+            "&is_active=eq.true&order=display_order.asc"
           ),
-          fetch(
-            `${SUPABASE_URL}/rest/v1/${PACKAGE_ITEMS_TABLE}?select=package_id,service_id,item_order&order=package_id.asc,item_order.asc`,
-            {
-              headers: {
-                apikey: SUPABASE_ANON_KEY,
-                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                Accept: "application/json"
-              }
-            }
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${PACKAGE_ITEMS_TABLE}`,
+            ["package_id,service_id,item_order"],
+            "Supabase package items",
+            "&order=package_id.asc,item_order.asc"
           )
         ]);
 
-        if (!categoriesResponse.ok) {
-          const details = await categoriesResponse.text();
-          throw new Error(`Supabase categories HTTP ${categoriesResponse.status}: ${details}`);
-        }
-
-        if (!servicesResponse.ok) {
-          const details = await servicesResponse.text();
-          throw new Error(`Supabase services HTTP ${servicesResponse.status}: ${details}`);
-        }
-
-        if (!packagesResponse.ok) {
-          const details = await packagesResponse.text();
-          throw new Error(`Supabase packages HTTP ${packagesResponse.status}: ${details}`);
-        }
-
-        if (!packageItemsResponse.ok) {
-          const details = await packageItemsResponse.text();
-          throw new Error(`Supabase package items HTTP ${packageItemsResponse.status}: ${details}`);
-        }
-
-        const [categories, services] = await Promise.all([
-          categoriesResponse.json(),
-          servicesResponse.json()
-        ]);
-
-        const [packages, packageItems] = await Promise.all([
-          packagesResponse.json(),
-          packageItemsResponse.json()
-        ]);
+        cachedServiceCategories = Array.isArray(categories) ? categories : [];
+        cachedServices = Array.isArray(services) ? services : [];
+        cachedPackages = Array.isArray(packages) ? packages : [];
+        cachedPackageItems = Array.isArray(packageItems) ? packageItems : [];
 
         renderServices(
-          Array.isArray(categories) ? categories : [],
-          Array.isArray(services) ? services : []
+          cachedServiceCategories,
+          cachedServices
         );
 
         renderPackages(
-          Array.isArray(packages) ? packages : [],
-          Array.isArray(packageItems) ? packageItems : [],
-          Array.isArray(services) ? services : []
+          cachedPackages,
+          cachedPackageItems,
+          cachedServices
         );
 
-        update();
+        updatePricingForSelectedCarSize();
       } catch (error) {
         console.error("Nie udało się pobrać usług z Supabase:", error);
         if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Błąd pobierania usług z bazy.</div>';
