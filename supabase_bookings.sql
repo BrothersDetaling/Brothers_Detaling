@@ -51,7 +51,31 @@ create trigger trg_set_bookings_updated_at
 before update on public.bookings
 for each row execute function public.set_bookings_updated_at();
 
+create or replace function public.mark_booking_paid(p_booking_id uuid)
+returns public.bookings
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  updated_booking public.bookings;
+begin
+  update public.bookings
+  set is_paid = true,
+      paid_at = coalesce(paid_at, now()),
+      updated_at = now()
+  where id = p_booking_id
+  returning * into updated_booking;
+
+  return updated_booking;
+end;
+$$;
+
+grant execute on function public.mark_booking_paid(uuid) to anon, authenticated;
+
 alter table public.bookings enable row level security;
+
+grant select, insert, update on public.bookings to anon, authenticated;
 
 drop policy if exists "bookings_select_authenticated" on public.bookings;
 create policy "bookings_select_authenticated"

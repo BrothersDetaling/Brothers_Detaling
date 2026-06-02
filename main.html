@@ -426,6 +426,28 @@
       })}zł`;
     }
 
+    async function createBookingRecord(payload) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${BOOKINGS_TABLE}`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const details = await response.text();
+        throw new Error(`Supabase bookings HTTP ${response.status}: ${details}`);
+      }
+
+      const rows = await response.json();
+      return Array.isArray(rows) ? rows[0] : rows;
+    }
+
     async function fetchSupabaseJsonWithFallback(basePath, selectQueries, label, extraQuery = "") {
       let lastError = null;
 
@@ -733,6 +755,7 @@
     const SERVICES_TABLE = "services";
     const PACKAGES_TABLE = "packages";
     const PACKAGE_ITEMS_TABLE = "package_items";
+    const BOOKINGS_TABLE = "bookings";
     const PACKAGE_SERVICE_SLUGS = {
       basic: ["odkurzanie-wnetrza", "czyszczenie-plastikow"],
       standard: ["mycie-zewnetrzne", "czyszczenie-plastikow", "odkurzanie-wnetrza"],
@@ -1747,7 +1770,7 @@
     loadServicesFromSupabase();
     loadDaysFromSupabase();
 
-    function goPay(event) {
+    async function goPay(event) {
       event.preventDefault();
 
       const firstName = document.getElementById("firstName");
@@ -1759,9 +1782,7 @@
       const timeValue = document.getElementById("godzina");
 
       // WYBRANE USŁUGI
-      const checkedServices = document.querySelectorAll(
-        '.card input[data-price]:checked'
-      );
+      const checkedCartItems = document.querySelectorAll('.card input[data-price]:checked');
 
       // CHECKBOX UMOWY
       const agreement = document.querySelector(
@@ -1825,13 +1846,13 @@
       }
 
       // CZY WYBRANO USŁUGĘ
-      if (checkedServices.length === 0) {
+      if (checkedCartItems.length === 0) {
 
         const error = document.createElement("div");
 
         error.className = "error";
 
-        error.innerText = "Wybierz przynajmniej jedną usługę";
+        error.innerText = "Wybierz przynajmniej jedn� us�ug� lub pakiet";
 
         document.getElementById("list").appendChild(error);
 
@@ -1855,17 +1876,53 @@
       // GOTOWE
       if (valid) {
         const carSize = getSelectedCarSize();
-        const selectedItems = Array.from(checkedServices).map((input) => {
+        const selectedItems = Array.from(checkedCartItems).map((input) => {
           const card = input.closest(".card");
           return {
             name: getCardTitleHtml(card) || input.value,
-            price: Number(input.dataset.price) || 0
+            value: input.value,
+            type: input.type,
+            price: Number(input.dataset.price) || 0,
+            duration: Number(input.dataset.duration) || 0
           };
         });
+
+        const totalAmount = selectedItems.reduce((sum, item) => sum + Number(item.price || 0), 0);
+        const totalDurationMinutes = selectedItems.reduce((sum, item) => sum + Number(item.duration || 0), 0);
+        const bookingPayload = {
+          first_name: firstName.value.trim(),
+          last_name: lastName.value.trim(),
+          phone: phone.value.trim(),
+          email: email.value.trim(),
+          car_model: carModel.value.trim(),
+          car_size: carSize.value,
+          booking_date: dayValue.value,
+          booking_time: timeValue.value,
+          selected_items: selectedItems,
+          total_amount: totalAmount,
+          total_duration_minutes: totalDurationMinutes,
+          is_paid: false
+        };
+
+        let bookingRecord;
+
+        try {
+          bookingRecord = await createBookingRecord(bookingPayload);
+        } catch (error) {
+          console.error("Nie udało się utworzyć rezerwacji:", error);
+
+          const errorBox = document.createElement("div");
+          errorBox.className = "error";
+          errorBox.innerText = "Nie udało się utworzyć rezerwacji. Spróbuj ponownie.";
+          document.querySelector(".submit-container")?.appendChild(errorBox);
+          return;
+        }
 
         localStorage.setItem(
           "booking",
           JSON.stringify({
+            booking_id: bookingRecord?.id || null,
+            is_paid: false,
             firstName: firstName.value.trim(),
             lastName: lastName.value.trim(),
             phone: phone.value.trim(),
@@ -1875,11 +1932,13 @@
             carSizeLabel: carSize.label,
             day: dayValue.value,
             time: timeValue.value,
+            totalAmount,
+            totalDurationMinutes,
             items: selectedItems
           })
         );
 
-        window.location.href = "pay.html";
+        window.location.href = `pay.html?booking_id=${encodeURIComponent(bookingRecord?.id || "")}`;
       }
     }
 
@@ -1889,3 +1948,4 @@
 </body>
 
 </html>
+

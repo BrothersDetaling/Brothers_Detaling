@@ -13,22 +13,82 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="png" href="Img/icon.png">
-  
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-
-  
 </head>
 <body>
-    <section>
-        <div class="container">
-            <div class="card normal">
-                <div class="card-top">
-                    <h3>Dziękujemy Za Zamówienie</h3>
-                </div>
-                <p>Po zweryfikowaniu przez nas zamówienia zostanie przesłana wiadomość na numer telefonu lub e-mila</p>
-            </div>
+  <section>
+    <div class="container">
+      <div class="card normal">
+        <div class="card-top">
+          <h3 id="status-title">Potwierdzanie płatności...</h3>
         </div>
-    </section>
+        <p id="status-message">Trwa aktualizacja statusu rezerwacji.</p>
+      </div>
+    </div>
+  </section>
 
+  <script>
+    const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
+
+    function getBookingId() {
+      const booking = JSON.parse(localStorage.getItem("booking") || "null");
+      const fromStorage = booking?.booking_id || null;
+      const fromQuery = new URLSearchParams(window.location.search).get("booking_id");
+      return fromQuery || fromStorage;
+    }
+
+    async function markBookingPaid(bookingId) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/mark_booking_paid`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({ p_booking_id: bookingId })
+      });
+
+      if (!response.ok) {
+        const details = await response.text();
+        throw new Error(`Supabase RPC HTTP ${response.status}: ${details}`);
+      }
+
+      return response.json();
+    }
+
+    async function run() {
+      const bookingId = getBookingId();
+      const titleEl = document.getElementById("status-title");
+      const messageEl = document.getElementById("status-message");
+
+      if (!bookingId) {
+        titleEl.textContent = "Brak identyfikatora rezerwacji";
+        messageEl.textContent = "Nie udało się potwierdzić płatności, bo brak numeru rezerwacji.";
+        return;
+      }
+
+      try {
+        await markBookingPaid(bookingId);
+
+        const booking = JSON.parse(localStorage.getItem("booking") || "null");
+        if (booking) {
+          booking.is_paid = true;
+          booking.paid_at = new Date().toISOString();
+          localStorage.setItem("booking", JSON.stringify(booking));
+        }
+
+        titleEl.textContent = "Płatność potwierdzona";
+        messageEl.textContent = "Twoja rezerwacja została oznaczona jako opłacona.";
+      } catch (error) {
+        console.error("Nie udało się oznaczyć rezerwacji jako opłaconej:", error);
+        titleEl.textContent = "Płatność zakończona";
+        messageEl.textContent = "Nie udało się automatycznie potwierdzić statusu w bazie. Skontaktujemy się, jeśli będzie to potrzebne.";
+      }
+    }
+
+    run();
+  </script>
 </body>
 </html>
