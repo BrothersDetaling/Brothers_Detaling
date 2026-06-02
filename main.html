@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,171 +9,237 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="png" href="Img/icon.png">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<a href="#pakiety">
-<section class="hero">
-  <div class="container">
+  <a href="#pakiety">
+    <section class="hero">
+      <div class="container">
 
-    <h1>BROTHERS</h1>
-    <div class="logo-line"></div>
-    <h1 class="hero-detailing">DETAILING</h1>
-    <p>
-      Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
-    </p><br>
-    <p class="arrow"></p><!--z dedykacją dla ulu-->
-  </div>
-</section>
-</a>
+        <h1>BROTHERS</h1>
+        <div class="logo-line"></div>
+        <h1 class="hero-detailing">DETAILING</h1>
+        <p>
+          Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
+        </p><br>
+        <p class="arrow"></p><!--z dedykacją dla ulu-->
+      </div>
+    </section>
+  </a>
 
-<section>
-  <div class="sidebar sidebar-floating" id="sidebar">
-  <div class="card normal">
-    <h3 class="sidebar-title">Podsumowanie</h3>
-  
-    <div class="text-muted" id="list"></div>
-  
-    <div class="total catd-top">
-      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
-    </div><br>
-    <button>Przenieś do Zamówienia</button>
-    <button id="clear-cart" class="clear-btn">Wyczyść</button>
-  </div>
-  </div>
+  <section>
+    <div class="sidebar sidebar-floating" id="sidebar">
+      <div class="card normal">
+        <h3 class="sidebar-title">Podsumowanie</h3>
 
-<section id="pakiety"><!--Pakiety-->
-<div class="container">
-  <div class="section-title">
-    <div class="line"></div>
-    <h2>Pakiety</h2>
-</div>
+        <div class="text-muted" id="list"></div>
 
-  <div id="packages-root"></div>
-</div>
-</section>
-
-<section><!--Usługi-->
-<div class="container">
-  <details class="services-collapse">
-    <summary class="section-title">
-      <div class="services-toggle-mark arrow" aria-hidden="true"></div>
-      <h2>Pojedyńcze Usługi</h2>
-    </summary> 
-
-    <div class="services-collapse__content">
-      <p class="note">
-          Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
-          ustalana jest indywidualnie.
-      </p>
-      <div id="services-root"></div>
+        <div class="total catd-top">
+          Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+        </div><br>
+        <button>Przenieś do Zamówienia</button>
+        <button id="clear-cart" class="clear-btn">Wyczyść</button>
+      </div>
     </div>
-  </details>
-</div>
-</section>
-</section>
-<section><!--Zamawianie-->
-  <div class="container">
-    <div class="section-title">
-      <div class="line"></div>
-      <h2>Zamawianie Usługi</h2>
-    </div>
-    <p class="note">
-      Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
-      ustalana jest indywidualnie.
-    </p>
 
-
-  <div class="card normal">
-    <div id="sidebar">
-    <h3 class="sidebar-title">Podsumowanie</h3>
-  
-    <div class="text-muted" id="list"></div>
-  
-    <div class="total catd-top">
-      Suma: <span class="price-normal"><span id="total">0</span>zł</span>
-      <div class="service-duration service-duration--compact">Czas: <span id="total-time">0 min</span></div>
-    </div></div><br>
-    
-    <form class="zamowienie">
-      <h2>Uzupełnij dane</h2>
-      <div class="form-group">
-        <label for="firstName">Imię *</label>
-        <input type="text" id="firstName" placeholder="Wpisz imię" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="lastName">Nazwisko *</label>
-        <input type="text" id="lastName" placeholder="Wpisz nazwisko" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="phone">Numer telefonu *</label>
-        <input type="tel" id="phone" placeholder="Wpisz numer telefonu" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" placeholder="np. kontakt@gmail.com" required>
-      </div>
-      <div class="form-group">
-        <label for="carModel">Model samochodu *</label>
-        <input type="text" id="carModel" name="carModel" placeholder="np. BMW E90" required>
-      </div>
-      <div class="grid-form">
-
-      <div class="form-group">
-        <label for="dzien"><p>Dzień</p>
-        <input type="hidden" id="dzien" name="dzien" required>
-        <div class="day-picker" aria-label="Kalendarz wyboru dnia">
-          <div class="day-picker__header">
-            <button type="button" id="day-prev" aria-label="Poprzedni miesiac">&lsaquo;</button>
-            <div id="day-month" class="day-picker__month">Wczytywanie...</div>
-            <button type="button" id="day-next" aria-label="Nastepny miesiac">&rsaquo;</button>
+    <section id="pakiety"><!--Pakiety-->
+      <div class="container">
+        <div class="vehicle-size-panel card normal">
+          <div class="card-top vehicle-size-panel__top">
+            <div>              
+              <h3>Wybierz wielkość samochodu</h3>
+            </div>
+            <div class="vehicle-size-panel__hint">Wpływa na wycenę usług</div>
           </div>
-          <div class="day-picker__weekdays">
-            <span>Pn</span>
-            <span>Wt</span>
-            <span>Sr</span>
-            <span>Cz</span>
-            <span>Pt</span>
-            <span>Sb</span>
-            <span>Nd</span>
+
+          <div class="vehicle-size-grid" role="radiogroup" aria-label="Wielkość samochodu">
+            <label class="vehicle-size-option vehicle-size-option--small">
+              <input type="radio" name="carSize" value="small" checked>
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M14 30h40c4.6 0 7.8 1.8 9 5l2 5H6l2-5c1.2-3.2 4.4-5 6-5Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <path d="M20 29 27 18h18l7 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <circle cx="22" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <circle cx="50" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <path d="M28 23h12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Mały</strong>
+                <span>Hatchbacki i auta miejskie. Szybsza obsługa, zwrotne nadwozie, mniej zakamarków do czyszczenia.</span>
+              </span>
+            </label>
+
+            <label class="vehicle-size-option vehicle-size-option--medium">
+              <input type="radio" name="carSize" value="medium">
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M10 31h48c5.2 0 8.6 2 10 6l1 3H2l1-3c1.4-4 4.8-6 7-6Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <path d="M18 30 26 17h24l8 13" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <circle cx="20" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <circle cx="54" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <path d="M29 23h16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Średni</strong>
+                <span>Sedany, kombi i większość popularnych aut. Złoty środek między czasem pracy a ilością powierzchni.</span>
+              </span>
+            </label>
+
+            <label class="vehicle-size-option vehicle-size-option--large">
+              <input type="radio" name="carSize" value="large">
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M8 31h54c5.2 0 8.6 2 10 6l1 3H1l1-3c1.4-4 4.8-6 7-6Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <path d="M15 30 24 15h30l8 15" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+                  <circle cx="18" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <circle cx="57" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2"/>
+                  <path d="M28 22h22" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Duży</strong>
+                <span>SUV-y, vany i większe bryły. Więcej przestrzeni, większa powierzchnia i dokładniejsze dopasowanie wyceny.</span>
+              </span>
+            </label>
           </div>
-          <div id="day-grid" class="day-picker__grid"></div>
         </div>
-        <div id="day-selected" class="day-picker__selected">Wybierz dzien z kalendarza</div>
-        </label>
+
+        <div class="section-title">
+          <div class="line"></div>
+          <h2>Pakiety</h2>
+        </div>
+
+        <div id="packages-root"></div>
+      </div>
+    </section>
+
+    <section><!--Usługi-->
+      <div class="container">
+        <details class="services-collapse">
+          <summary class="section-title services-collapse__summary">
+            <div class="services-toggle-mark arrow" aria-hidden="true"></div>
+            <h2>Pojedyńcze Usługi</h2>
+          </summary>
+
+          <div class="services-collapse__content">
+            <p class="note">
+              Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
+              ustalana jest indywidualnie.
+            </p>
+            <div id="services-root"></div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </section>
+  <section><!--Zamawianie-->
+    <div class="container">
+      <div class="section-title">
+        <div class="line"></div>
+        <h2>Zamawianie Usługi</h2>
+      </div>
+      <p class="note">
+        Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
+        ustalana jest indywidualnie.
+      </p>
+
+
+      <div class="card normal">
+        <div id="sidebar">
+          <h3 class="sidebar-title">Podsumowanie</h3>
+
+          <div class="text-muted" id="list"></div>
+
+          <div class="total catd-top">
+            Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+            <div class="service-duration service-duration--compact">Czas: <span id="total-time">0 min</span></div>
+          </div>
+        </div><br>
+
+        <form class="zamowienie">
+          <h2>Uzupełnij dane</h2>
+          <div class="form-group">
+            <label for="firstName">Imię *</label>
+            <input type="text" id="firstName" placeholder="Wpisz imię" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Nazwisko *</label>
+            <input type="text" id="lastName" placeholder="Wpisz nazwisko" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Numer telefonu *</label>
+            <input type="tel" id="phone" placeholder="Wpisz numer telefonu" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="np. kontakt@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label for="carModel">Model samochodu *</label>
+            <input type="text" id="carModel" name="carModel" placeholder="np. BMW E90" required>
+          </div>
+          <div class="grid-form">
+
+            <div class="form-group">
+              <label for="dzien">
+                <p>Dzień</p>
+                <input type="hidden" id="dzien" name="dzien" required>
+                <div class="day-picker" aria-label="Kalendarz wyboru dnia">
+                  <div class="day-picker__header">
+                    <button type="button" id="day-prev" aria-label="Poprzedni miesiac">&lsaquo;</button>
+                    <div id="day-month" class="day-picker__month">Wczytywanie...</div>
+                    <button type="button" id="day-next" aria-label="Nastepny miesiac">&rsaquo;</button>
+                  </div>
+                  <div class="day-picker__weekdays">
+                    <span>Pn</span>
+                    <span>Wt</span>
+                    <span>Sr</span>
+                    <span>Cz</span>
+                    <span>Pt</span>
+                    <span>Sb</span>
+                    <span>Nd</span>
+                  </div>
+                  <div id="day-grid" class="day-picker__grid"></div>
+                </div>
+                <div id="day-selected" class="day-picker__selected">Wybierz dzien z kalendarza</div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <p>Godzina</p>
+              <select id="godzina" name="godzina" required disabled>
+                <option value="">Wybierz dzień z kalendarza</option>
+              </select>
+              <div id="time-selected" class="day-picker__selected">Wybierz dzień z kalendarza, aby zobaczyć dostępne
+                godziny</div>
+            </div>
+          </div>
+          <label class="zapoznanie">
+            <input type="checkbox" required>
+            <span>Zapoznałem się z <a href="#umowa">umową użytkownika</a></span>
+          </label>
+          <div class="submit-container"><button onclick="goPay(event)" class="btn-rezerwuj">Zarezerwuj</button></div>
+        </form>
       </div>
 
-      <div class="form-group">
-        <p>Godzina</p>
-        <select id="godzina" name="godzina" required disabled>
-          <option value="">Wybierz dzień z kalendarza</option>
-        </select>
-        <div id="time-selected" class="day-picker__selected">Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny</div>
-      </div>
-</div>
-      <label class="zapoznanie">
-        <input type="checkbox" required>
-        <span>Zapoznałem się z <a href="#umowa">umową użytkownika</a></span>
-      </label>
-      <div class="submit-container"><button onclick="goPay(event)" class="btn-rezerwuj">Zarezerwuj</button></div>
-    </form>
-  </div>
+  </section>
 
-</section>
-
-<section><!--Umowa-->
+  <section><!--Umowa-->
     <div class="container" id="umowa">
       <div class="contract">
 
@@ -187,11 +254,13 @@
           </p>
 
           <p>
-            Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie wybranych usług.
+            Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie wybranych
+            usług.
           </p>
 
           <p>
-            Zleceniobiorca nie odpowiada za wcześniej istniejące uszkodzenia lakieru, elementów wnętrza lub ukryte wady materiałów.
+            Zleceniobiorca nie odpowiada za wcześniej istniejące uszkodzenia lakieru, elementów wnętrza lub ukryte wady
+            materiałów.
           </p>
 
           <p>
@@ -205,9 +274,9 @@
 
       </div>
     </div>
-</section>
+  </section>
 
-<footer>
+  <footer>
     <div class="container">
 
       <div class="footer-grid">
@@ -233,30 +302,30 @@
       </div>
 
     </div>
-</footer>
+  </footer>
 
 
-<script>
-  function highlightCard(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
+  <script>
+    function highlightCard(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-    // scroll do elementu
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+      // scroll do elementu
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // reset efektu
-    el.classList.remove("highlight");
-
-    // odpalenie highlight OD RAZU po kliknięciu
-    setTimeout(() => {
-      el.classList.add("highlight");
-    }, 500);
-
-    // usunięcie efektu
-    setTimeout(() => {
+      // reset efektu
       el.classList.remove("highlight");
-    }, 2000);
-  }
+
+      // odpalenie highlight OD RAZU po kliknięciu
+      setTimeout(() => {
+        el.classList.add("highlight");
+      }, 500);
+
+      // usunięcie efektu
+      setTimeout(() => {
+        el.classList.remove("highlight");
+      }, 2000);
+    }
 
     function highlightCard(id) {
       const el = document.getElementById(id);
@@ -278,464 +347,504 @@
       }, 2000);
     }
 
-const sidebar = document.getElementById("sidebar");
-const listEls = document.querySelectorAll("#list, #list-form");
-const totalEls = document.querySelectorAll("#total, #total-form");
-const timeTotalEls = document.querySelectorAll("#total-time, #total-time-form");
-const dzienSelect = document.getElementById("dzien");
-const packagesRoot = document.getElementById("packages-root");
-const checkoutForm = document.querySelector("form.zamowienie");
-let isCheckoutVisible = false;
+    const sidebar = document.getElementById("sidebar");
+    const listEls = document.querySelectorAll("#list, #list-form");
+    const totalEls = document.querySelectorAll("#total, #total-form");
+    const timeTotalEls = document.querySelectorAll("#total-time, #total-time-form");
+    const dzienSelect = document.getElementById("dzien");
+    const carSizeOptions = document.querySelectorAll('input[name="carSize"]');
+    const packagesRoot = document.getElementById("packages-root");
+    const checkoutForm = document.querySelector("form.zamowienie");
+    let isCheckoutVisible = false;
+    const CAR_SIZE_LABELS = {
+      small: "Mały",
+      medium: "Średni",
+      large: "Duży"
+    };
 
-function syncFloatingSidebarVisibility() {
-  if (!sidebar) return;
+    function getSelectedCarSize() {
+      const selected = document.querySelector('input[name="carSize"]:checked');
+      const value = selected?.value || "small";
 
-  const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
-  const shouldShow = hasItems && !isCheckoutVisible;
-
-  sidebar.classList.toggle("show", shouldShow);
-  sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
-}
-
-if (checkoutForm && "IntersectionObserver" in window) {
-  const checkoutObserver = new IntersectionObserver(
-    ([entry]) => {
-      isCheckoutVisible = Boolean(entry?.isIntersecting);
-      syncFloatingSidebarVisibility();
-    },
-    {
-      threshold: 0.12
+      return {
+        value,
+        label: CAR_SIZE_LABELS[value] || CAR_SIZE_LABELS.small
+      };
     }
-  );
 
-  checkoutObserver.observe(checkoutForm);
-}
+    function syncCarSizeSelection() {
+      const selected = getSelectedCarSize();
+      carSizeOptions.forEach((input) => {
+        const option = input.closest(".vehicle-size-option");
+        if (!option) return;
+        option.classList.toggle("is-selected", input.value === selected.value && input.checked);
+      });
+    }
 
-// Konfiguracja Supabase do pobierania dostępnych dni.
-// Jeśli Twoja tabela lub kolumny mają inne nazwy, zmień je tutaj.
-const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
-const DAYS_TABLE = "workinghours";
-const DAY_VALUE_COLUMN = "date";
-const DAY_LABEL_COLUMN = "date";
-const START_TIME_COLUMN = "start_time";
-const END_TIME_COLUMN = "end_time";
+    carSizeOptions.forEach((input) => {
+      input.addEventListener("change", syncCarSizeSelection);
+    });
+    syncCarSizeSelection();
 
-function setDayOptions(message) {
-  if (!dzienSelect) return;
+    function syncFloatingSidebarVisibility() {
+      if (!sidebar) return;
 
-  dzienSelect.innerHTML = "";
+      const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
+      const shouldShow = hasItems && !isCheckoutVisible;
 
-  const option = document.createElement("option");
-  option.value = "";
-  option.textContent = message;
-  dzienSelect.appendChild(option);
-}
+      sidebar.classList.toggle("show", shouldShow);
+      sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
+    }
 
-async function loadDaysFromSupabase() {
-  if (!dzienSelect) return;
-
-  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
-    setDayOptions("Uzupełnij klucz Supabase");
-    return;
-  }
-
-  setDayOptions("Wczytywanie...");
-
-  try {
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${DAY_LABEL_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
-      {
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          Accept: "application/json"
+    if (checkoutForm && "IntersectionObserver" in window) {
+      const checkoutObserver = new IntersectionObserver(
+        ([entry]) => {
+          isCheckoutVisible = Boolean(entry?.isIntersecting);
+          syncFloatingSidebarVisibility();
+        },
+        {
+          threshold: 0.12
         }
-      }
-    );
-
-    if (!response.ok) {
-      const details = await response.text();
-      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
-    }
-
-    const rows = await response.json();
-
-    if (!Array.isArray(rows) || rows.length === 0) {
-      setDayOptions("Brak rekordów lub brak dostępu");
-      console.warn(
-        "Supabase zwrócił pustą tablicę. Jeśli rekordy istnieją, sprawdź RLS i politykę SELECT dla tabeli workinghours."
       );
-      return;
+
+      checkoutObserver.observe(checkoutForm);
     }
 
-    dzienSelect.innerHTML = "";
+    // Konfiguracja Supabase do pobierania dostępnych dni.
+    // Jeśli Twoja tabela lub kolumny mają inne nazwy, zmień je tutaj.
+    const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
+    const DAYS_TABLE = "workinghours";
+    const DAY_VALUE_COLUMN = "date";
+    const DAY_LABEL_COLUMN = "date";
+    const START_TIME_COLUMN = "start_time";
+    const END_TIME_COLUMN = "end_time";
 
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Wybierz dzień";
-    placeholder.disabled = true;
-    placeholder.selected = true;
-    dzienSelect.appendChild(placeholder);
+    function setDayOptions(message) {
+      if (!dzienSelect) return;
 
-    rows.forEach((row) => {
-      const value = row[DAY_VALUE_COLUMN] ?? row.value ?? row.nazwa ?? row.name ?? "";
-      const label = row[DAY_LABEL_COLUMN] ?? row.nazwa ?? row.name ?? row.value ?? value;
-
-      if (!value) return;
+      dzienSelect.innerHTML = "";
 
       const option = document.createElement("option");
-      option.value = String(value);
-      option.textContent = String(label);
+      option.value = "";
+      option.textContent = message;
       dzienSelect.appendChild(option);
-    });
+    }
 
-  } catch (error) {
-    console.error("Nie udało się pobrać dni z Supabase:", error);
-    setDayOptions("Błąd pobierania dni");
-  }
-}
+    async function loadDaysFromSupabase() {
+      if (!dzienSelect) return;
 
-const dzienInput = document.getElementById("dzien");
-const dayMonthEl = document.getElementById("day-month");
-const dayGridEl = document.getElementById("day-grid");
-const daySelectedEl = document.getElementById("day-selected");
-const dayPrevBtn = document.getElementById("day-prev");
-const dayNextBtn = document.getElementById("day-next");
-const servicesRoot = document.getElementById("services-root");
-const servicesCollapse = document.querySelector("details.services-collapse");
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        setDayOptions("Uzupełnij klucz Supabase");
+        return;
+      }
 
-function syncServicesToggleMark() {
-  if (!servicesCollapse) return;
+      setDayOptions("Wczytywanie...");
 
-  const mark = servicesCollapse.querySelector(".services-toggle-mark");
-  if (!mark) return;
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${DAY_LABEL_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
 
-  mark.classList.toggle("arrow", !servicesCollapse.open);
-  mark.classList.toggle("line", servicesCollapse.open);
-}
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
 
-if (servicesCollapse) {
-  servicesCollapse.addEventListener("toggle", syncServicesToggleMark);
-  syncServicesToggleMark();
-}
+        const rows = await response.json();
 
-const SERVICE_CATEGORIES_TABLE = "service_categories";
-const SERVICES_TABLE = "services";
-const PACKAGES_TABLE = "packages";
-const PACKAGE_ITEMS_TABLE = "package_items";
-const PACKAGE_SERVICE_SLUGS = {
-  basic: ["odkurzanie-wnetrza", "czyszczenie-plastikow"],
-  standard: ["mycie-zewnetrzne", "czyszczenie-plastikow", "odkurzanie-wnetrza"],
-  "standard-premium": [
-    "mycie-zewnetrzne-premium",
-    "czyszczenie-plastikow-premium",
-    "odkurzanie-wnetrza",
-    "dressing-opon"
-  ],
-  pranie: ["pranie-dywanikow-premium", "pranie-wszystkie-fotele", "pranie-podlokietnikow"],
-  "skora-premium": [
-    "impregnacja-skory",
-    "skora-czyszczenie-skory",
-    "skora-tylna-kanapa",
-    "skora-czyszczenie-podlokietnikow",
-    "skora-czyszczenie-boczkow-drzwi"
-  ],
-  "full-pakiet": [
-    "mycie-zewnetrzne-premium",
-    "czyszczenie-plastikow-premium",
-    "odkurzanie-wnetrza",
-    "dressing-opon",
-    "pranie-dywanikow-premium",
-    "pranie-wszystkie-fotele",
-    "pranie-podlokietnikow"
-  ],
-  "full-pakiet-skora": [
-    "mycie-zewnetrzne-premium",
-    "czyszczenie-plastikow-premium",
-    "odkurzanie-wnetrza",
-    "dressing-opon",
-    "pranie-dywanikow-premium",
-    "pranie-wszystkie-fotele",
-    "pranie-podlokietnikow",
-    "impregnacja-skory",
-    "skora-czyszczenie-skory",
-    "skora-tylna-kanapa",
-    "skora-czyszczenie-podlokietnikow",
-    "skora-czyszczenie-boczkow-drzwi"
-  ]
-};
+        if (!Array.isArray(rows) || rows.length === 0) {
+          setDayOptions("Brak rekordów lub brak dostępu");
+          console.warn(
+            "Supabase zwrócił pustą tablicę. Jeśli rekordy istnieją, sprawdź RLS i politykę SELECT dla tabeli workinghours."
+          );
+          return;
+        }
 
-const monthNamesPl = [
-  "stycznia",
-  "lutego",
-  "marca",
-  "kwietnia",
-  "maja",
-  "czerwca",
-  "lipca",
-  "sierpnia",
-  "września",
-  "października",
-  "listopada",
-  "grudnia"
-];
+        dzienSelect.innerHTML = "";
 
-let allowedDays = new Set();
-let allowedDayList = [];
-let selectedDay = "";
-let visibleMonth = new Date();
-visibleMonth.setDate(1);
-visibleMonth.setHours(0, 0, 0, 0);
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Wybierz dzień";
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        dzienSelect.appendChild(placeholder);
 
-function getServiceInputs() {
-  return document.querySelectorAll('.card input[data-price]');
-}
+        rows.forEach((row) => {
+          const value = row[DAY_VALUE_COLUMN] ?? row.value ?? row.nazwa ?? row.name ?? "";
+          const label = row[DAY_LABEL_COLUMN] ?? row.nazwa ?? row.name ?? row.value ?? value;
 
-function getCardTitleHtml(card) {
-  return card?.querySelector(".card-top h3")?.innerHTML || card?.querySelector("h3")?.innerHTML || "";
-}
+          if (!value) return;
 
-function toggleCardSelection(card) {
-  if (!card) return;
+          const option = document.createElement("option");
+          option.value = String(value);
+          option.textContent = String(label);
+          dzienSelect.appendChild(option);
+        });
 
-  const input = card.querySelector('input[data-price]');
-  if (!input) return;
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        setDayOptions("Błąd pobierania dni");
+      }
+    }
 
-  if (input.type === "radio") {
-    const groupName = input.name;
-    const wasChecked = input.checked;
+    const dzienInput = document.getElementById("dzien");
+    const dayMonthEl = document.getElementById("day-month");
+    const dayGridEl = document.getElementById("day-grid");
+    const daySelectedEl = document.getElementById("day-selected");
+    const dayPrevBtn = document.getElementById("day-prev");
+    const dayNextBtn = document.getElementById("day-next");
+    const servicesRoot = document.getElementById("services-root");
+    const servicesCollapse = document.querySelector("details.services-collapse");
 
-    document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach((radio) => {
-      radio.checked = false;
-    });
+    function syncServicesToggleMark() {
+      if (!servicesCollapse) return;
 
-    input.checked = !wasChecked;
-  } else {
-    input.checked = !input.checked;
-  }
+      const mark = servicesCollapse.querySelector(".services-toggle-mark");
+      if (!mark) return;
 
-  update();
-}
+      mark.classList.toggle("arrow", !servicesCollapse.open);
+      mark.classList.toggle("line", servicesCollapse.open);
+    }
 
-function toggleCardCollapse(button) {
-  if (!button) return;
+    if (servicesCollapse) {
+      servicesCollapse.addEventListener("toggle", syncServicesToggleMark);
+      syncServicesToggleMark();
+    }
 
-  const card = button.closest(".card");
-  if (!card) return;
+    function syncCollapseToggleMark(collapse) {
+      if (!collapse) return;
 
-  const targetId = button.getAttribute("aria-controls");
-  const collapse = targetId ? document.getElementById(targetId) : card.querySelector(".card-collapse");
-  if (!collapse) return;
+      const mark = collapse.querySelector(".services-toggle-mark");
+      if (!mark) return;
 
-  const isOpen = !collapse.hasAttribute("hidden");
-  if (isOpen) {
-    collapse.setAttribute("hidden", "");
-    button.setAttribute("aria-expanded", "false");
-    button.textContent = "Opis";
-  } else {
-    collapse.removeAttribute("hidden");
-    button.setAttribute("aria-expanded", "true");
-    button.textContent = "Zwiń";
-  }
-}
+      mark.classList.toggle("arrow", !collapse.open);
+      mark.classList.toggle("line", collapse.open);
+    }
 
-function getServicePriceClass(service, category) {
-  const classList = new Set([
-    ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
-  ]);
+    const SERVICE_CATEGORIES_TABLE = "service_categories";
+    const SERVICES_TABLE = "services";
+    const PACKAGES_TABLE = "packages";
+    const PACKAGE_ITEMS_TABLE = "package_items";
+    const PACKAGE_SERVICE_SLUGS = {
+      basic: ["odkurzanie-wnetrza", "czyszczenie-plastikow"],
+      standard: ["mycie-zewnetrzne", "czyszczenie-plastikow", "odkurzanie-wnetrza"],
+      "standard-premium": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon"
+      ],
+      pranie: ["pranie-dywanikow-premium", "pranie-wszystkie-fotele", "pranie-podlokietnikow"],
+      "skora-premium": [
+        "impregnacja-skory",
+        "skora-czyszczenie-skory",
+        "skora-tylna-kanapa",
+        "skora-czyszczenie-podlokietnikow",
+        "skora-czyszczenie-boczkow-drzwi"
+      ],
+      "full-pakiet": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon",
+        "pranie-dywanikow-premium",
+        "pranie-wszystkie-fotele",
+        "pranie-podlokietnikow"
+      ],
+      "full-pakiet-skora": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon",
+        "pranie-dywanikow-premium",
+        "pranie-wszystkie-fotele",
+        "pranie-podlokietnikow",
+        "impregnacja-skory",
+        "skora-czyszczenie-skory",
+        "skora-tylna-kanapa",
+        "skora-czyszczenie-podlokietnikow",
+        "skora-czyszczenie-boczkow-drzwi"
+      ]
+    };
 
-  if (classList.has("dressing")) return "price-dressing";
-  if (classList.has("premium")) return "price-premium";
-  if (classList.has("pranie")) return "price-pranie";
-  if (classList.has("skora")) return "price-skora";
+    const monthNamesPl = [
+      "stycznia",
+      "lutego",
+      "marca",
+      "kwietnia",
+      "maja",
+      "czerwca",
+      "lipca",
+      "sierpnia",
+      "września",
+      "października",
+      "listopada",
+      "grudnia"
+    ];
 
-  return "price-normal";
-}
+    let allowedDays = new Set();
+    let allowedDayList = [];
+    let selectedDay = "";
+    let visibleMonth = new Date();
+    visibleMonth.setDate(1);
+    visibleMonth.setHours(0, 0, 0, 0);
 
-function getServiceCardClasses(service, category) {
-  const classes = new Set([
-    "card",
-    ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
-  ]);
+    function getServiceInputs() {
+      return document.querySelectorAll('.card input[data-price]');
+    }
 
-  return [...classes].filter(Boolean).join(" ");
-}
+    function getCardTitleHtml(card) {
+      return card?.querySelector(".card-top h3")?.innerHTML || card?.querySelector("h3")?.innerHTML || "";
+    }
 
-function getPackagePriceClass(packageRow) {
-  const classList = new Set([
-    ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
-  ]);
+    function toggleCardSelection(card) {
+      if (!card) return;
 
-  if (classList.has("full")) return "price-full";
-  if (classList.has("premium")) return "price-premium";
-  if (classList.has("pranie")) return "price-pranie";
-  if (classList.has("skora")) return "price-premium";
+      const input = card.querySelector('input[data-price]');
+      if (!input) return;
 
-  return "price-normal";
-}
+      if (input.type === "radio") {
+        const groupName = input.name;
+        const wasChecked = input.checked;
 
-function getPackageCardClasses(packageRow) {
-  const classes = new Set([
-    "card",
-    ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
-  ]);
+        document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach((radio) => {
+          radio.checked = false;
+        });
 
-  return [...classes].filter(Boolean).join(" ");
-}
+        input.checked = !wasChecked;
+      } else {
+        input.checked = !input.checked;
+      }
 
-function getPackageItemDotClass(service) {
-  const classList = new Set([
-    ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
-  ]);
+      update();
+    }
 
-  if (classList.has("dressing")) return "dot-dressing";
-  if (classList.has("skora")) return "dot-skora";
-  if (classList.has("pranie")) return "dot-pranie";
-  if (classList.has("premium")) return "dot-premium";
+    function toggleCardCollapse(button) {
+      if (!button) return;
 
-  return "dot";
-}
+      const card = button.closest(".card");
+      if (!card) return;
 
-function getAccentClass(source) {
-  const classList = new Set([
-    ...(Array.isArray(source?.css_classes) ? source.css_classes : [])
-  ]);
+      const targetId = button.getAttribute("aria-controls");
+      const collapse = targetId ? document.getElementById(targetId) : card.querySelector(".card-collapse");
+      if (!collapse) return;
 
-  if (classList.has("dressing")) return "dressing";
-  if (classList.has("full")) return "full";
-  if (classList.has("premium")) return "premium";
-  if (classList.has("pranie")) return "pranie";
-  if (classList.has("skora")) return "skora";
-  if (classList.has("normal")) return "normal";
+      const isOpen = !collapse.hasAttribute("hidden");
+      if (isOpen) {
+        collapse.setAttribute("hidden", "");
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = "Opis";
+      } else {
+        collapse.removeAttribute("hidden");
+        button.setAttribute("aria-expanded", "true");
+        button.textContent = "Zwiń";
+      }
+    }
 
-  return "normal";
-}
+    function getServicePriceClass(service, category) {
+      const classList = new Set([
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
 
-function getCardButtonClass(source) {
-  return `add-to-cart add-to-cart--${getAccentClass(source)}`;
-}
+      if (classList.has("dressing")) return "price-dressing";
+      if (classList.has("premium")) return "price-premium";
+      if (classList.has("pranie")) return "price-pranie";
+      if (classList.has("skora")) return "price-skora";
 
-function getCardButtonHtml(isSelected = false) {
-  return `
+      return "price-normal";
+    }
+
+    function getServiceCardClasses(service, category) {
+      const classes = new Set([
+        "card",
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
+
+      return [...classes].filter(Boolean).join(" ");
+    }
+
+    function getPackagePriceClass(packageRow) {
+      const classList = new Set([
+        ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
+      ]);
+
+      if (classList.has("full")) return "price-full";
+      if (classList.has("premium")) return "price-premium";
+      if (classList.has("pranie")) return "price-pranie";
+      if (classList.has("skora")) return "price-premium";
+
+      return "price-normal";
+    }
+
+    function getPackageCardClasses(packageRow) {
+      const classes = new Set([
+        "card",
+        ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
+      ]);
+
+      return [...classes].filter(Boolean).join(" ");
+    }
+
+    function getPackageItemDotClass(service) {
+      const classList = new Set([
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
+
+      if (classList.has("dressing")) return "dot-dressing";
+      if (classList.has("skora")) return "dot-skora";
+      if (classList.has("pranie")) return "dot-pranie";
+      if (classList.has("premium")) return "dot-premium";
+
+      return "dot";
+    }
+
+    function getAccentClass(source) {
+      const classList = new Set([
+        ...(Array.isArray(source?.css_classes) ? source.css_classes : [])
+      ]);
+
+      if (classList.has("dressing")) return "dressing";
+      if (classList.has("full")) return "full";
+      if (classList.has("premium")) return "premium";
+      if (classList.has("pranie")) return "pranie";
+      if (classList.has("skora")) return "skora";
+      if (classList.has("normal")) return "normal";
+
+      return "normal";
+    }
+
+    function getCardButtonClass(source) {
+      return `add-to-cart add-to-cart--${getAccentClass(source)}`;
+    }
+
+    function getCardButtonHtml(isSelected = false) {
+      return `
     <span class="add-to-cart__label">${isSelected ? "W koszyku" : "Dodaj do koszyka"}</span>
   `;
-}
+    }
 
-function formatDuration(minutes) {
-  const totalMinutes = Number(minutes ?? 0);
+    function formatDuration(minutes) {
+      const totalMinutes = Number(minutes ?? 0);
 
-  if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) {
-    return "0 min";
-  }
+      if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) {
+        return "0 min";
+      }
 
-  if (totalMinutes <= 60) {
-    return `${totalMinutes} min`;
-  }
+      if (totalMinutes <= 60) {
+        return `${totalMinutes} min`;
+      }
 
-  const hours = Math.floor(totalMinutes / 60);
-  const mins = totalMinutes % 60;
-  return `${hours}:${String(mins).padStart(2, "0")}`;
-}
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+      return `${hours}:${String(mins).padStart(2, "0")}`;
+    }
 
-function renderPackages(packages, packageItems, services) {
-  if (!packagesRoot) return;
+    function renderPackages(packages, packageItems, services) {
+      if (!packagesRoot) return;
 
-  if (!Array.isArray(packages) || !Array.isArray(packageItems) || !Array.isArray(services)) {
-    packagesRoot.innerHTML = '<div class="note">Nie udało się wczytać pakietów z bazy.</div>';
-    return;
-  }
+      if (!Array.isArray(packages) || !Array.isArray(packageItems) || !Array.isArray(services)) {
+        packagesRoot.innerHTML = '<div class="note">Nie udało się wczytać pakietów z bazy.</div>';
+        return;
+      }
 
-  const servicesById = new Map(
-    services
-      .filter((service) => service?.id)
-      .map((service) => [service.id, service])
-  );
+      const servicesById = new Map(
+        services
+          .filter((service) => service?.id)
+          .map((service) => [service.id, service])
+      );
 
-  const servicesBySlug = new Map(
-    services
-      .filter((service) => service?.slug)
-      .map((service) => [service.slug, service])
-  );
+      const servicesBySlug = new Map(
+        services
+          .filter((service) => service?.slug)
+          .map((service) => [service.slug, service])
+      );
 
-  const cardsHtml = packages
-    .slice()
-    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
-    .map((packageRow) => {
-      if (!packageRow?.is_active) return "";
+      const cardsHtml = packages
+        .slice()
+        .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+        .map((packageRow) => {
+          if (!packageRow?.is_active) return "";
 
-      const sourceItems = Array.isArray(packageRow.package_items) && packageRow.package_items.length
-        ? packageRow.package_items
-        : (packageItems || []).filter((item) => item?.package_id === packageRow.id);
+          const sourceItems = Array.isArray(packageRow.package_items) && packageRow.package_items.length
+            ? packageRow.package_items
+            : (packageItems || []).filter((item) => item?.package_id === packageRow.id);
 
-      const activeItems = sourceItems
-        .map((item) => {
-          const service =
-            item?.service ||
-            item?.services ||
-            item?.service_details ||
-            servicesById.get(item?.service_id);
-          if (!service?.is_active) return null;
-          return { ...item, service };
-        })
-        .filter(Boolean)
-        .sort((a, b) => (a.item_order ?? 0) - (b.item_order ?? 0));
-
-      const fallbackItems = !activeItems.length
-        ? (PACKAGE_SERVICE_SLUGS[packageRow.slug] || [])
-            .map((slug, index) => {
+          const activeItems = sourceItems
+            .map((item) => {
               const service =
-                servicesBySlug.get(slug) ||
-                services.find((row) => row?.slug === slug);
+                item?.service ||
+                item?.services ||
+                item?.service_details ||
+                servicesById.get(item?.service_id);
               if (!service?.is_active) return null;
-              return { item_order: index + 1, service };
+              return { ...item, service };
             })
             .filter(Boolean)
-        : [];
+            .sort((a, b) => (a.item_order ?? 0) - (b.item_order ?? 0));
 
-      const displayItems = activeItems.length ? activeItems : fallbackItems;
+          const fallbackItems = !activeItems.length
+            ? (PACKAGE_SERVICE_SLUGS[packageRow.slug] || [])
+              .map((slug, index) => {
+                const service =
+                  servicesBySlug.get(slug) ||
+                  services.find((row) => row?.slug === slug);
+                if (!service?.is_active) return null;
+                return { item_order: index + 1, service };
+              })
+              .filter(Boolean)
+            : [];
 
-      const cardClasses = getPackageCardClasses(packageRow);
-      const priceClass = getPackagePriceClass(packageRow);
-      const buttonClass = getCardButtonClass(packageRow);
-      const packageId = String(packageRow.slug || packageRow.id || "");
-      const priceValue = Number(packageRow.total_price_amount ?? 0);
-      const priceText = Number.isFinite(priceValue) ? `od ${priceValue}zł` : "od 0zł";
-      const computedDurationMinutes = displayItems.reduce(
-        (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
-        0
-      );
-      const totalDurationMinutes = computedDurationMinutes;
-      const durationText = `Czas: ${formatDuration(totalDurationMinutes)}`;
+          const displayItems = activeItems.length ? activeItems : fallbackItems;
 
-      const itemsHtml = displayItems.length
-        ? displayItems
-            .map(({ service }) => {
-              const serviceSlug = String(service.slug || "");
-              const dotClass = getPackageItemDotClass(service);
-              const labelHtml = service.name_html || "";
-              const href = serviceSlug ? `#${serviceSlug}` : "#";
-              const onclick = serviceSlug ? ` onclick=\"highlightCard('${serviceSlug}')\"` : "";
+          const cardClasses = getPackageCardClasses(packageRow);
+          const priceClass = getPackagePriceClass(packageRow);
+          const buttonClass = getCardButtonClass(packageRow);
+          const packageId = String(packageRow.slug || packageRow.id || "");
+          const priceValue = Number(packageRow.total_price_amount ?? 0);
+          const priceText = Number.isFinite(priceValue) ? `od ${priceValue}zł` : "od 0zł";
+          const computedDurationMinutes = displayItems.reduce(
+            (sum, item) => sum + Number(item?.service?.duration_minutes ?? 0),
+            0
+          );
+          const totalDurationMinutes = computedDurationMinutes;
+          const durationText = `Czas: ${formatDuration(totalDurationMinutes)}`;
 
-              return `
+          const itemsHtml = displayItems.length
+            ? displayItems
+              .map(({ service }) => {
+                const serviceSlug = String(service.slug || "");
+                const dotClass = getPackageItemDotClass(service);
+                const labelHtml = service.name_html || "";
+                const href = serviceSlug ? `#${serviceSlug}` : "#";
+                const onclick = serviceSlug ? ` onclick=\"highlightCard('${serviceSlug}')\"` : "";
+
+                return `
                 <a href="${href}"${onclick}>
                   <li>
                     <div class="${dotClass}"></div>
                     ${labelHtml.includes("<span") || labelHtml.includes("<div")
-                      ? `<div>${labelHtml}</div>`
-                      : labelHtml}
+                    ? `<div>${labelHtml}</div>`
+                    : labelHtml}
                   </li>
                 </a>
               `;
-            })
-            .join("")
-        : `
+              })
+              .join("")
+            : `
           <li class="note note-reset">
             Brak aktywnych usług w tym pakiecie
           </li>
         `;
 
-      return `
+          return `
         <div class="${cardClasses}" id="${packageId}">
           <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}" data-duration="${totalDurationMinutes}">
           <div class="card-top">
@@ -755,57 +864,57 @@ function renderPackages(packages, packageItems, services) {
   <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
         </div>
       `;
-    })
-    .filter(Boolean)
-    .join("");
+        })
+        .filter(Boolean)
+        .join("");
 
-  packagesRoot.innerHTML = cardsHtml
-    ? `<div class="grid">${cardsHtml}</div>`
-    : '<div class="note">Brak aktywnych pakietów do wyświetlenia.</div>';
-}
-
-function renderServices(categories, services) {
-  if (!servicesRoot) return;
-
-  if (!Array.isArray(categories) || !Array.isArray(services)) {
-    servicesRoot.innerHTML = '<div class="note">Nie udało się wczytać usług z bazy.</div>';
-    return;
-  }
-
-  const servicesByCategory = new Map();
-
-  services.forEach((service) => {
-    if (!service?.category_id) return;
-
-    if (!servicesByCategory.has(service.category_id)) {
-      servicesByCategory.set(service.category_id, []);
+      packagesRoot.innerHTML = cardsHtml
+        ? `<div class="grid">${cardsHtml}</div>`
+        : '<div class="note">Brak aktywnych pakietów do wyświetlenia.</div>';
     }
 
-    servicesByCategory.get(service.category_id).push(service);
-  });
+    function renderServices(categories, services) {
+      if (!servicesRoot) return;
 
-  const html = categories
-    .map((category) => {
-      const categoryServices = (servicesByCategory.get(category.id) || []).sort(
-        (a, b) => (a.display_order ?? 0) - (b.display_order ?? 0)
-      );
+      if (!Array.isArray(categories) || !Array.isArray(services)) {
+        servicesRoot.innerHTML = '<div class="note">Nie udało się wczytać usług z bazy.</div>';
+        return;
+      }
 
-      if (!categoryServices.length) return "";
+      const servicesByCategory = new Map();
 
-      const headerClass = Array.isArray(category.css_classes) && category.css_classes.length
-        ? category.css_classes.join(" ")
-        : "podpunkt-header";
+      services.forEach((service) => {
+        if (!service?.category_id) return;
 
-      const cards = categoryServices
-        .map((service) => {
-          const cardClasses = getServiceCardClasses(service, category);
-          const priceClass = getServicePriceClass(service, category);
-          const buttonClass = getCardButtonClass(service);
-          const id = String(service.slug || "");
-          const durationMinutes = Number(service.duration_minutes ?? 0);
-          const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
+        if (!servicesByCategory.has(service.category_id)) {
+          servicesByCategory.set(service.category_id, []);
+        }
 
-          return `
+        servicesByCategory.get(service.category_id).push(service);
+      });
+
+      const html = categories
+        .map((category) => {
+          const categoryServices = (servicesByCategory.get(category.id) || []).sort(
+            (a, b) => (a.display_order ?? 0) - (b.display_order ?? 0)
+          );
+
+          if (!categoryServices.length) return "";
+
+          const headerClass = Array.isArray(category.css_classes) && category.css_classes.length
+            ? category.css_classes.join(" ")
+            : "podpunkt-header";
+
+          const cards = categoryServices
+            .map((service) => {
+              const cardClasses = getServiceCardClasses(service, category);
+              const priceClass = getServicePriceClass(service, category);
+              const buttonClass = getCardButtonClass(service);
+              const id = String(service.slug || "");
+              const durationMinutes = Number(service.duration_minutes ?? 0);
+              const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
+
+              return `
             <div class="${cardClasses}" id="${id}">
               <input type="checkbox" value="${id}" data-price="${service.price_amount ?? 0}" data-duration="${service.duration_minutes ?? 0}" hidden>
               <div class="card-top">
@@ -814,594 +923,599 @@ function renderServices(categories, services) {
               </div>
               <div class="card-top card-top--compact">
                 <div class="service-duration">${durationText}</div>
-  <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(service)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${id}">Opis</button>
               </div>
-              <div class="card-collapse" id="collapse-${id}" hidden>
+              <div class="card-collapse">
                 <p>${service.description_html || ""}</p>
               </div>
   <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
             </div>
           `;
+            })
+            .join("");
+
+          return `
+        <details class="service-category-collapse">
+          <summary class="podpunkt service-category-collapse__summary">
+            <div class="services-toggle-mark arrow" aria-hidden="true"></div>
+            <h3 class="${headerClass}">
+              ${category.name_html || ""}
+            </h3>
+            <div class="podpunkt-linia"></div>
+          </summary>
+          <div class="service-category-collapse__content">
+            <div class="grid">
+              ${cards}
+            </div>
+          </div>
+        </details>
+      `;
         })
         .join("");
 
-      return `
-        <div class="podpunkt">
-          <h3 class="${headerClass}">
-            ${category.name_html || ""}
-          </h3>
-          <div class="podpunkt-linia"></div>
-        </div>
-        <div class="grid">
-          ${cards}
-        </div>
-      `;
-    })
-    .join("");
+      servicesRoot.innerHTML = html || '<div class="note">Brak aktywnych kategorii i usług do wyświetlenia.</div>';
+      servicesRoot.querySelectorAll(".service-category-collapse").forEach(syncCollapseToggleMark);
+    }
 
-  servicesRoot.innerHTML = html || '<div class="note">Brak aktywnych kategorii i usług do wyświetlenia.</div>';
-}
+    async function loadServicesFromSupabase() {
+      if (!servicesRoot && !packagesRoot) return;
 
-async function loadServicesFromSupabase() {
-  if (!servicesRoot && !packagesRoot) return;
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
+        if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
+        return;
+      }
 
-  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
-    if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
-    if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
-    return;
-  }
+      if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Wczytywanie usług...</div>';
+      if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Wczytywanie pakietów...</div>';
 
-  if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Wczytywanie usług...</div>';
-  if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Wczytywanie pakietów...</div>';
+      try {
+        const [categoriesResponse, servicesResponse, packagesResponse, packageItemsResponse] = await Promise.all([
+          fetch(
+            `${SUPABASE_URL}/rest/v1/${SERVICE_CATEGORIES_TABLE}?select=id,slug,name_html,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
+            {
+              headers: {
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                Accept: "application/json"
+              }
+            }
+          ),
+          fetch(
+            `${SUPABASE_URL}/rest/v1/${SERVICES_TABLE}?select=id,category_id,slug,name_html,description_html,price_html,price_amount,duration_minutes,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
+            {
+              headers: {
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                Accept: "application/json"
+              }
+            }
+          ),
+          fetch(
+            `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}?select=id,slug,name_html,description_html,display_order,css_classes,total_price_amount,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,duration_minutes))&is_active=eq.true&order=display_order.asc`,
+            {
+              headers: {
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                Accept: "application/json"
+              }
+            }
+          ),
+          fetch(
+            `${SUPABASE_URL}/rest/v1/${PACKAGE_ITEMS_TABLE}?select=package_id,service_id,item_order&order=package_id.asc,item_order.asc`,
+            {
+              headers: {
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                Accept: "application/json"
+              }
+            }
+          )
+        ]);
 
-  try {
-    const [categoriesResponse, servicesResponse, packagesResponse, packageItemsResponse] = await Promise.all([
-      fetch(
-        `${SUPABASE_URL}/rest/v1/${SERVICE_CATEGORIES_TABLE}?select=id,slug,name_html,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
-        {
-          headers: {
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Accept: "application/json"
-          }
+        if (!categoriesResponse.ok) {
+          const details = await categoriesResponse.text();
+          throw new Error(`Supabase categories HTTP ${categoriesResponse.status}: ${details}`);
         }
-      ),
-      fetch(
-        `${SUPABASE_URL}/rest/v1/${SERVICES_TABLE}?select=id,category_id,slug,name_html,description_html,price_html,price_amount,duration_minutes,display_order,css_classes&is_active=eq.true&order=display_order.asc`,
-        {
-          headers: {
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Accept: "application/json"
-          }
+
+        if (!servicesResponse.ok) {
+          const details = await servicesResponse.text();
+          throw new Error(`Supabase services HTTP ${servicesResponse.status}: ${details}`);
         }
-      ),
-      fetch(
-        `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}?select=id,slug,name_html,description_html,display_order,css_classes,total_price_amount,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,duration_minutes))&is_active=eq.true&order=display_order.asc`,
-        {
-          headers: {
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Accept: "application/json"
-          }
+
+        if (!packagesResponse.ok) {
+          const details = await packagesResponse.text();
+          throw new Error(`Supabase packages HTTP ${packagesResponse.status}: ${details}`);
         }
-      ),
-      fetch(
-        `${SUPABASE_URL}/rest/v1/${PACKAGE_ITEMS_TABLE}?select=package_id,service_id,item_order&order=package_id.asc,item_order.asc`,
-        {
-          headers: {
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Accept: "application/json"
-          }
+
+        if (!packageItemsResponse.ok) {
+          const details = await packageItemsResponse.text();
+          throw new Error(`Supabase package items HTTP ${packageItemsResponse.status}: ${details}`);
         }
-      )
-    ]);
 
-    if (!categoriesResponse.ok) {
-      const details = await categoriesResponse.text();
-      throw new Error(`Supabase categories HTTP ${categoriesResponse.status}: ${details}`);
+        const [categories, services] = await Promise.all([
+          categoriesResponse.json(),
+          servicesResponse.json()
+        ]);
+
+        const [packages, packageItems] = await Promise.all([
+          packagesResponse.json(),
+          packageItemsResponse.json()
+        ]);
+
+        renderServices(
+          Array.isArray(categories) ? categories : [],
+          Array.isArray(services) ? services : []
+        );
+
+        renderPackages(
+          Array.isArray(packages) ? packages : [],
+          Array.isArray(packageItems) ? packageItems : [],
+          Array.isArray(services) ? services : []
+        );
+
+        update();
+      } catch (error) {
+        console.error("Nie udało się pobrać usług z Supabase:", error);
+        if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Błąd pobierania usług z bazy.</div>';
+        if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Błąd pobierania pakietów z bazy.</div>';
+      }
     }
 
-    if (!servicesResponse.ok) {
-      const details = await servicesResponse.text();
-      throw new Error(`Supabase services HTTP ${servicesResponse.status}: ${details}`);
+    function toDateKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
     }
 
-    if (!packagesResponse.ok) {
-      const details = await packagesResponse.text();
-      throw new Error(`Supabase packages HTTP ${packagesResponse.status}: ${details}`);
+    function parseDateKey(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
     }
 
-    if (!packageItemsResponse.ok) {
-      const details = await packageItemsResponse.text();
-      throw new Error(`Supabase package items HTTP ${packageItemsResponse.status}: ${details}`);
+    function startOfMonth(date) {
+      return new Date(date.getFullYear(), date.getMonth(), 1);
     }
 
-    const [categories, services] = await Promise.all([
-      categoriesResponse.json(),
-      servicesResponse.json()
-    ]);
-
-    const [packages, packageItems] = await Promise.all([
-      packagesResponse.json(),
-      packageItemsResponse.json()
-    ]);
-
-    renderServices(
-      Array.isArray(categories) ? categories : [],
-      Array.isArray(services) ? services : []
-    );
-
-    renderPackages(
-      Array.isArray(packages) ? packages : [],
-      Array.isArray(packageItems) ? packageItems : [],
-      Array.isArray(services) ? services : []
-    );
-
-    update();
-  } catch (error) {
-    console.error("Nie udało się pobrać usług z Supabase:", error);
-    if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Błąd pobierania usług z bazy.</div>';
-    if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Błąd pobierania pakietów z bazy.</div>';
-  }
-}
-
-function toDateKey(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function parseDateKey(value) {
-  const [year, month, day] = value.split("-").map(Number);
-  return new Date(year, month - 1, day);
-}
-
-function startOfMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
-}
-
-function sameMonth(a, b) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
-}
-
-function updateSelectedDay(value) {
-  selectedDay = value;
-
-  if (dzienInput) {
-    dzienInput.value = value;
-  }
-
-  if (daySelectedEl) {
-    daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
-  }
-}
-
-function renderCalendar() {
-  if (!dayMonthEl || !dayGridEl) return;
-
-  if (!allowedDayList.length) {
-    dayMonthEl.textContent = "Brak dostępnych dni";
-    dayGridEl.innerHTML = '<div class="day-picker__empty">Brak rekordów lub brak dostępu.</div>';
-    if (dayPrevBtn) dayPrevBtn.disabled = true;
-    if (dayNextBtn) dayNextBtn.disabled = true;
-    updateSelectedDay("");
-    return;
-  }
-
-  const minMonth = startOfMonth(parseDateKey(allowedDayList[0]));
-  const maxMonth = startOfMonth(parseDateKey(allowedDayList[allowedDayList.length - 1]));
-
-  if (visibleMonth < minMonth) visibleMonth = new Date(minMonth);
-  if (visibleMonth > maxMonth) visibleMonth = new Date(maxMonth);
-
-  dayMonthEl.textContent = `${monthNamesPl[visibleMonth.getMonth()]} ${visibleMonth.getFullYear()}`;
-
-  if (dayPrevBtn) dayPrevBtn.disabled = sameMonth(visibleMonth, minMonth);
-  if (dayNextBtn) dayNextBtn.disabled = sameMonth(visibleMonth, maxMonth);
-
-  const firstDay = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
-  const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
-  const offset = (firstDay.getDay() + 6) % 7;
-  const cells = [];
-
-  for (let i = 0; i < offset; i += 1) {
-    cells.push('<div class="day-picker__cell day-picker__cell--empty"></div>');
-  }
-
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
-    const key = toDateKey(date);
-    const isAllowed = allowedDays.has(key);
-    const isSelected = key === selectedDay;
-
-    if (isAllowed) {
-      cells.push(
-        `<button type="button" class="day-picker__day${isSelected ? " is-selected" : ""}" data-date="${key}" aria-pressed="${isSelected}">${day}</button>`
-      );
-    } else {
-      cells.push(
-        `<button type="button" class="day-picker__day is-disabled" disabled aria-disabled="true">${day}</button>`
-      );
+    function sameMonth(a, b) {
+      return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
     }
-  }
 
-  dayGridEl.innerHTML = cells.join("");
+    function updateSelectedDay(value) {
+      selectedDay = value;
 
-  dayGridEl.querySelectorAll("[data-date]").forEach((button) => {
-    button.addEventListener("click", () => {
-      updateSelectedDay(button.dataset.date);
+      if (dzienInput) {
+        dzienInput.value = value;
+      }
+
+      if (daySelectedEl) {
+        daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+      }
+    }
+
+    function renderCalendar() {
+      if (!dayMonthEl || !dayGridEl) return;
+
+      if (!allowedDayList.length) {
+        dayMonthEl.textContent = "Brak dostępnych dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Brak rekordów lub brak dostępu.</div>';
+        if (dayPrevBtn) dayPrevBtn.disabled = true;
+        if (dayNextBtn) dayNextBtn.disabled = true;
+        updateSelectedDay("");
+        return;
+      }
+
+      const minMonth = startOfMonth(parseDateKey(allowedDayList[0]));
+      const maxMonth = startOfMonth(parseDateKey(allowedDayList[allowedDayList.length - 1]));
+
+      if (visibleMonth < minMonth) visibleMonth = new Date(minMonth);
+      if (visibleMonth > maxMonth) visibleMonth = new Date(maxMonth);
+
+      dayMonthEl.textContent = `${monthNamesPl[visibleMonth.getMonth()]} ${visibleMonth.getFullYear()}`;
+
+      if (dayPrevBtn) dayPrevBtn.disabled = sameMonth(visibleMonth, minMonth);
+      if (dayNextBtn) dayNextBtn.disabled = sameMonth(visibleMonth, maxMonth);
+
+      const firstDay = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
+      const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
+      const offset = (firstDay.getDay() + 6) % 7;
+      const cells = [];
+
+      for (let i = 0; i < offset; i += 1) {
+        cells.push('<div class="day-picker__cell day-picker__cell--empty"></div>');
+      }
+
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
+        const key = toDateKey(date);
+        const isAllowed = allowedDays.has(key);
+        const isSelected = key === selectedDay;
+
+        if (isAllowed) {
+          cells.push(
+            `<button type="button" class="day-picker__day${isSelected ? " is-selected" : ""}" data-date="${key}" aria-pressed="${isSelected}">${day}</button>`
+          );
+        } else {
+          cells.push(
+            `<button type="button" class="day-picker__day is-disabled" disabled aria-disabled="true">${day}</button>`
+          );
+        }
+      }
+
+      dayGridEl.innerHTML = cells.join("");
+
+      dayGridEl.querySelectorAll("[data-date]").forEach((button) => {
+        button.addEventListener("click", () => {
+          updateSelectedDay(button.dataset.date);
+          renderCalendar();
+        });
+      });
+    }
+
+    function moveMonth(step) {
+      visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + step, 1);
       renderCalendar();
-    });
-  });
-}
+    }
 
-function moveMonth(step) {
-  visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + step, 1);
-  renderCalendar();
-}
+    if (dayPrevBtn) {
+      dayPrevBtn.addEventListener("click", () => moveMonth(-1));
+    }
 
-if (dayPrevBtn) {
-  dayPrevBtn.addEventListener("click", () => moveMonth(-1));
-}
+    if (dayNextBtn) {
+      dayNextBtn.addEventListener("click", () => moveMonth(1));
+    }
 
-if (dayNextBtn) {
-  dayNextBtn.addEventListener("click", () => moveMonth(1));
-}
+    async function loadDaysFromSupabase() {
+      if (!dzienInput || !dayMonthEl || !dayGridEl) return;
 
-async function loadDaysFromSupabase() {
-  if (!dzienInput || !dayMonthEl || !dayGridEl) return;
-
-  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
-    dayMonthEl.textContent = "Uzupełnij klucz Supabase";
-    return;
-  }
-
-  dayMonthEl.textContent = "Wczytywanie...";
-  dayGridEl.innerHTML = "";
-
-  try {
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
-      {
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          Accept: "application/json"
-        }
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+        return;
       }
-    );
 
-    if (!response.ok) {
-      const details = await response.text();
-      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+      dayMonthEl.textContent = "Wczytywanie...";
+      dayGridEl.innerHTML = "";
+
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
+
+        const rows = await response.json();
+
+        const dates = Array.isArray(rows)
+          ? rows
+            .map((row) => String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim())
+            .filter(Boolean)
+          : [];
+
+        allowedDayList = dates;
+        allowedDays = new Set(dates);
+
+        if (!allowedDayList.length) {
+          dayMonthEl.textContent = "Brak dostępnych dni";
+          dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych dat.</div>';
+          updateSelectedDay("");
+          return;
+        }
+
+        const todayKey = toDateKey(new Date());
+        const initialKey = allowedDays.has(todayKey) ? todayKey : allowedDayList[0];
+        visibleMonth = startOfMonth(parseDateKey(initialKey));
+        updateSelectedDay(allowedDays.has(todayKey) ? todayKey : "");
+        renderCalendar();
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        dayMonthEl.textContent = "Błąd pobierania dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+      }
     }
 
-    const rows = await response.json();
+    const godzinaInput = document.getElementById("godzina");
+    const timeSelectedEl = document.getElementById("time-selected");
 
-    const dates = Array.isArray(rows)
-      ? rows
-          .map((row) => String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim())
-          .filter(Boolean)
-      : [];
+    let availabilityByDate = new Map();
+    let allowedTimesForSelectedDay = [];
+    let selectedTime = "";
 
-    allowedDayList = dates;
-    allowedDays = new Set(dates);
-
-    if (!allowedDayList.length) {
-      dayMonthEl.textContent = "Brak dostępnych dni";
-      dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych dat.</div>';
-      updateSelectedDay("");
-      return;
+    function formatTime(value) {
+      return String(value || "").slice(0, 5);
     }
 
-    const todayKey = toDateKey(new Date());
-    const initialKey = allowedDays.has(todayKey) ? todayKey : allowedDayList[0];
-    visibleMonth = startOfMonth(parseDateKey(initialKey));
-    updateSelectedDay(allowedDays.has(todayKey) ? todayKey : "");
-    renderCalendar();
-  } catch (error) {
-    console.error("Nie udało się pobrać dni z Supabase:", error);
-    dayMonthEl.textContent = "Błąd pobierania dni";
-    dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
-  }
-}
-
-const godzinaInput = document.getElementById("godzina");
-const timeSelectedEl = document.getElementById("time-selected");
-
-let availabilityByDate = new Map();
-let allowedTimesForSelectedDay = [];
-let selectedTime = "";
-
-function formatTime(value) {
-  return String(value || "").slice(0, 5);
-}
-
-function timeToMinutes(value) {
-  const [hours, minutes] = String(value || "0:0").slice(0, 5).split(":").map(Number);
-  return (hours * 60) + minutes;
-}
-
-function minutesToTime(totalMinutes) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-}
-
-function roundUpToStep(minutes, step) {
-  return Math.ceil(minutes / step) * step;
-}
-
-function setTimeSelection(value, label) {
-  selectedTime = value;
-
-  if (godzinaInput) {
-    godzinaInput.value = value;
-  }
-
-  if (timeSelectedEl) {
-    timeSelectedEl.textContent = label ? `Wybrano godzinę: ${label}` : "Nie wybrano godziny";
-  }
-}
-
-function updateTimePickerBounds() {
-  if (!godzinaInput) return;
-
-  if (!selectedDay) {
-    godzinaInput.disabled = true;
-    godzinaInput.value = "";
-    selectedTime = "";
-    godzinaInput.innerHTML = '<option value="">Wybierz dzień z kalendarza</option>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny";
-    return;
-  }
-
-  const slots = availabilityByDate.get(selectedDay) || [];
-
-  if (!slots.length) {
-    godzinaInput.disabled = true;
-    godzinaInput.value = "";
-    selectedTime = "";
-    godzinaInput.innerHTML = '<option value="">Brak godzin dla wybranego dnia</option>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin dla wybranego dnia";
-    allowedTimesForSelectedDay = [];
-    return;
-  }
-
-  const slotDuration = 30;
-  const timeOptions = [];
-
-  slots.forEach((slot) => {
-    const startMinutes = timeToMinutes(slot.start_time);
-    const endMinutes = timeToMinutes(slot.end_time);
-
-    if (Number.isNaN(startMinutes) || Number.isNaN(endMinutes) || endMinutes <= startMinutes) {
-      return;
+    function timeToMinutes(value) {
+      const [hours, minutes] = String(value || "0:0").slice(0, 5).split(":").map(Number);
+      return (hours * 60) + minutes;
     }
 
-    const firstStart = roundUpToStep(startMinutes, slotDuration);
-    const lastStart = endMinutes - slotDuration;
-
-    for (let minutes = firstStart; minutes <= lastStart; minutes += slotDuration) {
-      timeOptions.push(minutesToTime(minutes));
+    function minutesToTime(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
     }
-  });
 
-  allowedTimesForSelectedDay = [...new Set(timeOptions)];
+    function roundUpToStep(minutes, step) {
+      return Math.ceil(minutes / step) * step;
+    }
 
-  if (!allowedTimesForSelectedDay.length) {
-    godzinaInput.disabled = true;
-    godzinaInput.value = "";
-    selectedTime = "";
-    godzinaInput.innerHTML = '<option value="">Brak półgodzinnych slotów w wybranym dniu</option>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Brak półgodzinnych slotów w wybranym dniu";
-    return;
-  }
+    function setTimeSelection(value, label) {
+      selectedTime = value;
 
-  godzinaInput.disabled = false;
-  godzinaInput.innerHTML = [
-    '<option value="">Wybierz godzinę</option>',
-    ...allowedTimesForSelectedDay.map((time) => `<option value="${time}">${time}</option>`)
-  ].join("");
+      if (godzinaInput) {
+        godzinaInput.value = value;
+      }
 
-  const currentValue = godzinaInput.value;
-  if (currentValue && !allowedTimesForSelectedDay.includes(currentValue)) {
-    godzinaInput.value = "";
-    setTimeSelection("", "");
-  }
-
-  if (!godzinaInput.value) {
-    if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
-  } else {
-    setTimeSelection(godzinaInput.value, godzinaInput.value);
-  }
-}
-
-if (godzinaInput) {
-  godzinaInput.addEventListener("change", () => {
-    const value = godzinaInput.value;
-
-    if (!value || !allowedTimesForSelectedDay.includes(value)) {
-      setTimeSelection("", "");
       if (timeSelectedEl) {
-        timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+        timeSelectedEl.textContent = label ? `Wybrano godzinę: ${label}` : "Nie wybrano godziny";
       }
-      return;
     }
 
-    setTimeSelection(value, value);
-  });
-}
+    function updateTimePickerBounds() {
+      if (!godzinaInput) return;
 
-function updateSelectedDay(value) {
-  selectedDay = value;
+      if (!selectedDay) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Wybierz dzień z kalendarza</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny";
+        return;
+      }
 
-  if (dzienInput) {
-    dzienInput.value = value;
-  }
+      const slots = availabilityByDate.get(selectedDay) || [];
 
-  if (daySelectedEl) {
-    daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
-  }
+      if (!slots.length) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Brak godzin dla wybranego dnia</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin dla wybranego dnia";
+        allowedTimesForSelectedDay = [];
+        return;
+      }
 
-  setTimeSelection("", "");
-  updateTimePickerBounds();
-}
+      const slotDuration = 30;
+      const timeOptions = [];
 
-async function loadDaysFromSupabase() {
-  if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+      slots.forEach((slot) => {
+        const startMinutes = timeToMinutes(slot.start_time);
+        const endMinutes = timeToMinutes(slot.end_time);
 
-  if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
-    dayMonthEl.textContent = "Uzupełnij klucz Supabase";
-    return;
-  }
-
-  const todayKey = toDateKey(new Date());
-  dayMonthEl.textContent = "Wczytywanie...";
-  dayGridEl.innerHTML = "";
-
-  if (timeSelectedEl) {
-    timeSelectedEl.textContent = "Wczytywanie godzin...";
-  }
-
-  try {
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${START_TIME_COLUMN},${END_TIME_COLUMN}&${DAY_VALUE_COLUMN}=gte.${todayKey}&order=${DAY_VALUE_COLUMN}.asc&order=${START_TIME_COLUMN}.asc`,
-      {
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          Accept: "application/json"
+        if (Number.isNaN(startMinutes) || Number.isNaN(endMinutes) || endMinutes <= startMinutes) {
+          return;
         }
-      }
-    );
 
-    if (!response.ok) {
-      const details = await response.text();
-      throw new Error(`Supabase HTTP ${response.status}: ${details}`);
-    }
+        const firstStart = roundUpToStep(startMinutes, slotDuration);
+        const lastStart = endMinutes - slotDuration;
 
-    const rows = await response.json();
-
-    const normalizedRows = Array.isArray(rows)
-      ? rows
-          .map((row) => ({
-            date: String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim(),
-            start_time: String(row?.[START_TIME_COLUMN] ?? row?.start_time ?? "").trim(),
-            end_time: String(row?.[END_TIME_COLUMN] ?? row?.end_time ?? "").trim()
-          }))
-          .filter((row) => row.date)
-      : [];
-
-    if (!normalizedRows.length) {
-      allowedDays = new Set();
-      allowedDayList = [];
-      availabilityByDate = new Map();
-      dayMonthEl.textContent = "Brak dostępnych dni";
-      dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych przyszłych dat.</div>';
-      if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin do wyświetlenia.";
-      updateSelectedDay("");
-      return;
-    }
-
-    availabilityByDate = new Map();
-    normalizedRows.forEach((row) => {
-      if (!availabilityByDate.has(row.date)) {
-        availabilityByDate.set(row.date, []);
-      }
-
-      if (row.start_time && row.end_time) {
-        availabilityByDate.get(row.date).push(row);
-      }
-    });
-
-    allowedDayList = [...new Set(normalizedRows.map((row) => row.date))].sort();
-    allowedDays = new Set(allowedDayList);
-
-    const initialKey = allowedDayList[0];
-    visibleMonth = startOfMonth(parseDateKey(initialKey));
-    updateSelectedDay(initialKey);
-    renderCalendar();
-  } catch (error) {
-    console.error("Nie udało się pobrać dni z Supabase:", error);
-    dayMonthEl.textContent = "Błąd pobierania dni";
-    dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
-    if (timeSelectedEl) timeSelectedEl.textContent = "Nie udało się pobrać godzin.";
-  }
-}
-
-// aktualizacja koszyka
-function update() {
-  let total = 0;
-  let totalMinutes = 0;
-  let items = [];
-
-  // reset zaznaczeń kart
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.remove("selected");
-  });
-
-  getServiceInputs().forEach(input => {
-    const card = input.closest(".card");
-    const price = Number(input.dataset.price) || 0;
-    const duration = Number(input.dataset.duration) || 0;
-
-    if (!card) return;
-    const itemName = getCardTitleHtml(card) || input.value;
-    const toggleButton = card.querySelector("[data-toggle-cart]");
-    const isSelected = input.checked;
-
-    // RADIO (pakiety)
-    if (input.type === "radio" && input.checked) {
-      total += price;
-      totalMinutes += duration;
-
-      items.push({
-        name: itemName,
-        price,
-        value: input.value,
-        type: input.type
+        for (let minutes = firstStart; minutes <= lastStart; minutes += slotDuration) {
+          timeOptions.push(minutesToTime(minutes));
+        }
       });
 
-      card.classList.add("selected");
+      allowedTimesForSelectedDay = [...new Set(timeOptions)];
+
+      if (!allowedTimesForSelectedDay.length) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Brak półgodzinnych slotów w wybranym dniu</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Brak półgodzinnych slotów w wybranym dniu";
+        return;
+      }
+
+      godzinaInput.disabled = false;
+      godzinaInput.innerHTML = [
+        '<option value="">Wybierz godzinę</option>',
+        ...allowedTimesForSelectedDay.map((time) => `<option value="${time}">${time}</option>`)
+      ].join("");
+
+      const currentValue = godzinaInput.value;
+      if (currentValue && !allowedTimesForSelectedDay.includes(currentValue)) {
+        godzinaInput.value = "";
+        setTimeSelection("", "");
+      }
+
+      if (!godzinaInput.value) {
+        if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+      } else {
+        setTimeSelection(godzinaInput.value, godzinaInput.value);
+      }
     }
 
-    // CHECKBOX (usługi)
-    if (input.type === "checkbox" && input.checked) {
-      total += price;
-      totalMinutes += duration;
+    if (godzinaInput) {
+      godzinaInput.addEventListener("change", () => {
+        const value = godzinaInput.value;
 
-      items.push({
-        name: itemName,
-        price,
-        value: input.value,
-        type: input.type
+        if (!value || !allowedTimesForSelectedDay.includes(value)) {
+          setTimeSelection("", "");
+          if (timeSelectedEl) {
+            timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+          }
+          return;
+        }
+
+        setTimeSelection(value, value);
+      });
+    }
+
+    function updateSelectedDay(value) {
+      selectedDay = value;
+
+      if (dzienInput) {
+        dzienInput.value = value;
+      }
+
+      if (daySelectedEl) {
+        daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+      }
+
+      setTimeSelection("", "");
+      updateTimePickerBounds();
+    }
+
+    async function loadDaysFromSupabase() {
+      if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+        return;
+      }
+
+      const todayKey = toDateKey(new Date());
+      dayMonthEl.textContent = "Wczytywanie...";
+      dayGridEl.innerHTML = "";
+
+      if (timeSelectedEl) {
+        timeSelectedEl.textContent = "Wczytywanie godzin...";
+      }
+
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${START_TIME_COLUMN},${END_TIME_COLUMN}&${DAY_VALUE_COLUMN}=gte.${todayKey}&order=${DAY_VALUE_COLUMN}.asc&order=${START_TIME_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
+
+        const rows = await response.json();
+
+        const normalizedRows = Array.isArray(rows)
+          ? rows
+            .map((row) => ({
+              date: String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim(),
+              start_time: String(row?.[START_TIME_COLUMN] ?? row?.start_time ?? "").trim(),
+              end_time: String(row?.[END_TIME_COLUMN] ?? row?.end_time ?? "").trim()
+            }))
+            .filter((row) => row.date)
+          : [];
+
+        if (!normalizedRows.length) {
+          allowedDays = new Set();
+          allowedDayList = [];
+          availabilityByDate = new Map();
+          dayMonthEl.textContent = "Brak dostępnych dni";
+          dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych przyszłych dat.</div>';
+          if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin do wyświetlenia.";
+          updateSelectedDay("");
+          return;
+        }
+
+        availabilityByDate = new Map();
+        normalizedRows.forEach((row) => {
+          if (!availabilityByDate.has(row.date)) {
+            availabilityByDate.set(row.date, []);
+          }
+
+          if (row.start_time && row.end_time) {
+            availabilityByDate.get(row.date).push(row);
+          }
+        });
+
+        allowedDayList = [...new Set(normalizedRows.map((row) => row.date))].sort();
+        allowedDays = new Set(allowedDayList);
+
+        const initialKey = allowedDayList[0];
+        visibleMonth = startOfMonth(parseDateKey(initialKey));
+        updateSelectedDay(initialKey);
+        renderCalendar();
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        dayMonthEl.textContent = "Błąd pobierania dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Nie udało się pobrać godzin.";
+      }
+    }
+
+    // aktualizacja koszyka
+    function update() {
+      let total = 0;
+      let totalMinutes = 0;
+      let items = [];
+
+      // reset zaznaczeń kart
+      document.querySelectorAll(".card").forEach(card => {
+        card.classList.remove("selected");
       });
 
-      card.classList.add("selected");
-    }
+      getServiceInputs().forEach(input => {
+        const card = input.closest(".card");
+        const price = Number(input.dataset.price) || 0;
+        const duration = Number(input.dataset.duration) || 0;
 
-    if (toggleButton) {
-      toggleButton.innerHTML = getCardButtonHtml(isSelected);
-      toggleButton.classList.toggle("is-selected", isSelected);
-      toggleButton.setAttribute("aria-pressed", String(isSelected));
-    }
-  });
+        if (!card) return;
+        const itemName = getCardTitleHtml(card) || input.value;
+        const toggleButton = card.querySelector("[data-toggle-cart]");
+        const isSelected = input.checked;
 
-  // 🔥 aktualizacja wszystkich totali
-  totalEls.forEach(el => {
-    el.textContent = total;
-  });
+        // RADIO (pakiety)
+        if (input.type === "radio" && input.checked) {
+          total += price;
+          totalMinutes += duration;
 
-  timeTotalEls.forEach(el => {
-    el.textContent = formatDuration(totalMinutes);
-  });
+          items.push({
+            name: itemName,
+            price,
+            value: input.value,
+            type: input.type
+          });
 
-  // 🔥 aktualizacja wszystkich list
-  const listHtml = items.map((item) => `
+          card.classList.add("selected");
+        }
+
+        // CHECKBOX (usługi)
+        if (input.type === "checkbox" && input.checked) {
+          total += price;
+          totalMinutes += duration;
+
+          items.push({
+            name: itemName,
+            price,
+            value: input.value,
+            type: input.type
+          });
+
+          card.classList.add("selected");
+        }
+
+        if (toggleButton) {
+          toggleButton.innerHTML = getCardButtonHtml(isSelected);
+          toggleButton.classList.toggle("is-selected", isSelected);
+          toggleButton.setAttribute("aria-pressed", String(isSelected));
+        }
+      });
+
+      // 🔥 aktualizacja wszystkich totali
+      totalEls.forEach(el => {
+        el.textContent = total;
+      });
+
+      timeTotalEls.forEach(el => {
+        el.textContent = formatDuration(totalMinutes);
+      });
+
+      // 🔥 aktualizacja wszystkich list
+      const listHtml = items.map((item) => `
     <div class="item" data-cart-value="${item.value}" data-cart-type="${item.type}">
       <div class="item-main">
         <span>${item.name}</span>
@@ -1411,215 +1525,225 @@ function update() {
     </div>
   `).join("");
 
-  listEls.forEach(el => {
-    el.innerHTML = listHtml;
-  });
+      listEls.forEach(el => {
+        el.innerHTML = listHtml;
+      });
 
-  // pokaz / ukryj sidebar
-  syncFloatingSidebarVisibility();
-}
-
-// nasłuchiwanie zmian
-document.addEventListener("change", (event) => {
-  if (event.target.matches('.card input[data-price]')) {
-    update();
-  }
-});
-
-document.addEventListener("click", (event) => {
-  const collapseButton = event.target.closest("[data-toggle-collapse]");
-  if (collapseButton) {
-    event.preventDefault();
-    event.stopPropagation();
-    toggleCardCollapse(collapseButton);
-    return;
-  }
-
-  const removeButton = event.target.closest("[data-remove-cart-item]");
-  if (removeButton) {
-    const cartItem = removeButton.closest(".item");
-    const value = cartItem?.dataset.cartValue;
-    const type = cartItem?.dataset.cartType;
-    const input = [...document.querySelectorAll('.card input[data-price]')].find((candidate) => (
-      candidate.type === type &&
-      candidate.value === value &&
-      candidate.checked
-    ));
-
-    if (input) {
-      input.checked = false;
-      update();
+      // pokaz / ukryj sidebar
+      syncFloatingSidebarVisibility();
     }
-    return;
-  }
 
-  const button = event.target.closest("[data-toggle-cart]");
-  if (!button) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  const card = button.closest(".card");
-  toggleCardSelection(card);
-});
-
-// przycisk -> scroll do formularza
-const sidebarBtn = sidebar.querySelector("button");
-
-sidebarBtn.addEventListener("click", () => {
-  document.querySelector("form").scrollIntoView({
-    behavior: "smooth"
-  });
-});
-
-// czyszczenie koszyka
-document.getElementById("clear-cart").addEventListener("click", () => {
-  getServiceInputs().forEach(input => {
-    input.checked = false;
-  });
-
-  update();
-});
-
-// start
-loadServicesFromSupabase();
-loadDaysFromSupabase();
-
-function goPay(event) {
-  event.preventDefault();
-
-  const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
-  const phone = document.getElementById("phone");
-  const email = document.getElementById("email");
-  const carModel = document.getElementById("carModel");
-  const dayValue = document.getElementById("dzien");
-  const timeValue = document.getElementById("godzina");
-
-  // WYBRANE USŁUGI
-  const checkedServices = document.querySelectorAll(
-    '.card input[data-price]:checked'
-  );
-
-  // CHECKBOX UMOWY
-  const agreement = document.querySelector(
-    '.zapoznanie input[type="checkbox"]'
-  );
-
-  // Czyści stare błędy
-  document.querySelectorAll(".error").forEach(el => el.remove());
-
-  let valid = true;
-
-  function showError(input, message) {
-    const error = document.createElement("div");
-
-    error.className = "error";
-
-    error.innerText = message;
-
-    input.parentElement.appendChild(error);
-
-    valid = false;
-  }
-
-  // Imię
-  if (firstName.value.trim().length < 2) {
-    showError(firstName, "Wpisz poprawne imię");
-  }
-
-  // Nazwisko
-  if (lastName.value.trim().length < 2) {
-    showError(lastName, "Wpisz poprawne nazwisko");
-  }
-
-  // Telefon
-  const phoneRegex = /^[0-9]{9}$/;
-
-  if (!phoneRegex.test(phone.value.trim())) {
-    showError(phone, "Numer musi mieć 9 cyfr");
-  }
-
-  // Email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  if (!emailRegex.test(email.value.trim())) {
-    showError(email, "Wpisz poprawny e-mail");
-  }
-
-  // Model auta
-  if (carModel.value.trim().length < 2) {
-    showError(carModel, "Wpisz model samochodu");
-  }
-
-  // DZIEŃ
-  if (!dayValue.value || !allowedDays.has(dayValue.value)) {
-    showError(daySelectedEl, "Wybierz dostępny dzień z kalendarza");
-  }
-
-  // GODZINA
-  if (!timeValue.value || !selectedTime) {
-    showError(timeSelectedEl, "Wybierz dostępną godzinę");
-  }
-
-  // CZY WYBRANO USŁUGĘ
-  if (checkedServices.length === 0) {
-
-    const error = document.createElement("div");
-
-    error.className = "error";
-
-    error.innerText = "Wybierz przynajmniej jedną usługę";
-
-    document.getElementById("list").appendChild(error);
-
-    valid = false;
-  }
-
-  // CZY ZAAKCEPTOWANO UMOWĘ
-  if (!agreement.checked) {
-
-    const error = document.createElement("div");
-
-    error.className = "error";
-
-    error.innerText = "Musisz zaakceptować umowę";
-
-    agreement.parentElement.appendChild(error);
-
-    valid = false;
-  }
-
-  // GOTOWE
-  if (valid) {
-    const selectedItems = Array.from(checkedServices).map((input) => {
-      const card = input.closest(".card");
-      return {
-        name: getCardTitleHtml(card) || input.value,
-        price: Number(input.dataset.price) || 0
-      };
+    // nasłuchiwanie zmian
+    document.addEventListener("change", (event) => {
+      if (event.target.matches('.card input[data-price]')) {
+        update();
+      }
     });
 
-    localStorage.setItem(
-      "booking",
-      JSON.stringify({
-        firstName: firstName.value.trim(),
-        lastName: lastName.value.trim(),
-        phone: phone.value.trim(),
-        email: email.value.trim(),
-        carModel: carModel.value.trim(),
-        day: dayValue.value,
-        time: timeValue.value,
-        items: selectedItems
-      })
-    );
+    document.addEventListener("toggle", (event) => {
+      if (event.target.matches(".service-category-collapse")) {
+        syncCollapseToggleMark(event.target);
+      }
+    }, true);
 
-    window.location.href = "pay.html";
-  }
-}
+    document.addEventListener("click", (event) => {
+      const collapseButton = event.target.closest("[data-toggle-collapse]");
+      if (collapseButton) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleCardCollapse(collapseButton);
+        return;
+      }
+
+      const removeButton = event.target.closest("[data-remove-cart-item]");
+      if (removeButton) {
+        const cartItem = removeButton.closest(".item");
+        const value = cartItem?.dataset.cartValue;
+        const type = cartItem?.dataset.cartType;
+        const input = [...document.querySelectorAll('.card input[data-price]')].find((candidate) => (
+          candidate.type === type &&
+          candidate.value === value &&
+          candidate.checked
+        ));
+
+        if (input) {
+          input.checked = false;
+          update();
+        }
+        return;
+      }
+
+      const button = event.target.closest("[data-toggle-cart]");
+      if (!button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const card = button.closest(".card");
+      toggleCardSelection(card);
+    });
+
+    // przycisk -> scroll do formularza
+    const sidebarBtn = sidebar.querySelector("button");
+
+    sidebarBtn.addEventListener("click", () => {
+      document.querySelector("form").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    // czyszczenie koszyka
+    document.getElementById("clear-cart").addEventListener("click", () => {
+      getServiceInputs().forEach(input => {
+        input.checked = false;
+      });
+
+      update();
+    });
+
+    // start
+    loadServicesFromSupabase();
+    loadDaysFromSupabase();
+
+    function goPay(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const phone = document.getElementById("phone");
+      const email = document.getElementById("email");
+      const carModel = document.getElementById("carModel");
+      const dayValue = document.getElementById("dzien");
+      const timeValue = document.getElementById("godzina");
+
+      // WYBRANE USŁUGI
+      const checkedServices = document.querySelectorAll(
+        '.card input[data-price]:checked'
+      );
+
+      // CHECKBOX UMOWY
+      const agreement = document.querySelector(
+        '.zapoznanie input[type="checkbox"]'
+      );
+
+      // Czyści stare błędy
+      document.querySelectorAll(".error").forEach(el => el.remove());
+
+      let valid = true;
+
+      function showError(input, message) {
+        const error = document.createElement("div");
+
+        error.className = "error";
+
+        error.innerText = message;
+
+        input.parentElement.appendChild(error);
+
+        valid = false;
+      }
+
+      // Imię
+      if (firstName.value.trim().length < 2) {
+        showError(firstName, "Wpisz poprawne imię");
+      }
+
+      // Nazwisko
+      if (lastName.value.trim().length < 2) {
+        showError(lastName, "Wpisz poprawne nazwisko");
+      }
+
+      // Telefon
+      const phoneRegex = /^[0-9]{9}$/;
+
+      if (!phoneRegex.test(phone.value.trim())) {
+        showError(phone, "Numer musi mieć 9 cyfr");
+      }
+
+      // Email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailRegex.test(email.value.trim())) {
+        showError(email, "Wpisz poprawny e-mail");
+      }
+
+      // Model auta
+      if (carModel.value.trim().length < 2) {
+        showError(carModel, "Wpisz model samochodu");
+      }
+
+      // DZIEŃ
+      if (!dayValue.value || !allowedDays.has(dayValue.value)) {
+        showError(daySelectedEl, "Wybierz dostępny dzień z kalendarza");
+      }
+
+      // GODZINA
+      if (!timeValue.value || !selectedTime) {
+        showError(timeSelectedEl, "Wybierz dostępną godzinę");
+      }
+
+      // CZY WYBRANO USŁUGĘ
+      if (checkedServices.length === 0) {
+
+        const error = document.createElement("div");
+
+        error.className = "error";
+
+        error.innerText = "Wybierz przynajmniej jedną usługę";
+
+        document.getElementById("list").appendChild(error);
+
+        valid = false;
+      }
+
+      // CZY ZAAKCEPTOWANO UMOWĘ
+      if (!agreement.checked) {
+
+        const error = document.createElement("div");
+
+        error.className = "error";
+
+        error.innerText = "Musisz zaakceptować umowę";
+
+        agreement.parentElement.appendChild(error);
+
+        valid = false;
+      }
+
+      // GOTOWE
+      if (valid) {
+        const carSize = getSelectedCarSize();
+        const selectedItems = Array.from(checkedServices).map((input) => {
+          const card = input.closest(".card");
+          return {
+            name: getCardTitleHtml(card) || input.value,
+            price: Number(input.dataset.price) || 0
+          };
+        });
+
+        localStorage.setItem(
+          "booking",
+          JSON.stringify({
+            firstName: firstName.value.trim(),
+            lastName: lastName.value.trim(),
+            phone: phone.value.trim(),
+            email: email.value.trim(),
+            carModel: carModel.value.trim(),
+            carSize: carSize.value,
+            carSizeLabel: carSize.label,
+            day: dayValue.value,
+            time: timeValue.value,
+            items: selectedItems
+          })
+        );
+
+        window.location.href = "pay.html";
+      }
+    }
 
 
-</script>
+  </script>
 
 </body>
+
 </html>
