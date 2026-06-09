@@ -426,6 +426,26 @@
       })}zł`;
     }
 
+    function createBookingId() {
+      if (window.crypto?.randomUUID) {
+        return window.crypto.randomUUID();
+      }
+
+      const bytes = new Uint8Array(16);
+      window.crypto.getRandomValues(bytes);
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+      const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0"));
+
+      return [
+        hex.slice(0, 4).join(""),
+        hex.slice(4, 6).join(""),
+        hex.slice(6, 8).join(""),
+        hex.slice(8, 10).join(""),
+        hex.slice(10, 16).join("")
+      ].join("-");
+    }
+
     async function createBookingRecord(payload) {
       const response = await fetch(`${SUPABASE_URL}/rest/v1/${BOOKINGS_TABLE}`, {
         method: "POST",
@@ -433,18 +453,27 @@
           apikey: SUPABASE_ANON_KEY,
           Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
           "Content-Type": "application/json",
-          Prefer: "return=representation",
+          Prefer: "return=minimal",
           Accept: "application/json"
         },
         body: JSON.stringify(payload)
       });
 
+      const responseText = await response.text();
+
       if (!response.ok) {
-        const details = await response.text();
-        throw new Error(`Supabase bookings HTTP ${response.status}: ${details}`);
+        throw new Error(`Supabase bookings HTTP ${response.status}: ${responseText}`);
       }
 
-      const rows = await response.json();
+      if (!payload?.id) {
+        throw new Error("Brak identyfikatora rezerwacji po zapisie.");
+      }
+
+      if (!responseText.trim()) {
+        return { id: payload.id };
+      }
+
+      const rows = JSON.parse(responseText);
       return Array.isArray(rows) ? rows[0] : rows;
     }
 
@@ -1889,7 +1918,9 @@
 
         const totalAmount = selectedItems.reduce((sum, item) => sum + Number(item.price || 0), 0);
         const totalDurationMinutes = selectedItems.reduce((sum, item) => sum + Number(item.duration || 0), 0);
+        const bookingId = createBookingId();
         const bookingPayload = {
+          id: bookingId,
           first_name: firstName.value.trim(),
           last_name: lastName.value.trim(),
           phone: phone.value.trim(),

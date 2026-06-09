@@ -28,9 +28,6 @@
   </section>
 
   <script>
-    const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
-
     function getBookingId() {
       const booking = JSON.parse(localStorage.getItem("booking") || "null");
       const fromStorage = booking?.booking_id || null;
@@ -38,27 +35,7 @@
       return fromQuery || fromStorage;
     }
 
-    async function markBookingPaid(bookingId) {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/mark_booking_paid`, {
-        method: "POST",
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({ p_booking_id: bookingId })
-      });
-
-      if (!response.ok) {
-        const details = await response.text();
-        throw new Error(`Supabase RPC HTTP ${response.status}: ${details}`);
-      }
-
-      return response.json();
-    }
-
-    async function run() {
+    function run() {
       const bookingId = getBookingId();
       const titleEl = document.getElementById("status-title");
       const messageEl = document.getElementById("status-message");
@@ -69,23 +46,14 @@
         return;
       }
 
-      try {
-        await markBookingPaid(bookingId);
-
-        const booking = JSON.parse(localStorage.getItem("booking") || "null");
-        if (booking) {
-          booking.is_paid = true;
-          booking.paid_at = new Date().toISOString();
-          localStorage.setItem("booking", JSON.stringify(booking));
-        }
-
-        titleEl.textContent = "Płatność potwierdzona";
-        messageEl.textContent = "Twoja rezerwacja została oznaczona jako opłacona.";
-      } catch (error) {
-        console.error("Nie udało się oznaczyć rezerwacji jako opłaconej:", error);
-        titleEl.textContent = "Płatność zakończona";
-        messageEl.textContent = "Nie udało się automatycznie potwierdzić statusu w bazie. Skontaktujemy się, jeśli będzie to potrzebne.";
+      const booking = JSON.parse(localStorage.getItem("booking") || "null");
+      if (booking) {
+        booking.payment_status = "pending_webhook_confirmation";
+        localStorage.setItem("booking", JSON.stringify(booking));
       }
+
+      titleEl.textContent = "Płatność przyjęta";
+      messageEl.textContent = "Status rezerwacji zostanie zaktualizowany automatycznie po potwierdzeniu płatności przez Stripe.";
     }
 
     run();

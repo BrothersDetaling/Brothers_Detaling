@@ -47,25 +47,8 @@
         return booking?.booking_id || null;
     }
 
-    async function fetchBookingById(bookingId) {
-        const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/bookings?id=eq.${encodeURIComponent(bookingId)}&select=*`,
-            {
-                headers: {
-                    apikey: SUPABASE_ANON_KEY,
-                    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                    Accept: "application/json"
-                }
-            }
-        );
-
-        if (!response.ok) {
-            const details = await response.text();
-            throw new Error(`Supabase booking fetch HTTP ${response.status}: ${details}`);
-        }
-
-        const rows = await response.json();
-        return Array.isArray(rows) ? rows[0] : rows;
+    function getStoredBooking() {
+        return JSON.parse(localStorage.getItem("booking") || "null");
     }
 
     function setError(title, message) {
@@ -78,6 +61,7 @@
 
     async function run() {
         const bookingId = getBookingId();
+        const storedBooking = getStoredBooking();
         const fallbackUrl = new URL("main.html", window.location.href);
         const successUrl = new URL("success.html", window.location.href);
 
@@ -86,47 +70,47 @@
             return;
         }
 
-        let bookingRow;
-
-        try {
-            bookingRow = await fetchBookingById(bookingId);
-        } catch (error) {
-            console.error("Nie udało się pobrać rezerwacji:", error);
-            setError("Brak danych rezerwacji", "Nie udało się odczytać rezerwacji z bazy. Spróbuj ponownie.");
-            return;
-        }
-
-        if (!bookingRow) {
-            setError("Brak danych rezerwacji", "Nie udało się znaleźć rezerwacji w bazie.");
-            return;
-        }
-
         successUrl.searchParams.set("booking_id", bookingId);
         fallbackUrl.searchParams.set("booking_id", bookingId);
 
         const booking = {
-            booking_id: bookingRow.id,
-            is_paid: Boolean(bookingRow.is_paid),
-            firstName: bookingRow.first_name,
-            lastName: bookingRow.last_name,
-            phone: bookingRow.phone,
-            email: bookingRow.email,
-            carModel: bookingRow.car_model,
-            carSize: bookingRow.car_size,
-            day: bookingRow.booking_date,
-            time: bookingRow.booking_time,
-            totalAmount: Number(bookingRow.total_amount) || 0,
-            totalDurationMinutes: Number(bookingRow.total_duration_minutes) || 0,
-            items: Array.isArray(bookingRow.selected_items) ? bookingRow.selected_items : [],
+            booking_id: bookingId,
+            is_paid: Boolean(storedBooking?.is_paid),
+            firstName: storedBooking?.firstName || "",
+            lastName: storedBooking?.lastName || "",
+            phone: storedBooking?.phone || "",
+            email: storedBooking?.email || "",
+            carModel: storedBooking?.carModel || "",
+            carSize: storedBooking?.carSize || "",
+            day: storedBooking?.day || "",
+            time: storedBooking?.time || "",
+            totalAmount: Number(storedBooking?.totalAmount) || 0,
+            totalDurationMinutes: Number(storedBooking?.totalDurationMinutes) || 0,
+            items: Array.isArray(storedBooking?.items) ? storedBooking.items : [],
             success_url: successUrl.href,
             cancel_url: fallbackUrl.href
         };
 
         fetch("https://dvaeypdoxkldomgewvyf.supabase.co/functions/v1/super-endpoint", {
             method: "POST",
+            headers: {
+                apikey: SUPABASE_ANON_KEY,
+                Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
             body: JSON.stringify(booking)
         })
-            .then((response) => response.json())
+            .then(async (response) => {
+                const responseText = await response.text();
+                const data = responseText ? JSON.parse(responseText) : {};
+
+                if (!response.ok) {
+                    throw new Error(data?.error || `Edge Function HTTP ${response.status}: ${responseText}`);
+                }
+
+                return data;
+            })
             .then((data) => {
                 if (!data?.url) {
                     throw new Error("Brak adresu przekierowania do płatności");
