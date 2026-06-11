@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,583 +9,157 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="png" href="Img/icon.png">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-  
 </head>
 
 <body>
 
-<a href="#pakiety">
-<section class="hero">
-  <div class="container">
-
-    <h1>BROTHERS</h1>
-    <div class="logo-line"></div>
-    <h1 class="hero-detailing">DETAILING</h1>
-    <p>
-      Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
-    </p><br>
-    <p class="arrow"></p><!--z dedykacją dla ulu-->
-  </div>
-</section>
-</a>
-
-<section>
-
-
-<section id="pakiety"><!--Pakiety-->
-<div class="container">
-  <div class="section-title">
-    <div class="line"></div>
-    <h2>Pakiety</h2>
-</div>
-
-
-
-
-  <div class="grid">
-
-    <label class="card normal selectn">
-    <input type="radio" name="pakiet" value="Basic" hidden data-price="110">
-
-      <div class="card-top">
-        <h3>Basic</h3>
-        <div class="price-normal">od 110zł</div>
-      </div>
-    
-      <p>
-        Pakiet obejmuje odkurzanie wnętrza pojazdu oraz czyszcenie plastików, przywracające świeży wygląd
-        i czystość całemu wnętrzu samochodu.
-      </p>
-    
-      <ul class="package-list">
-        <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
-          <li>
-            <div class="dot"></div>Odkurzanie wnętrza
-          </li>
-        </a>
-        <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
-          <li>
-            <div class="dot"></div>Czyszczenie Plastików
-          </li>
-        </a>
-      </ul>
-    </label>
-
-    <label class="card normal selectn">
-    <input type="radio" name="pakiet" value="Standard" hidden data-price="205">
-    <div class="card-top">
-      <h3>Standard</h3>
-      <div class="price-normal">od 205zł</div>
-    </div>
-  
-    <p>
-      Mycie zewnętrzne pojazdu, odkurzanie wnętrza oraz czyszcenie plastików, przywracające świeży wygląd
-      i czystość całemu wnętrzu samochodu.
-    </p>
-  
-    <ul class="package-list">
-      <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')">
-        <li>
-          <div class="dot"></div>Mycie Zewnętrzne
-        </li>
-      </a>
-      <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
-        <li>
-          <div class="dot"></div>Czyszczenie Plastików
-        </li>
-      </a>
-      <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
-        <li>
-          <div class="dot"></div>Odkurzanie Wnętrza
-        </li>
-      </a>
-    </ul>
-    </label>
-
-    <label class="card premium selectpr">
-    <input type="radio" name="pakiet" value="StandardP" hidden>
-      <div class="card-top">
-        <h3>Standard <span class="premium-text">PREMIUM</span></h3>
-        <div class="price-premium">od 280zł</div>
-      </div>
-    
-      <p>
-        Mycie zewnętrzne pojazdu <span class="premium-text">z dokładnym czyszczeniem felg oraz opon</span>, <span class="dressing-text">aplikacją dressingu opon</span>, odkurzanie wnętrza oraz czyszczenie plastików <span class="premium-text">zakończone aplikacją QD</span>, przywracające świeży wygląd i czystość
-        całemu wnętrzu samochodu.
-
-      </p>
-    
-      <ul class="package-list">
-        <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
-          <li>
-            <div class="dot-premium"></div><div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#czyszczenie-plastikow-premium" onclick="highlightCard('czyszczenie-plastikow-premium')">
-          <li>
-            <div class="dot-premium"></div><div>Czyszcenie Plastików <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
-          <li>
-            <div class="dot"></div>Odkurzanie Wnętrza
-          </li>
-        </a>
-        <a>
-          <li>
-            <div class="dot-dressing"></div>Dressing Opon
-          </li>
-        </a>
-      </ul>
-    </label>
-  
-    <label class="card pranie">
-    <input type="radio" name="pakiet" value="Pranie" hidden>
-      <div class="card-top">
-        <h3>Pranie</h3>
-        <div class="price-pranie">od 285zł</div>
-      </div>
-  
-      <p>
-        Pakiet obejmuje kompleksowe pranie tapicerki, foteli, dywaników oraz podłogi, usuwające zabrudzenia i nieprzyjemne zapachy, a także przywraca wnętrzu
-        świeży i zadbany wygląd.
-      </p>
-  
-      <ul class="package-list">
-        <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#wszystkie-fotele" onclick="highlightCard('wszystkie-fotele')">
-          <li>
-            <div class="dot-pranie"></div>Pranie Wszystkich Foteli
-          </li>
-        </a>
-        <a href="#pranie-drzwi" onclick="highlightCard('pranie-drzwi')">
-          <li>
-            <div class="dot-pranie"></div>Pranie Podłokietników
-          </li>
-        </a>
-      </ul>
-    </label>
-
-    <label class="card premium">
-    <input type="radio" name="pakiet" value="SkoraP" hidden>
-      <div class="card-top">
-        <h3>Skóra <span class="premium-text">PREMIUM</span></h3>
-        <div class="price-premium">od 435zł</div>
-      </div>
-    
-      <p>
-        Kompleksowe czyszczenie i pielęgnacja skórzanej tapicerki obejmujące dokładne usunięcie zabrudzeń, odtłuszczenie
-        powierzchni, bezpieczne czyszczenie skóry <span class="premium-text"> oraz impregnację zabezpieczającą przed wysychaniem i pękaniem</span>,
-        przywracając
-        świeży wygląd i miękkość tapicerki.
-      </p>
-    
-      <ul class="package-list">
-        </a>
-          <li>
-            <div class="dot-premium"></div>Impregnacja Skóry
-          </li>
-        </a>
-        <a href="#skora" onclick="highlightCard('skora')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Skóry
-          </li>
-        </a>
-        <a href="#skora-kanapy" onclick="highlightCard('skora-kanapy')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Foteli I Kanapy
-          </li>
-        </a>
-        <a href="#czyszcenie-podlokietnikow" onclick="highlightCard('czyszcenie-podlokietnikow')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Podłokietników
-          </li>
-        </a>
-        <a href="#czyszcenie-boczkow-drzwi" onclick="highlightCard('czyszcenie-boczkow-drzwi')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Boczków Drzwi
-          </li>
-        </a>
-      </ul>
-    </label>
-
-    <label class="card full">
-    <input type="radio" name="pakiet" value="FullPakiet" hidden>
-      <div class="card-top">
-        <h3>Full Pakiet</h3>
-        <div class="price-full">od 505zł</div>
-      </div>
-    
-      <p>
-        Kompleksowe odświeżenie auta obejmujące dokładne czyszczenie wnętrza oraz mycie zewnętrzne. Pakiet stworzony dla osób, które chcą przywrócić samochodowi świeży, zadbany wygląd i czystość w każdym detalu.
-      </p>
-    
-      <ul class="package-list">
-        <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#czyszczenie-plastikow-premium" onclick="highlightCard('czyszczenie-plastikow-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
-          <li>
-            <div class="dot"></div>Odkurzanie Wnętrza
-          </li>
-        </a>
-        <a>
-          <li>
-            <div class="dot-dressing"></div>Dressing Opon
-          </li>
-        </a>
-        <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#wszystkie-fotele" onclick="highlightCard('wszystkie-fotele')">
-          <li>
-            <div class="dot-pranie"></div>Pranie Wszystkich Foteli
-          </li>
-        </a>
-        <a href="#pranie-drzwi" onclick="highlightCard('pranie-drzwi')">
-          <li>
-            <div class="dot-pranie"></div>Pranie Tapicerki Na Drzwiach
-          </li>
-        </a>
-      </ul>
-    </label>
-
-    <label class="card full">
-    <input type="radio" name="pakiet" value="FullPakietSkora" hidden>
-      <div class="card-top">
-        <h3>Full Pakiet Skóra</h3>
-        <div class="price-full">od 570zł</div>
-      </div>
-    
-      <p>
-        Kompletne odświeżenie samochodu stworzone dla osób, które chcą przywrócić autu świeżość,
-        czystość i zadbany wygląd w każdym detalu. Usługa obejmuje kompleksową pielęgnację wnętrza oraz karoserii, dzięki czemu
-        samochód prezentuje się estetycznie zarówno z zewnątrz, jak i w środku. Idealny wybór dla kierowców ceniących
-        perfekcyjną czystość, komfort oraz efekt maksymalnie odświeżonego auta.
-      </p>
-    
-      <ul class="package-list">
-        <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#czyszczenie-plastikow-premium" onclick="highlightCard('czyszczenie-plastikow-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
-          <li>
-            <div class="dot"></div>Odkurzanie Wnętrza
-          </li>
-        </a>
-        <a>
-          <li>
-            <div class="dot-dressing"></div>Dressing Opon
-          </li>
-        </a>
-        <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
-          <li>
-            <div class="dot-premium"></div>
-            <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
-          </li>
-        </a>
-        <a>
-          <li>
-            <div class="dot-premium"></div>Impregnacja Skóry
-          </li>
-        </a>
-        <a href="#skora" onclick="highlightCard('skora')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Skóry
-          </li>
-        </a>
-        <a href="#skora-kanapy" onclick="highlightCard('skora-kanapy')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Foteli I Kanapy
-          </li>
-        </a>
-        <a href="#czyszcenie-podlokietnikow" onclick="highlightCard('czyszcenie-podlokietnikow')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Podłokietników
-          </li>
-        </a>
-        <a href="#czyszcenie-boczkow-drzwi" onclick="highlightCard('czyszcenie-boczkow-drzwi')">
-          <li>
-            <div class="dot-skora"></div>Czyszczenie Boczków Drzwi
-          </li>
-        </a>
-      </ul>
-    </label>
-
-  </div>
-</section>
-
-<section><!--Usługi-->
-<div class="container">
-  <div class="section-title">
-      <div class="line"></div>
-      <h2>Usługi</h2>
-  </div>
-
-  <p class="note">
-      Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
-      ustalana jest indywidualnie.
-  </p>
-
-  <div class="podpunkt">
-    <h3 class="podpunkt-header">
-      Zewnętrzne
-    </h3>
-    <div class="podpunkt-linia"></div>
-  </div>
-
-  <div class="grid">
-
-    <label class="card normal selectn" id="mycie-zewnetrzne">
-    <input type="checkbox" value="Mycie Zewnątrz" data-price="105" hidden>
-      <div class="card-top">
-        <h3>Mycie Zewnętrzne</h3>
-        <div class="price-normal">od 105zł</div>
-      </div>
-      <p>
-        Dokładne usuwanie zabrudzeń po owadach oraz ręczne mycie aktywną pianą,
-        wraz z czyszczeniem szyb, dla pełnego odświeżenia wyglądu
-        auta.
-      </p>
-    </label>
-
-    <label class="card premium" id="mycie-zewnetrzne-premium">
-      <div class="card-top">
-        <h3>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></h3>
-        <div class="price-premium">od 160zł</div>
-      </div>
-      <p>
-        Dokładne usuwanie zabrudzeń po owadach oraz ręczne mycie aktywną pianą,
-        wraz z czyszczeniem szyb,<span class="premium-text"> dokładnym czyszczeniem felg
-        oraz opon</span>, dla pełnego odświeżenia
-        wyglądu
-        auta.
-      </p>
-    </label>
-
-  </div><!--Grid-->
-
-  <div class="podpunkt">
-    <h3 class="podpunkt-header">
-      Wewnętrzne
-    </h3>
-    <div class="podpunkt-linia"></div>
-  </div>
-
-  <div class="grid">
-
-    <label class="card normal" id="odkurzanie-wnetrza">
-      <div class="card-top">
-        <h3>Odkurzanie Wnętrza</h3>
-        <div class="price price-normal">od 55zł</div>
-      </div>
-      <p>
-        Dokładne odkurzenie dywaników, podłogi, foteli, wnęk drzwi oraz bagażnika, usuwające kurz, piasek i drobne
-        zanieczyszczenia.
-      </p>
-    </label>
-    
-    
-    <label class="card normal" id="czyszczenie-plastikow">
-      <div class="card-top">
-        <h3>Czyszczenie Plastików</h3>
-        <div class="price price-normal">od 65zł</div>
-      </div>
-      <p>
-        Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy, usuwające kurz i codzienne
-        zanieczyszczenia.
-      </p>
-    </label>
-    
-    
-    <label class="card premium" id="czyszczenie-plastikow-premium">
-      <div class="card-top">
-        <h3>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></h3>
-        <div class="price-premium">od 95zł</div>
-      </div>
-      <p>
-        Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy, usuwające kurz i codzienne
-        zanieczyszczenia, <span class="premium-text">zakończone aplikacją QD nadającego świeży wygląd i lekką warstwę
-          ochronną.</span>
-      </p>
-    </label>
-
-  </div><!--Grid-->
-
-  <div class="podpunkt">
-    <h3 class="podpunkt-header-pranie">
-      Pranie
-    </h3>
-    <div class="podpunkt-linia"></div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card pranie giga">
-      <div class="card-top">
-        <h3>Pranie Foteli</h3>
-      </div>
-      <p>
-        Dokładne pranie tapicerki foteli, usuwające zabrudzenia, plamy i nieprzyjemne zapachy, przywracające świeżość,
-        czystość
-        oraz estetyczny wygląd wnętrza.
-      </p><br>
+  <a href="#pakiety">
+    <section class="hero">
       <div class="container">
-        <div class="grid-small">
-          <label class="card pranie">
-            <h3>Pojedyńczy Fotel</h3>
-            <div class="price-pranie">40zł</div>
-          </label>
-          <label class="card pranie">
-            <h3>Komplet Przód</h3>
-            <div class="price-pranie">65zł</div>
-          </label>
-          <label class="card pranie">
-            <h3>Tylna Kanapa</h3>
-            <div class="price-pranie">od 85zł</div>
-          </label>
-          <label class="card pranie" id="wszystkie-fotele">
-            <h3>Wszytkie Fotele</h3>
-            <div class="price-pranie">od 140zł</div>
-          </label>
-        </div>
+
+        <h1>BROTHERS</h1>
+        <div class="logo-line"></div>
+        <h1 class="hero-detailing">DETAILING</h1>
+        <p>
+          Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
+        </p><br>
+        <p class="arrow"></p><!--z dedykacją dla ulu-->
+      </div>
+    </section>
+  </a>
+
+  <section>
+    <div class="sidebar sidebar-floating" id="sidebar">
+      <div class="card normal">
+        <h3 class="sidebar-title">Podsumowanie</h3>
+
+        <div class="text-muted" id="list"></div>
+
+        <div class="total catd-top">
+          Suma: <span class="price-normal"><span id="total">0</span>zł</span>
+        </div><br>
+        <button>Przenieś do Zamówienia</button>
+        <button id="clear-cart" class="clear-btn">Wyczyść</button>
       </div>
     </div>
-    
-    <label class="card pranie" id="pranie-dywanikow">
-      <div class="card-top">
-        <h3>Pranie Dywaników</h3>
-        <div class="price price-pranie">od 40zł</div>
-      </div>
-      <p>
-        Dokładne pranie i odświeżenie dywaników samochodowych, usuwające brud, plamy oraz nieprzyjemne zapachy.
-      </p>
-    </label>
 
-    <label class="card premium" id="pranie-dywanikow-premium">
-      <div class="card-top">
-        <h3>Pranie Dywaników <span class="premium-text">PREMIUM</span></h3>
-        <div class="price price-premium">od 75zł</div>
-      </div>
-      <p>
-        Dokładne pranie i odświeżenie dywaników samochodowych <span class="premium-text">oraz podłogi pod dywanikami</span>, usuwające brud, plamy oraz nieprzyjemne zapachy.
-      </p>
-    </label>
-
-    <label class="card pranie" id="pranie-drzwi">
-      <div class="card-top">
-        <h3>Pranie Podłokietników</h3>
-        <div class="price-pranie">od 55zł</div>
-      </div>
-      <p>
-        Dokładne pranie materiałowych boczków drzwi, podłokietników usuwające zabrudzenia, plamy oraz odświeżające wnętrze samochodu.
-      </p>
-    </label>
-
-
-  </div><!--Grid-->
-
-  <div class="podpunkt">
-    <h3 class="podpunkt-header-skora">
-      Skóra
-    </h3>
-    <div class="podpunkt-linia"></div>
-  </div>
-
-  <div class="grid">
-
-    <div class="card skora giga">
-      <div class="card-top">
-        <h3>Czyszczenie Foteli</h3>
-      </div>
-      <p>
-        Czyszczenie oraz impregnacja skórzanych foteli, przywracające świeży wygląd i zabezpieczające tapicerkę przed
-        wysychaniem, pękaniem oraz codziennym zużyciem.
-      </p><br>
+    <section id="pakiety"><!--Pakiety-->
       <div class="container">
-        <div class="grid-small">
-          <div class="card skora">
-            <h3>Pojedyńczy Fotel</h3>
-            <div class="price-skora">70zł</div>
+        <div class="vehicle-size-panel card normal">
+          <div class="card-top vehicle-size-panel__top">
+            <div>
+              <h3>Wybierz wielkość samochodu</h3>
+            </div>
+            <div class="vehicle-size-panel__hint">Wpływa na wycenę usług</div>
           </div>
-          <div class="card skora">
-            <h3>Komplet Przód</h3>
-            <div class="price-skora">130zł</div>
-          </div>
-          <div class="card skora">
-            <h3>Tylna Kanapa</h3>
-            <div class="price-skora">od 145zł</div>
-          </div>
-          <div class="card skora" id="wszystkie-fotele-skora">
-            <h3>Wszytkie Fotele</h3>
-            <div class="price-skora">od 255zł</div>
+
+          <div class="vehicle-size-grid" role="radiogroup" aria-label="Wielkość samochodu">
+            <label class="vehicle-size-option vehicle-size-option--small">
+              <input type="radio" name="carSize" value="small">
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M14 30h40c4.6 0 7.8 1.8 9 5l2 5H6l2-5c1.2-3.2 4.4-5 6-5Z" fill="none" stroke="currentColor"
+                    stroke-width="3.2" stroke-linejoin="round" />
+                  <path d="M20 29 27 18h18l7 11" fill="none" stroke="currentColor" stroke-width="3.2"
+                    stroke-linejoin="round" />
+                  <circle cx="22" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                  <circle cx="50" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                  <path d="M28 23h12" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Mały</strong>
+                <span>Hatchbacki i auta miejskie. Szybsza obsługa, zwrotne nadwozie, mniej zakamarków do
+                  czyszczenia.</span>
+              </span>
+            </label>
+
+            <label class="vehicle-size-option vehicle-size-option--medium">
+              <input type="radio" name="carSize" value="medium" checked>
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M6 31h52c4.8 0 8.4 1.9 10 5.8L69 40H3l1.2-3.2C5.4 32.9 7.6 31 6 31Z" fill="none"
+                    stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" />
+                  <path d="M13 30 19 20h23l7 5h6l5 6.8" fill="none" stroke="currentColor" stroke-width="3.2"
+                    stroke-linejoin="round" />
+                  <path d="M19 20.2 24.5 15H39l5.4 5.2" fill="none" stroke="currentColor" stroke-width="3.2"
+                    stroke-linejoin="round" />
+                  <path d="M24 20.5h29" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                  <path d="M27 25.5h18" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                  <circle cx="20" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                  <circle cx="54" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Średni</strong>
+                <span>Sedany, kombi i większość popularnych aut. Złoty środek między czasem pracy a ilością
+                  powierzchni.</span>
+              </span>
+            </label>
+
+            <label class="vehicle-size-option vehicle-size-option--large">
+              <input type="radio" name="carSize" value="large">
+              <span class="vehicle-size-option__icon" aria-hidden="true">
+                <svg viewBox="0 0 72 48" role="img" focusable="false">
+                  <path d="M5 31h60c4.8 0 8.2 2 9.5 6L76 40H-4l1.5-3.5C-1.2 33 2.2 31 5 31Z" fill="none"
+                    stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" />
+                  <path d="M13 30 19 16h34l8 14" fill="none" stroke="currentColor" stroke-width="3.2"
+                    stroke-linejoin="round" />
+                  <path d="M20 16.5 26 11h21l5 5.5" fill="none" stroke="currentColor" stroke-width="3.2"
+                    stroke-linejoin="round" />
+                  <path d="M25 24h21" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" />
+                  <circle cx="19" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                  <circle cx="56" cy="40" r="5" fill="none" stroke="currentColor" stroke-width="3.2" />
+                </svg>
+              </span>
+              <span class="vehicle-size-option__content">
+                <strong>Duży</strong>
+                <span>SUV-y, vany i większe bryły. Więcej przestrzeni, większa powierzchnia i dokładniejsze dopasowanie
+                  wyceny.</span>
+              </span>
+            </label>
           </div>
         </div>
-      </div>
-    </div>
-  
-    <div class="card skora" id="skora">
-      <div class="card-top">
-        <h3>Czyszczenie Skóry</h3>
-        <div class="price price-skora">od 105zł</div>
-      </div>
-      <p>
-        Dokładne czyszczenie deski rozdzielczej, kierownicy, gałki zmiany biegów oraz elementów wokół kokpitu, usuwające kurz,
-        zabrudzenia i tłuste osady, przywracające czysty i estetyczny wygląd skórzanego wnętrza.
-      </p>
-    </div>
 
-    <div class="card skora" id="czyszcenie-spodlokietnikow">
-      <div class="card-top">
-        <h3>Czyszczenie Podłokietników</h3>
-        <div class="price price-skora">od 120zł</div>
-      </div>
-      <p>
-        Dokładne czyszczenie skórzanych podłokietników oraz skórzanych boczków drzwi, usuwające zabrudzenia, tłuste ślady i kurz, przywracające czystość oraz
-        estetyczny wygląd elementów wnętrza.
-      </p>
-    </div>
- 
-  </div><!--Grid-->
-</div>
-</section>
-</section>
+        <div class="section-title">
+          <div class="line"></div>
+          <h2>Pakiety</h2>
+        </div>
 
-<section><!--Umowa-->
+        <div id="packages-root"></div>
+      </div>
+    </section>
+
+    <section><!--Usługi-->
+      <div class="container">
+        <details class="services-collapse">
+          <summary class="section-title services-collapse__summary">
+            <div class="services-toggle-mark arrow" aria-hidden="true"></div>
+            <h2>Pojedyńcze Usługi</h2>
+          </summary>
+
+          <div class="services-collapse__content">
+            <p class="note">
+              Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna wycena
+              ustalana jest indywidualnie.
+            </p>
+            <div id="services-root"></div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </section>
+
+  <section><!--Umowa-->
     <div class="container" id="umowa">
       <div class="contract">
 
@@ -599,11 +174,13 @@
           </p>
 
           <p>
-            Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie wybranych usług.
+            Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie wybranych
+            usług.
           </p>
 
           <p>
-            Zleceniobiorca nie odpowiada za wcześniej istniejące uszkodzenia lakieru, elementów wnętrza lub ukryte wady materiałów.
+            Zleceniobiorca nie odpowiada za wcześniej istniejące uszkodzenia lakieru, elementów wnętrza lub ukryte wady
+            materiałów.
           </p>
 
           <p>
@@ -617,9 +194,9 @@
 
       </div>
     </div>
-</section>
+  </section>
 
-<footer>
+  <footer>
     <div class="container">
 
       <div class="footer-grid">
@@ -645,30 +222,30 @@
       </div>
 
     </div>
-</footer>
+  </footer>
 
 
-<script>
-  function highlightCard(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
+  <script>
+    function highlightCard(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
 
-    // scroll do elementu
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+      // scroll do elementu
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // reset efektu
-    el.classList.remove("highlight");
-
-    // odpalenie highlight OD RAZU po kliknięciu
-    setTimeout(() => {
-      el.classList.add("highlight");
-    }, 500);
-
-    // usunięcie efektu
-    setTimeout(() => {
+      // reset efektu
       el.classList.remove("highlight");
-    }, 2000);
-  }
+
+      // odpalenie highlight OD RAZU po kliknięciu
+      setTimeout(() => {
+        el.classList.add("highlight");
+      }, 500);
+
+      // usunięcie efektu
+      setTimeout(() => {
+        el.classList.remove("highlight");
+      }, 2000);
+    }
 
     function highlightCard(id) {
       const el = document.getElementById(id);
@@ -690,203 +267,1632 @@
       }, 2000);
     }
 
-const sidebar = document.getElementById("sidebar");
-const listEls = document.querySelectorAll("#list, #list-form");
-const totalEls = document.querySelectorAll("#total, #total-form");
+    const sidebar = document.getElementById("sidebar");
+    const listEls = document.querySelectorAll("#list, #list-form");
+    const totalEls = document.querySelectorAll("#total, #total-form");
+    const timeTotalEls = document.querySelectorAll("#total-time, #total-time-form");
+    const dzienSelect = document.getElementById("dzien");
+    const carSizeOptions = document.querySelectorAll('input[name="carSize"]');
+    const packagesRoot = document.getElementById("packages-root");
+    const checkoutForm = document.querySelector("form.zamowienie");
+    let isCheckoutVisible = false;
+    let cachedServiceCategories = [];
+    let cachedServices = [];
+    let cachedPackages = [];
+    let cachedPackageItems = [];
+    const CAR_SIZE_DEFAULT = "medium";
+    const CAR_SIZE_LABELS = {
+      small: "Mały",
+      medium: "Średni",
+      large: "Duży"
+    };
 
-// wszystkie inputy z ceną
-const serviceInputs = document.querySelectorAll('.card input[data-price]');
+    function normalizeCarSize(value) {
+      if (value === "small" || value === "medium" || value === "large") {
+        return value;
+      }
 
-// aktualizacja koszyka
-function update() {
-  let total = 0;
-  let items = [];
-
-  // reset zaznaczeń kart
-  document.querySelectorAll(".card").forEach(card => {
-    card.classList.remove("selected");
-  });
-
-  serviceInputs.forEach(input => {
-    const card = input.closest(".card");
-    const price = parseInt(input.dataset.price) || 0;
-
-    if (!card) return;
-
-    // RADIO (pakiety)
-    if (input.type === "radio" && input.checked) {
-      total += price;
-
-      items.push({
-        name: input.value,
-        price
-      });
-
-      card.classList.add("selected");
+      return CAR_SIZE_DEFAULT;
     }
 
-    // CHECKBOX (usługi)
-    if (input.type === "checkbox" && input.checked) {
-      total += price;
+    function getSelectedCarSize() {
+      const selected = document.querySelector('input[name="carSize"]:checked');
+      const value = normalizeCarSize(selected?.value);
 
-      items.push({
-        name: input.value,
-        price
+      return {
+        value,
+        label: CAR_SIZE_LABELS[value] || CAR_SIZE_LABELS.small
+      };
+    }
+
+    function syncCarSizeSelection() {
+      const selected = getSelectedCarSize();
+      carSizeOptions.forEach((input) => {
+        const option = input.closest(".vehicle-size-option");
+        if (!option) return;
+        option.classList.toggle("is-selected", input.value === selected.value && input.checked);
+      });
+    }
+
+    function getSizedNumber(row, baseName, size) {
+      const normalizedSize = normalizeCarSize(size);
+      const sizedKey = `${baseName}_${normalizedSize}`;
+      const fallbackKey = baseName;
+
+      const sizedValue = row?.[sizedKey];
+      if (sizedValue !== undefined && sizedValue !== null && sizedValue !== "") {
+        const parsed = Number(sizedValue);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      const fallbackValue = row?.[fallbackKey];
+      if (fallbackValue !== undefined && fallbackValue !== null && fallbackValue !== "") {
+        const parsed = Number(fallbackValue);
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      return 0;
+    }
+
+    function formatMoneyAmount(value) {
+      const number = Number(value);
+      const safeValue = Number.isFinite(number) ? number : 0;
+      return `${safeValue.toLocaleString("pl-PL", {
+        minimumFractionDigits: safeValue % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2
+      })}zł`;
+    }
+
+    function createBookingId() {
+      if (window.crypto?.randomUUID) {
+        return window.crypto.randomUUID();
+      }
+
+      const bytes = new Uint8Array(16);
+      window.crypto.getRandomValues(bytes);
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+      const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0"));
+
+      return [
+        hex.slice(0, 4).join(""),
+        hex.slice(4, 6).join(""),
+        hex.slice(6, 8).join(""),
+        hex.slice(8, 10).join(""),
+        hex.slice(10, 16).join("")
+      ].join("-");
+    }
+
+    async function createBookingRecord(payload) {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/${BOOKINGS_TABLE}`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
       });
 
-      card.classList.add("selected");
+      const responseText = await response.text();
+
+      if (!response.ok) {
+        throw new Error(`Supabase bookings HTTP ${response.status}: ${responseText}`);
+      }
+
+      if (!payload?.id) {
+        throw new Error("Brak identyfikatora rezerwacji po zapisie.");
+      }
+
+      if (!responseText.trim()) {
+        return { id: payload.id };
+      }
+
+      const rows = JSON.parse(responseText);
+      return Array.isArray(rows) ? rows[0] : rows;
     }
-  });
 
-  // 🔥 aktualizacja wszystkich totali
-  totalEls.forEach(el => {
-    el.textContent = total;
-  });
+    async function fetchSupabaseJsonWithFallback(basePath, selectQueries, label, extraQuery = "") {
+      let lastError = null;
 
-  // 🔥 aktualizacja wszystkich list
-  listEls.forEach(el => {
-    el.innerHTML = "";
+      for (const selectQuery of selectQueries) {
+        const response = await fetch(
+          `${basePath}?select=${selectQuery}${extraQuery}`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
 
-    items.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "item";
-      div.innerHTML = `
+        if (response.ok) {
+          return response.json();
+        }
+
+        const details = await response.text();
+        lastError = new Error(`${label} HTTP ${response.status}: ${details}`);
+      }
+
+      throw lastError || new Error(`Nie udało się pobrać danych: ${label}`);
+    }
+
+    function getServicePriceForSize(service, size) {
+      return getSizedNumber(service, "price_amount", size);
+    }
+
+    function getServiceDurationForSize(service, size) {
+      return getSizedNumber(service, "duration_minutes", size);
+    }
+
+    function getPackagePriceForSize(packageRow, size) {
+      return getSizedNumber(packageRow, "total_price_amount", size);
+    }
+
+    function getPackageItemsForRow(packageRow, servicesById, servicesBySlug) {
+      const sourceItems = Array.isArray(packageRow?.package_items) && packageRow.package_items.length
+        ? packageRow.package_items
+        : (cachedPackageItems || []).filter((item) => item?.package_id === packageRow?.id);
+
+      const activeItems = sourceItems
+        .map((item) => {
+          const service =
+            servicesById.get(item?.service_id) ||
+            item?.service ||
+            item?.services ||
+            item?.service_details ||
+            servicesBySlug.get(item?.service?.slug);
+
+          if (!service?.is_active) return null;
+          return { ...item, service };
+        })
+        .filter(Boolean)
+        .sort((a, b) => (a.item_order ?? 0) - (b.item_order ?? 0));
+
+      if (activeItems.length) {
+        return activeItems;
+      }
+
+      return (PACKAGE_SERVICE_SLUGS[packageRow?.slug] || [])
+        .map((slug, index) => {
+          const service = servicesBySlug.get(slug);
+          if (!service?.is_active) return null;
+          return { item_order: index + 1, service };
+        })
+        .filter(Boolean);
+    }
+
+    function updatePricingForSelectedCarSize() {
+      const { value: carSize } = getSelectedCarSize();
+      const servicesById = new Map(
+        cachedServices
+          .filter((service) => service?.id)
+          .map((service) => [service.id, service])
+      );
+      const servicesBySlug = new Map(
+        cachedServices
+          .filter((service) => service?.slug)
+          .map((service) => [service.slug, service])
+      );
+
+      cachedServices.forEach((service) => {
+        if (!service?.slug) return;
+
+        const card = document.getElementById(service.slug);
+        if (!card) return;
+
+        const price = getServicePriceForSize(service, carSize);
+        const duration = getServiceDurationForSize(service, carSize);
+        const input = card.querySelector('input[data-price]');
+        const priceEl = card.querySelector("[data-service-price]");
+        const durationEl = card.querySelector("[data-service-duration]");
+
+        if (input) {
+          input.dataset.price = String(price);
+          input.dataset.duration = String(duration);
+        }
+
+        if (priceEl) {
+          priceEl.textContent = `${formatMoneyAmount(price)}`;
+        }
+
+        if (durationEl) {
+          durationEl.textContent = duration > 0
+            ? `Czas: ${formatDuration(duration)}`
+            : "Czas ustalany indywidualnie";
+        }
+      });
+
+      cachedPackages.forEach((packageRow) => {
+        const packageId = String(packageRow?.slug || packageRow?.id || "");
+        if (!packageId) return;
+
+        const card = document.getElementById(packageId);
+        if (!card) return;
+
+        const price = getPackagePriceForSize(packageRow, carSize);
+        const displayItems = getPackageItemsForRow(packageRow, servicesById, servicesBySlug);
+        const computedDuration = displayItems.reduce(
+          (sum, item) => sum + getServiceDurationForSize(item?.service, carSize),
+          0
+        );
+        const duration = computedDuration || Number(packageRow?.total_duration_minutes ?? 0);
+        const input = card.querySelector('input[data-price]');
+        const priceEl = card.querySelector("[data-package-price]");
+        const durationEl = card.querySelector("[data-package-duration]");
+
+        if (input) {
+          input.dataset.price = String(price);
+          input.dataset.duration = String(duration);
+        }
+
+        if (priceEl) {
+          priceEl.textContent = `${formatMoneyAmount(price)}`;
+        }
+
+        if (durationEl) {
+          durationEl.textContent = `Czas: ${formatDuration(duration)}`;
+        }
+      });
+
+      syncCarSizeSelection();
+      update();
+    }
+
+    function selectWithFilter(basePath, selectQueries, label, extraQuery = "") {
+      return fetchSupabaseJsonWithFallback(basePath, selectQueries, label, extraQuery);
+    }
+
+    carSizeOptions.forEach((input) => {
+      input.addEventListener("change", () => {
+        syncCarSizeSelection();
+        updatePricingForSelectedCarSize();
+      });
+    });
+    syncCarSizeSelection();
+
+    function syncFloatingSidebarVisibility() {
+      if (!sidebar) return;
+
+      const hasItems = document.querySelectorAll('.card input[data-price]:checked').length > 0;
+      const shouldShow = hasItems && !isCheckoutVisible;
+
+      sidebar.classList.toggle("show", shouldShow);
+      sidebar.classList.toggle("is-hidden", hasItems && isCheckoutVisible);
+    }
+
+    if (checkoutForm && "IntersectionObserver" in window) {
+      const checkoutObserver = new IntersectionObserver(
+        ([entry]) => {
+          isCheckoutVisible = Boolean(entry?.isIntersecting);
+          syncFloatingSidebarVisibility();
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+      checkoutObserver.observe(checkoutForm);
+    }
+
+    // Konfiguracja Supabase do pobierania dostępnych dni.
+    // Jeśli Twoja tabela lub kolumny mają inne nazwy, zmień je tutaj.
+    const SUPABASE_URL = "https://dvaeypdoxkldomgewvyf.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2YWV5cGRveGtsZG9tZ2V3dnlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzNzkyNzgsImV4cCI6MjA5NDk1NTI3OH0.sbquV3e3NVXly4faRTM0l3MN2DQWk5Z7xpw6ByOsSdk";
+    const DAYS_TABLE = "workinghours";
+    const DAY_VALUE_COLUMN = "date";
+    const DAY_LABEL_COLUMN = "date";
+    const START_TIME_COLUMN = "start_time";
+    const END_TIME_COLUMN = "end_time";
+
+    function setDayOptions(message) {
+      if (!dzienSelect) return;
+
+      dzienSelect.innerHTML = "";
+
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = message;
+      dzienSelect.appendChild(option);
+    }
+
+    async function loadDaysFromSupabase() {
+      if (!dzienSelect) return;
+
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        setDayOptions("Uzupełnij klucz Supabase");
+        return;
+      }
+
+      setDayOptions("Wczytywanie...");
+
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${DAY_LABEL_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
+
+        const rows = await response.json();
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+          setDayOptions("Brak rekordów lub brak dostępu");
+          console.warn(
+            "Supabase zwrócił pustą tablicę. Jeśli rekordy istnieją, sprawdź RLS i politykę SELECT dla tabeli workinghours."
+          );
+          return;
+        }
+
+        dzienSelect.innerHTML = "";
+
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Wybierz dzień";
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        dzienSelect.appendChild(placeholder);
+
+        rows.forEach((row) => {
+          const value = row[DAY_VALUE_COLUMN] ?? row.value ?? row.nazwa ?? row.name ?? "";
+          const label = row[DAY_LABEL_COLUMN] ?? row.nazwa ?? row.name ?? row.value ?? value;
+
+          if (!value) return;
+
+          const option = document.createElement("option");
+          option.value = String(value);
+          option.textContent = String(label);
+          dzienSelect.appendChild(option);
+        });
+
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        setDayOptions("Błąd pobierania dni");
+      }
+    }
+
+    const dzienInput = document.getElementById("dzien");
+    const dayMonthEl = document.getElementById("day-month");
+    const dayGridEl = document.getElementById("day-grid");
+    const daySelectedEl = document.getElementById("day-selected");
+    const dayPrevBtn = document.getElementById("day-prev");
+    const dayNextBtn = document.getElementById("day-next");
+    const servicesRoot = document.getElementById("services-root");
+    const servicesCollapse = document.querySelector("details.services-collapse");
+
+    function syncServicesToggleMark() {
+      if (!servicesCollapse) return;
+
+      const mark = servicesCollapse.querySelector(".services-toggle-mark");
+      if (!mark) return;
+
+      mark.classList.toggle("arrow", !servicesCollapse.open);
+      mark.classList.toggle("line", servicesCollapse.open);
+    }
+
+    if (servicesCollapse) {
+      servicesCollapse.addEventListener("toggle", syncServicesToggleMark);
+      syncServicesToggleMark();
+    }
+
+    function syncCollapseToggleMark(collapse) {
+      if (!collapse) return;
+
+      const mark = collapse.querySelector(".services-toggle-mark");
+      if (!mark) return;
+
+      mark.classList.toggle("arrow", !collapse.open);
+      mark.classList.toggle("line", collapse.open);
+    }
+
+    const SERVICE_CATEGORIES_TABLE = "service_categories";
+    const SERVICES_TABLE = "services";
+    const PACKAGES_TABLE = "packages";
+    const PACKAGE_ITEMS_TABLE = "package_items";
+    const BOOKINGS_TABLE = "bookings";
+    const PACKAGE_SERVICE_SLUGS = {
+      basic: ["odkurzanie-wnetrza", "czyszczenie-plastikow"],
+      standard: ["mycie-zewnetrzne", "czyszczenie-plastikow", "odkurzanie-wnetrza"],
+      "standard-premium": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon"
+      ],
+      pranie: ["pranie-dywanikow-premium", "pranie-wszystkie-fotele", "pranie-podlokietnikow"],
+      "skora-premium": [
+        "impregnacja-skory",
+        "skora-czyszczenie-skory",
+        "skora-tylna-kanapa",
+        "skora-czyszczenie-podlokietnikow",
+        "skora-czyszczenie-boczkow-drzwi"
+      ],
+      "full-pakiet": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon",
+        "pranie-dywanikow-premium",
+        "pranie-wszystkie-fotele",
+        "pranie-podlokietnikow"
+      ],
+      "full-pakiet-skora": [
+        "mycie-zewnetrzne-premium",
+        "czyszczenie-plastikow-premium",
+        "odkurzanie-wnetrza",
+        "dressing-opon",
+        "pranie-dywanikow-premium",
+        "pranie-wszystkie-fotele",
+        "pranie-podlokietnikow",
+        "impregnacja-skory",
+        "skora-czyszczenie-skory",
+        "skora-tylna-kanapa",
+        "skora-czyszczenie-podlokietnikow",
+        "skora-czyszczenie-boczkow-drzwi"
+      ]
+    };
+
+    const monthNamesPl = [
+      "stycznia",
+      "lutego",
+      "marca",
+      "kwietnia",
+      "maja",
+      "czerwca",
+      "lipca",
+      "sierpnia",
+      "września",
+      "października",
+      "listopada",
+      "grudnia"
+    ];
+
+    let allowedDays = new Set();
+    let allowedDayList = [];
+    let selectedDay = "";
+    let visibleMonth = new Date();
+    visibleMonth.setDate(1);
+    visibleMonth.setHours(0, 0, 0, 0);
+
+    function getServiceInputs() {
+      return document.querySelectorAll('.card input[data-price]');
+    }
+
+    function getCardTitleHtml(card) {
+      return card?.querySelector(".card-top h3")?.innerHTML || card?.querySelector("h3")?.innerHTML || "";
+    }
+
+    function toggleCardSelection(card) {
+      if (!card) return;
+
+      const input = card.querySelector('input[data-price]');
+      if (!input) return;
+
+      if (input.type === "radio") {
+        const groupName = input.name;
+        const wasChecked = input.checked;
+
+        document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach((radio) => {
+          radio.checked = false;
+        });
+
+        input.checked = !wasChecked;
+      } else {
+        input.checked = !input.checked;
+      }
+
+      update();
+    }
+
+    function toggleCardCollapse(button) {
+      if (!button) return;
+
+      const card = button.closest(".card");
+      if (!card) return;
+
+      const targetId = button.getAttribute("aria-controls");
+      const collapse = targetId ? document.getElementById(targetId) : card.querySelector(".card-collapse");
+      if (!collapse) return;
+
+      const isOpen = !collapse.hasAttribute("hidden");
+      if (isOpen) {
+        collapse.setAttribute("hidden", "");
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = "Opis";
+      } else {
+        collapse.removeAttribute("hidden");
+        button.setAttribute("aria-expanded", "true");
+        button.textContent = "Zwiń";
+      }
+    }
+
+    function getServicePriceClass(service, category) {
+      const classList = new Set([
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
+
+      if (classList.has("dressing")) return "price-dressing";
+      if (classList.has("premium")) return "price-premium";
+      if (classList.has("pranie")) return "price-pranie";
+      if (classList.has("skora")) return "price-skora";
+
+      return "price-normal";
+    }
+
+    function getServiceCardClasses(service, category) {
+      const classes = new Set([
+        "card",
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
+
+      return [...classes].filter(Boolean).join(" ");
+    }
+
+    function getPackagePriceClass(packageRow) {
+      const classList = new Set([
+        ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
+      ]);
+
+      if (classList.has("full")) return "price-full";
+      if (classList.has("premium")) return "price-premium";
+      if (classList.has("pranie")) return "price-pranie";
+      if (classList.has("skora")) return "price-skora";
+
+      return "price-normal";
+    }
+
+    function getPackageCardClasses(packageRow) {
+      const classes = new Set([
+        "card",
+        ...(Array.isArray(packageRow?.css_classes) ? packageRow.css_classes : [])
+      ]);
+
+      return [...classes].filter(Boolean).join(" ");
+    }
+
+    function getPackageItemDotClass(service) {
+      const classList = new Set([
+        ...(Array.isArray(service?.css_classes) ? service.css_classes : [])
+      ]);
+
+      if (classList.has("dressing")) return "dot-dressing";
+      if (classList.has("skora")) return "dot-skora";
+      if (classList.has("pranie")) return "dot-pranie";
+      if (classList.has("premium")) return "dot-premium";
+
+      return "dot";
+    }
+
+    function getAccentClass(source) {
+      const classList = new Set([
+        ...(Array.isArray(source?.css_classes) ? source.css_classes : [])
+      ]);
+
+      if (classList.has("dressing")) return "dressing";
+      if (classList.has("full")) return "full";
+      if (classList.has("premium")) return "premium";
+      if (classList.has("pranie")) return "pranie";
+      if (classList.has("skora")) return "skora";
+      if (classList.has("normal")) return "normal";
+
+      return "normal";
+    }
+
+    function getCardButtonClass(source) {
+      return `add-to-cart add-to-cart--${getAccentClass(source)}`;
+    }
+
+    function getCardButtonHtml(isSelected = false) {
+      return `
+    <span class="add-to-cart__label">${isSelected ? "W koszyku" : "Dodaj do koszyka"}</span>
+  `;
+    }
+
+    function formatDuration(minutes) {
+      const totalMinutes = Number(minutes ?? 0);
+
+      if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) {
+        return "0 min";
+      }
+
+      if (totalMinutes <= 60) {
+        return `${totalMinutes} min`;
+      }
+
+      const hours = Math.floor(totalMinutes / 60);
+      const mins = totalMinutes % 60;
+      return `${hours}:${String(mins).padStart(2, "0")}`;
+    }
+
+    function renderPackages(packages, packageItems, services) {
+      if (!packagesRoot) return;
+
+      if (!Array.isArray(packages) || !Array.isArray(packageItems) || !Array.isArray(services)) {
+        packagesRoot.innerHTML = '<div class="note">Nie udało się wczytać pakietów z bazy.</div>';
+        return;
+      }
+
+      const selectedCarSize = getSelectedCarSize().value;
+
+      const servicesById = new Map(
+        services
+          .filter((service) => service?.id)
+          .map((service) => [service.id, service])
+      );
+
+      const servicesBySlug = new Map(
+        services
+          .filter((service) => service?.slug)
+          .map((service) => [service.slug, service])
+      );
+
+      const cardsHtml = packages
+        .slice()
+        .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0))
+        .map((packageRow) => {
+          if (!packageRow?.is_active) return "";
+
+          const displayItems = getPackageItemsForRow(packageRow, servicesById, servicesBySlug);
+
+          const cardClasses = getPackageCardClasses(packageRow);
+          const priceClass = getPackagePriceClass(packageRow);
+          const buttonClass = getCardButtonClass(packageRow);
+          const packageId = String(packageRow.slug || packageRow.id || "");
+          const priceValue = getPackagePriceForSize(packageRow, selectedCarSize);
+          const priceText = `${formatMoneyAmount(priceValue)}`;
+          const computedDurationMinutes = displayItems.reduce(
+            (sum, item) => sum + getServiceDurationForSize(item?.service, selectedCarSize),
+            0
+          );
+          const totalDurationMinutes = computedDurationMinutes || Number(packageRow.total_duration_minutes ?? 0);
+          const durationText = `Czas: ${formatDuration(totalDurationMinutes)}`;
+
+          const itemsHtml = displayItems.length
+            ? displayItems
+              .map(({ service }) => {
+                const serviceSlug = String(service.slug || "");
+                const dotClass = getPackageItemDotClass(service);
+                const labelHtml = service.name_html || "";
+                const href = serviceSlug ? `#${serviceSlug}` : "#";
+                const onclick = serviceSlug ? ` onclick=\"highlightCard('${serviceSlug}')\"` : "";
+
+                return `
+                <a href="${href}"${onclick}>
+                  <li>
+                    <div class="${dotClass}"></div>
+                    ${labelHtml.includes("<span") || labelHtml.includes("<div")
+                    ? `<div>${labelHtml}</div>`
+                    : labelHtml}
+                  </li>
+                </a>
+              `;
+              })
+              .join("")
+            : `
+          <li class="note note-reset">
+            Brak aktywnych usług w tym pakiecie
+          </li>
+        `;
+
+          return `
+        <div class="${cardClasses}" id="${packageId}">
+          <input type="radio" name="pakiet" value="${packageRow.slug || packageId}" hidden data-price="${priceValue}" data-duration="${totalDurationMinutes}">
+          <div class="card-top">
+            <h3>${packageRow.name_html || ""}</h3>
+            <div class="${priceClass}" data-package-price>${priceText}</div>
+          </div>
+          <div class="card-top card-top--compact">
+            <div class="package-duration" data-package-duration>${durationText}</div>
+   <button type="button" class="card-collapse-toggle card-collapse-toggle--${getAccentClass(packageRow)}" data-toggle-collapse aria-expanded="false" aria-controls="collapse-${packageId}">Opis</button>
+          </div>
+          <div class="card-collapse" id="collapse-${packageId}" hidden>
+            <p>${packageRow.description_html || ""}</p>
+            <ul class="package-list">
+              ${itemsHtml}
+            </ul>
+          </div>
+  <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
+        </div>
+      `;
+        })
+        .filter(Boolean)
+        .join("");
+
+      packagesRoot.innerHTML = cardsHtml
+        ? `<div class="grid">${cardsHtml}</div>`
+        : '<div class="note">Brak aktywnych pakietów do wyświetlenia.</div>';
+    }
+
+    function renderServices(categories, services) {
+      if (!servicesRoot) return;
+
+      if (!Array.isArray(categories) || !Array.isArray(services)) {
+        servicesRoot.innerHTML = '<div class="note">Nie udało się wczytać usług z bazy.</div>';
+        return;
+      }
+
+      const servicesByCategory = new Map();
+
+      services.forEach((service) => {
+        if (!service?.category_id) return;
+
+        if (!servicesByCategory.has(service.category_id)) {
+          servicesByCategory.set(service.category_id, []);
+        }
+
+        servicesByCategory.get(service.category_id).push(service);
+      });
+
+      const html = categories
+        .map((category) => {
+          const categoryServices = (servicesByCategory.get(category.id) || []).sort(
+            (a, b) => (a.display_order ?? 0) - (b.display_order ?? 0)
+          );
+
+          if (!categoryServices.length) return "";
+
+          const selectedCarSize = getSelectedCarSize().value;
+
+          const headerClass = Array.isArray(category.css_classes) && category.css_classes.length
+            ? category.css_classes.join(" ")
+            : "podpunkt-header";
+
+          const cards = categoryServices
+            .map((service) => {
+              const cardClasses = getServiceCardClasses(service, category);
+              const priceClass = getServicePriceClass(service, category);
+              const buttonClass = getCardButtonClass(service);
+              const id = String(service.slug || "");
+              const durationMinutes = getServiceDurationForSize(service, selectedCarSize);
+              const priceAmount = getServicePriceForSize(service, selectedCarSize);
+              const durationText = durationMinutes > 0 ? `Czas: ${formatDuration(durationMinutes)}` : "Czas ustalany indywidualnie";
+              const priceText = `${formatMoneyAmount(priceAmount)}`;
+
+              return `
+            <div class="${cardClasses}" id="${id}">
+              <input type="checkbox" value="${id}" data-price="${priceAmount}" data-duration="${durationMinutes}" hidden>
+              <div class="card-top">
+                <h3>${service.name_html || ""}</h3>
+                <div class="${priceClass}" data-service-price>${priceText}</div>
+              </div>
+              <div class="card-top card-top--compact">
+                <div class="service-duration" data-service-duration>${durationText}</div>
+              </div>
+              <div class="card-collapse">
+                <p>${service.description_html || ""}</p>
+              </div>
+   <button type="button" class="${buttonClass}" data-toggle-cart>${getCardButtonHtml(false)}</button>
+            </div>
+          `;
+            })
+            .join("");
+
+          return `
+        <details class="service-category-collapse">
+          <summary class="podpunkt service-category-collapse__summary">
+            <div class="services-toggle-mark arrow" aria-hidden="true"></div>
+            <h3 class="${headerClass}">
+              ${category.name_html || ""}
+            </h3>
+            <div class="podpunkt-linia"></div>
+          </summary>
+          <div class="service-category-collapse__content">
+            <div class="grid">
+              ${cards}
+            </div>
+          </div>
+        </details>
+      `;
+        })
+        .join("");
+
+      servicesRoot.innerHTML = html || '<div class="note">Brak aktywnych kategorii i usług do wyświetlenia.</div>';
+      servicesRoot.querySelectorAll(".service-category-collapse").forEach(syncCollapseToggleMark);
+    }
+
+    async function loadServicesFromSupabase() {
+      if (!servicesRoot && !packagesRoot) return;
+
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
+        if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Uzupełnij klucz Supabase</div>';
+        return;
+      }
+
+      if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Wczytywanie usług...</div>';
+      if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Wczytywanie pakietów...</div>';
+
+      try {
+        const [categories, services, packages, packageItems] = await Promise.all([
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${SERVICE_CATEGORIES_TABLE}`,
+            ["id,slug,name_html,display_order,css_classes"],
+            "Supabase categories",
+            "&is_active=eq.true&order=display_order.asc"
+          ),
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${SERVICES_TABLE}`,
+            [
+              "id,category_id,slug,name_html,description_html,price_amount_small,price_amount_medium,price_amount_large,duration_minutes_small,duration_minutes_medium,duration_minutes_large,display_order,css_classes",
+              "id,category_id,slug,name_html,description_html,display_order,css_classes"
+            ],
+            "Supabase services",
+            "&is_active=eq.true&order=display_order.asc"
+          ),
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${PACKAGES_TABLE}`,
+            [
+              "id,slug,name_html,description_html,display_order,css_classes,total_price_amount_small,total_price_amount_medium,total_price_amount_large,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active,price_amount_small,price_amount_medium,price_amount_large,duration_minutes_small,duration_minutes_medium,duration_minutes_large))",
+              "id,slug,name_html,description_html,display_order,css_classes,is_active,package_items(item_order,service:services(id,slug,name_html,css_classes,is_active))"
+            ],
+            "Supabase packages",
+            "&is_active=eq.true&order=display_order.asc"
+          ),
+          fetchSupabaseJsonWithFallback(
+            `${SUPABASE_URL}/rest/v1/${PACKAGE_ITEMS_TABLE}`,
+            ["package_id,service_id,item_order"],
+            "Supabase package items",
+            "&order=package_id.asc,item_order.asc"
+          )
+        ]);
+
+        cachedServiceCategories = Array.isArray(categories) ? categories : [];
+        cachedServices = Array.isArray(services) ? services : [];
+        cachedPackages = Array.isArray(packages) ? packages : [];
+        cachedPackageItems = Array.isArray(packageItems) ? packageItems : [];
+
+        renderServices(
+          cachedServiceCategories,
+          cachedServices
+        );
+
+        renderPackages(
+          cachedPackages,
+          cachedPackageItems,
+          cachedServices
+        );
+
+        updatePricingForSelectedCarSize();
+      } catch (error) {
+        console.error("Nie udało się pobrać usług z Supabase:", error);
+        if (servicesRoot) servicesRoot.innerHTML = '<div class="note">Błąd pobierania usług z bazy.</div>';
+        if (packagesRoot) packagesRoot.innerHTML = '<div class="note">Błąd pobierania pakietów z bazy.</div>';
+      }
+    }
+
+    function toDateKey(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseDateKey(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function startOfMonth(date) {
+      return new Date(date.getFullYear(), date.getMonth(), 1);
+    }
+
+    function sameMonth(a, b) {
+      return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+    }
+
+    function updateSelectedDay(value) {
+      selectedDay = value;
+
+      if (dzienInput) {
+        dzienInput.value = value;
+      }
+
+      if (daySelectedEl) {
+        daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+      }
+    }
+
+    function renderCalendar() {
+      if (!dayMonthEl || !dayGridEl) return;
+
+      if (!allowedDayList.length) {
+        dayMonthEl.textContent = "Brak dostępnych dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Brak rekordów lub brak dostępu.</div>';
+        if (dayPrevBtn) dayPrevBtn.disabled = true;
+        if (dayNextBtn) dayNextBtn.disabled = true;
+        updateSelectedDay("");
+        return;
+      }
+
+      const minMonth = startOfMonth(parseDateKey(allowedDayList[0]));
+      const maxMonth = startOfMonth(parseDateKey(allowedDayList[allowedDayList.length - 1]));
+
+      if (visibleMonth < minMonth) visibleMonth = new Date(minMonth);
+      if (visibleMonth > maxMonth) visibleMonth = new Date(maxMonth);
+
+      dayMonthEl.textContent = `${monthNamesPl[visibleMonth.getMonth()]} ${visibleMonth.getFullYear()}`;
+
+      if (dayPrevBtn) dayPrevBtn.disabled = sameMonth(visibleMonth, minMonth);
+      if (dayNextBtn) dayNextBtn.disabled = sameMonth(visibleMonth, maxMonth);
+
+      const firstDay = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), 1);
+      const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
+      const offset = (firstDay.getDay() + 6) % 7;
+      const cells = [];
+
+      for (let i = 0; i < offset; i += 1) {
+        cells.push('<div class="day-picker__cell day-picker__cell--empty"></div>');
+      }
+
+      for (let day = 1; day <= daysInMonth; day += 1) {
+        const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
+        const key = toDateKey(date);
+        const isAllowed = allowedDays.has(key);
+        const isSelected = key === selectedDay;
+
+        if (isAllowed) {
+          cells.push(
+            `<button type="button" class="day-picker__day${isSelected ? " is-selected" : ""}" data-date="${key}" aria-pressed="${isSelected}">${day}</button>`
+          );
+        } else {
+          cells.push(
+            `<button type="button" class="day-picker__day is-disabled" disabled aria-disabled="true">${day}</button>`
+          );
+        }
+      }
+
+      dayGridEl.innerHTML = cells.join("");
+
+      dayGridEl.querySelectorAll("[data-date]").forEach((button) => {
+        button.addEventListener("click", () => {
+          updateSelectedDay(button.dataset.date);
+          renderCalendar();
+        });
+      });
+    }
+
+    function moveMonth(step) {
+      visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + step, 1);
+      renderCalendar();
+    }
+
+    if (dayPrevBtn) {
+      dayPrevBtn.addEventListener("click", () => moveMonth(-1));
+    }
+
+    if (dayNextBtn) {
+      dayNextBtn.addEventListener("click", () => moveMonth(1));
+    }
+
+    async function loadDaysFromSupabase() {
+      if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+        return;
+      }
+
+      dayMonthEl.textContent = "Wczytywanie...";
+      dayGridEl.innerHTML = "";
+
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN}&order=${DAY_VALUE_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
+
+        const rows = await response.json();
+
+        const dates = Array.isArray(rows)
+          ? rows
+            .map((row) => String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim())
+            .filter(Boolean)
+          : [];
+
+        allowedDayList = dates;
+        allowedDays = new Set(dates);
+
+        if (!allowedDayList.length) {
+          dayMonthEl.textContent = "Brak dostępnych dni";
+          dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych dat.</div>';
+          updateSelectedDay("");
+          return;
+        }
+
+        const todayKey = toDateKey(new Date());
+        const initialKey = allowedDays.has(todayKey) ? todayKey : allowedDayList[0];
+        visibleMonth = startOfMonth(parseDateKey(initialKey));
+        updateSelectedDay(allowedDays.has(todayKey) ? todayKey : "");
+        renderCalendar();
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        dayMonthEl.textContent = "Błąd pobierania dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+      }
+    }
+
+    const godzinaInput = document.getElementById("godzina");
+    const timeSelectedEl = document.getElementById("time-selected");
+
+    let availabilityByDate = new Map();
+    let allowedTimesForSelectedDay = [];
+    let selectedTime = "";
+
+    function formatTime(value) {
+      return String(value || "").slice(0, 5);
+    }
+
+    function timeToMinutes(value) {
+      const [hours, minutes] = String(value || "0:0").slice(0, 5).split(":").map(Number);
+      return (hours * 60) + minutes;
+    }
+
+    function minutesToTime(totalMinutes) {
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    }
+
+    function roundUpToStep(minutes, step) {
+      return Math.ceil(minutes / step) * step;
+    }
+
+    function setTimeSelection(value, label) {
+      selectedTime = value;
+
+      if (godzinaInput) {
+        godzinaInput.value = value;
+      }
+
+      if (timeSelectedEl) {
+        timeSelectedEl.textContent = label ? `Wybrano godzinę: ${label}` : "Nie wybrano godziny";
+      }
+    }
+
+    function updateTimePickerBounds() {
+      if (!godzinaInput) return;
+
+      if (!selectedDay) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Wybierz dzień z kalendarza</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dzień z kalendarza, aby zobaczyć dostępne godziny";
+        return;
+      }
+
+      const slots = availabilityByDate.get(selectedDay) || [];
+
+      if (!slots.length) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Brak godzin dla wybranego dnia</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin dla wybranego dnia";
+        allowedTimesForSelectedDay = [];
+        return;
+      }
+
+      const slotDuration = 30;
+      const timeOptions = [];
+
+      slots.forEach((slot) => {
+        const startMinutes = timeToMinutes(slot.start_time);
+        const endMinutes = timeToMinutes(slot.end_time);
+
+        if (Number.isNaN(startMinutes) || Number.isNaN(endMinutes) || endMinutes <= startMinutes) {
+          return;
+        }
+
+        const firstStart = roundUpToStep(startMinutes, slotDuration);
+        const lastStart = endMinutes - slotDuration;
+
+        for (let minutes = firstStart; minutes <= lastStart; minutes += slotDuration) {
+          timeOptions.push(minutesToTime(minutes));
+        }
+      });
+
+      allowedTimesForSelectedDay = [...new Set(timeOptions)];
+
+      if (!allowedTimesForSelectedDay.length) {
+        godzinaInput.disabled = true;
+        godzinaInput.value = "";
+        selectedTime = "";
+        godzinaInput.innerHTML = '<option value="">Brak półgodzinnych slotów w wybranym dniu</option>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Brak półgodzinnych slotów w wybranym dniu";
+        return;
+      }
+
+      godzinaInput.disabled = false;
+      godzinaInput.innerHTML = [
+        '<option value="">Wybierz godzinę</option>',
+        ...allowedTimesForSelectedDay.map((time) => `<option value="${time}">${time}</option>`)
+      ].join("");
+
+      const currentValue = godzinaInput.value;
+      if (currentValue && !allowedTimesForSelectedDay.includes(currentValue)) {
+        godzinaInput.value = "";
+        setTimeSelection("", "");
+      }
+
+      if (!godzinaInput.value) {
+        if (timeSelectedEl) timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+      } else {
+        setTimeSelection(godzinaInput.value, godzinaInput.value);
+      }
+    }
+
+    if (godzinaInput) {
+      godzinaInput.addEventListener("change", () => {
+        const value = godzinaInput.value;
+
+        if (!value || !allowedTimesForSelectedDay.includes(value)) {
+          setTimeSelection("", "");
+          if (timeSelectedEl) {
+            timeSelectedEl.textContent = "Wybierz dostępny start co 30 minut";
+          }
+          return;
+        }
+
+        setTimeSelection(value, value);
+      });
+    }
+
+    function updateSelectedDay(value) {
+      selectedDay = value;
+
+      if (dzienInput) {
+        dzienInput.value = value;
+      }
+
+      if (daySelectedEl) {
+        daySelectedEl.textContent = value ? `Wybrano: ${value}` : "Wybierz dzień z kalendarza";
+      }
+
+      setTimeSelection("", "");
+      updateTimePickerBounds();
+    }
+
+    async function loadDaysFromSupabase() {
+      if (!dzienInput || !dayMonthEl || !dayGridEl) return;
+
+      if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes("WSTAW_TUTAJ")) {
+        dayMonthEl.textContent = "Uzupełnij klucz Supabase";
+        return;
+      }
+
+      const todayKey = toDateKey(new Date());
+      dayMonthEl.textContent = "Wczytywanie...";
+      dayGridEl.innerHTML = "";
+
+      if (timeSelectedEl) {
+        timeSelectedEl.textContent = "Wczytywanie godzin...";
+      }
+
+      try {
+        const response = await fetch(
+          `${SUPABASE_URL}/rest/v1/${DAYS_TABLE}?select=${DAY_VALUE_COLUMN},${START_TIME_COLUMN},${END_TIME_COLUMN}&${DAY_VALUE_COLUMN}=gte.${todayKey}&order=${DAY_VALUE_COLUMN}.asc&order=${START_TIME_COLUMN}.asc`,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              Accept: "application/json"
+            }
+          }
+        );
+
+        if (!response.ok) {
+          const details = await response.text();
+          throw new Error(`Supabase HTTP ${response.status}: ${details}`);
+        }
+
+        const rows = await response.json();
+
+        const normalizedRows = Array.isArray(rows)
+          ? rows
+            .map((row) => ({
+              date: String(row?.[DAY_VALUE_COLUMN] ?? row?.date ?? "").trim(),
+              start_time: String(row?.[START_TIME_COLUMN] ?? row?.start_time ?? "").trim(),
+              end_time: String(row?.[END_TIME_COLUMN] ?? row?.end_time ?? "").trim()
+            }))
+            .filter((row) => row.date)
+          : [];
+
+        if (!normalizedRows.length) {
+          allowedDays = new Set();
+          allowedDayList = [];
+          availabilityByDate = new Map();
+          dayMonthEl.textContent = "Brak dostępnych dni";
+          dayGridEl.innerHTML = '<div class="day-picker__empty">Tabela nie zwróciła żadnych przyszłych dat.</div>';
+          if (timeSelectedEl) timeSelectedEl.textContent = "Brak godzin do wyświetlenia.";
+          updateSelectedDay("");
+          return;
+        }
+
+        availabilityByDate = new Map();
+        normalizedRows.forEach((row) => {
+          if (!availabilityByDate.has(row.date)) {
+            availabilityByDate.set(row.date, []);
+          }
+
+          if (row.start_time && row.end_time) {
+            availabilityByDate.get(row.date).push(row);
+          }
+        });
+
+        allowedDayList = [...new Set(normalizedRows.map((row) => row.date))].sort();
+        allowedDays = new Set(allowedDayList);
+
+        const initialKey = allowedDayList[0];
+        visibleMonth = startOfMonth(parseDateKey(initialKey));
+        updateSelectedDay(initialKey);
+        renderCalendar();
+      } catch (error) {
+        console.error("Nie udało się pobrać dni z Supabase:", error);
+        dayMonthEl.textContent = "Błąd pobierania dni";
+        dayGridEl.innerHTML = '<div class="day-picker__empty">Nie udało się pobrać danych z bazy.</div>';
+        if (timeSelectedEl) timeSelectedEl.textContent = "Nie udało się pobrać godzin.";
+      }
+    }
+
+    // aktualizacja koszyka
+    function update() {
+      let total = 0;
+      let totalMinutes = 0;
+      let items = [];
+
+      // reset zaznaczeń kart
+      document.querySelectorAll(".card").forEach(card => {
+        card.classList.remove("selected");
+      });
+
+      getServiceInputs().forEach(input => {
+        const card = input.closest(".card");
+        const price = Number(input.dataset.price) || 0;
+        const duration = Number(input.dataset.duration) || 0;
+
+        if (!card) return;
+        const itemName = getCardTitleHtml(card) || input.value;
+        const toggleButton = card.querySelector("[data-toggle-cart]");
+        const isSelected = input.checked;
+
+        // RADIO (pakiety)
+        if (input.type === "radio" && input.checked) {
+          total += price;
+          totalMinutes += duration;
+
+          items.push({
+            name: itemName,
+            price,
+            value: input.value,
+            type: input.type
+          });
+
+          card.classList.add("selected");
+        }
+
+        // CHECKBOX (usługi)
+        if (input.type === "checkbox" && input.checked) {
+          total += price;
+          totalMinutes += duration;
+
+          items.push({
+            name: itemName,
+            price,
+            value: input.value,
+            type: input.type
+          });
+
+          card.classList.add("selected");
+        }
+
+        if (toggleButton) {
+          toggleButton.innerHTML = getCardButtonHtml(isSelected);
+          toggleButton.classList.toggle("is-selected", isSelected);
+          toggleButton.setAttribute("aria-pressed", String(isSelected));
+        }
+      });
+
+      // 🔥 aktualizacja wszystkich totali
+      totalEls.forEach(el => {
+        el.textContent = total;
+      });
+
+      timeTotalEls.forEach(el => {
+        el.textContent = formatDuration(totalMinutes);
+      });
+
+      // 🔥 aktualizacja wszystkich list
+      const listHtml = items.map((item) => `
+    <div class="item" data-cart-value="${item.value}" data-cart-type="${item.type}">
+      <div class="item-main">
         <span>${item.name}</span>
         <span>${item.price}zł</span>
-      `;
-      el.appendChild(div);
+      </div>
+      <button type="button" class="item-remove" data-remove-cart-item aria-label="Usuń z koszyka">Usuń</button>
+    </div>
+  `).join("");
+
+      listEls.forEach(el => {
+        el.innerHTML = listHtml;
+      });
+
+      // pokaz / ukryj sidebar
+      syncFloatingSidebarVisibility();
+    }
+
+    // nasłuchiwanie zmian
+    document.addEventListener("change", (event) => {
+      if (event.target.matches('.card input[data-price]')) {
+        update();
+      }
     });
-  });
 
-  // pokaz / ukryj sidebar
-  if (items.length > 0) {
-    sidebar.classList.add("show");
-  } else {
-    sidebar.classList.remove("show");
-  }
-}
+    document.addEventListener("toggle", (event) => {
+      if (event.target.matches(".service-category-collapse")) {
+        syncCollapseToggleMark(event.target);
+      }
+    }, true);
 
-// nasłuchiwanie zmian
-serviceInputs.forEach(input => {
-  input.addEventListener("change", update);
-});
+    document.addEventListener("click", (event) => {
+      const collapseButton = event.target.closest("[data-toggle-collapse]");
+      if (collapseButton) {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleCardCollapse(collapseButton);
+        return;
+      }
 
-// przycisk -> scroll do formularza
-const sidebarBtn = sidebar.querySelector("button");
+      const removeButton = event.target.closest("[data-remove-cart-item]");
+      if (removeButton) {
+        const cartItem = removeButton.closest(".item");
+        const value = cartItem?.dataset.cartValue;
+        const type = cartItem?.dataset.cartType;
+        const input = [...document.querySelectorAll('.card input[data-price]')].find((candidate) => (
+          candidate.type === type &&
+          candidate.value === value &&
+          candidate.checked
+        ));
 
-sidebarBtn.addEventListener("click", () => {
-  document.querySelector("form").scrollIntoView({
-    behavior: "smooth"
-  });
-});
+        if (input) {
+          input.checked = false;
+          update();
+        }
+        return;
+      }
 
-// czyszczenie koszyka
-document.getElementById("clear-cart").addEventListener("click", () => {
-  serviceInputs.forEach(input => {
-    input.checked = false;
-  });
+      const button = event.target.closest("[data-toggle-cart]");
+      if (!button) return;
 
-  update();
-});
+      event.preventDefault();
+      event.stopPropagation();
 
-// start
-update();
+      const card = button.closest(".card");
+      toggleCardSelection(card);
+    });
 
-function goPay(event) {
-  event.preventDefault();
+    // przycisk -> scroll do formularza
+    const sidebarBtn = sidebar.querySelector("button");
 
-  const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
-  const phone = document.getElementById("phone");
-  const email = document.getElementById("email");
+    sidebarBtn.addEventListener("click", () => {
+      document.querySelector("form").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
 
-  // WYBRANE USŁUGI
-  const checkedServices = document.querySelectorAll(
-    '.card input[data-price]:checked'
-  );
+    // czyszczenie koszyka
+    document.getElementById("clear-cart").addEventListener("click", () => {
+      getServiceInputs().forEach(input => {
+        input.checked = false;
+      });
 
-  // CHECKBOX UMOWY
-  const agreement = document.querySelector(
-    '.zapoznanie input[type="checkbox"]'
-  );
+      update();
+    });
 
-  // Czyści stare błędy
-  document.querySelectorAll(".error").forEach(el => el.remove());
+    // start
+    loadServicesFromSupabase();
+    loadDaysFromSupabase();
 
-  let valid = true;
+    async function goPay(event) {
+      event.preventDefault();
 
-  function showError(input, message) {
-    const error = document.createElement("div");
+      const firstName = document.getElementById("firstName");
+      const lastName = document.getElementById("lastName");
+      const phone = document.getElementById("phone");
+      const email = document.getElementById("email");
+      const carModel = document.getElementById("carModel");
+      const dayValue = document.getElementById("dzien");
+      const timeValue = document.getElementById("godzina");
 
-    error.className = "error";
+      // WYBRANE USŁUGI
+      const checkedCartItems = document.querySelectorAll('.card input[data-price]:checked');
 
-    error.innerText = message;
+      // CHECKBOX UMOWY
+      const agreement = document.querySelector(
+        '.zapoznanie input[type="checkbox"]'
+      );
 
-    input.parentElement.appendChild(error);
+      // Czyści stare błędy
+      document.querySelectorAll(".error").forEach(el => el.remove());
 
-    valid = false;
-  }
+      let valid = true;
 
-  // Imię
-  if (firstName.value.trim().length < 2) {
-    showError(firstName, "Wpisz poprawne imię");
-  }
+      function showError(input, message) {
+        const error = document.createElement("div");
 
-  // Nazwisko
-  if (lastName.value.trim().length < 2) {
-    showError(lastName, "Wpisz poprawne nazwisko");
-  }
+        error.className = "error";
 
-  // Telefon
-  const phoneRegex = /^[0-9]{9}$/;
+        error.innerText = message;
 
-  if (!phoneRegex.test(phone.value.trim())) {
-    showError(phone, "Numer musi mieć 9 cyfr");
-  }
+        input.parentElement.appendChild(error);
 
-  // Email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        valid = false;
+      }
 
-  if (!emailRegex.test(email.value.trim())) {
-    showError(email, "Wpisz poprawny e-mail");
-  }
+      // Imię
+      if (firstName.value.trim().length < 2) {
+        showError(firstName, "Wpisz poprawne imię");
+      }
 
-  // CZY WYBRANO USŁUGĘ
-  if (checkedServices.length === 0) {
+      // Nazwisko
+      if (lastName.value.trim().length < 2) {
+        showError(lastName, "Wpisz poprawne nazwisko");
+      }
 
-    const error = document.createElement("div");
+      // Telefon
+      const phoneRegex = /^[0-9]{9}$/;
 
-    error.className = "error";
+      if (!phoneRegex.test(phone.value.trim())) {
+        showError(phone, "Numer musi mieć 9 cyfr");
+      }
 
-    error.innerText = "Wybierz przynajmniej jedną usługę";
+      // Email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    document.getElementById("list").appendChild(error);
+      if (!emailRegex.test(email.value.trim())) {
+        showError(email, "Wpisz poprawny e-mail");
+      }
 
-    valid = false;
-  }
+      // Model auta
+      if (carModel.value.trim().length < 2) {
+        showError(carModel, "Wpisz model samochodu");
+      }
 
-  // CZY ZAAKCEPTOWANO UMOWĘ
-  if (!agreement.checked) {
+      // DZIEŃ
+      if (!dayValue.value || !allowedDays.has(dayValue.value)) {
+        showError(daySelectedEl, "Wybierz dostępny dzień z kalendarza");
+      }
 
-    const error = document.createElement("div");
+      // GODZINA
+      if (!timeValue.value || !selectedTime) {
+        showError(timeSelectedEl, "Wybierz dostępną godzinę");
+      }
 
-    error.className = "error";
+      // CZY WYBRANO USŁUGĘ
+      if (checkedCartItems.length === 0) {
 
-    error.innerText = "Musisz zaakceptować umowę";
+        const error = document.createElement("div");
 
-    agreement.parentElement.appendChild(error);
+        error.className = "error";
 
-    valid = false;
-  }
+        error.innerText = "Wybierz przynajmniej jedn� us�ug� lub pakiet";
 
-  // GOTOWE
-  if (valid) {
-    window.location.href = "pay.html";
-  }
-}
+        document.getElementById("list").appendChild(error);
+
+        valid = false;
+      }
+
+      // CZY ZAAKCEPTOWANO UMOWĘ
+      if (!agreement.checked) {
+
+        const error = document.createElement("div");
+
+        error.className = "error";
+
+        error.innerText = "Musisz zaakceptować umowę";
+
+        agreement.parentElement.appendChild(error);
+
+        valid = false;
+      }
+
+      // GOTOWE
+      if (valid) {
+        const carSize = getSelectedCarSize();
+        const selectedItems = Array.from(checkedCartItems).map((input) => {
+          const card = input.closest(".card");
+          return {
+            name: getCardTitleHtml(card) || input.value,
+            value: input.value,
+            type: input.type,
+            price: Number(input.dataset.price) || 0,
+            duration: Number(input.dataset.duration) || 0
+          };
+        });
+
+        const totalAmount = selectedItems.reduce((sum, item) => sum + Number(item.price || 0), 0);
+        const totalDurationMinutes = selectedItems.reduce((sum, item) => sum + Number(item.duration || 0), 0);
+        const bookingId = createBookingId();
+        const bookingPayload = {
+          id: bookingId,
+          first_name: firstName.value.trim(),
+          last_name: lastName.value.trim(),
+          phone: phone.value.trim(),
+          email: email.value.trim(),
+          car_model: carModel.value.trim(),
+          car_size: carSize.value,
+          booking_date: dayValue.value,
+          booking_time: timeValue.value,
+          selected_items: selectedItems,
+          total_amount: totalAmount,
+          total_duration_minutes: totalDurationMinutes,
+          is_paid: false
+        };
+
+        let bookingRecord;
+
+        try {
+          bookingRecord = await createBookingRecord(bookingPayload);
+        } catch (error) {
+          console.error("Nie udało się utworzyć rezerwacji:", error);
+
+          const errorBox = document.createElement("div");
+          errorBox.className = "error";
+          errorBox.innerText = "Nie udało się utworzyć rezerwacji. Spróbuj ponownie.";
+          document.querySelector(".submit-container")?.appendChild(errorBox);
+          return;
+        }
+
+        localStorage.setItem(
+          "booking",
+          JSON.stringify({
+            booking_id: bookingRecord?.id || null,
+            is_paid: false,
+            firstName: firstName.value.trim(),
+            lastName: lastName.value.trim(),
+            phone: phone.value.trim(),
+            email: email.value.trim(),
+            carModel: carModel.value.trim(),
+            carSize: carSize.value,
+            carSizeLabel: carSize.label,
+            day: dayValue.value,
+            time: timeValue.value,
+            totalAmount,
+            totalDurationMinutes,
+            items: selectedItems
+          })
+        );
+
+        window.location.href = `pay.html?booking_id=${encodeURIComponent(bookingRecord?.id || "")}`;
+      }
+    }
 
 
-</script>
+  </script>
 
 </body>
+
 </html>

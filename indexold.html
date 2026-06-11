@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Brothers Detailing</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="png" href="Img/icon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <a href="#pakiety">
+        <section class="hero">
+            <div class="container">
+
+                <h1>BROTHERS</h1>
+                <div class="logo-line"></div>
+                <h1 class="hero-detailing">DETAILING</h1>
+                <p>
+                    Strona służy jako cennik, zamawianie usług online dostępne w przyszłości.
+                </p><br>
+                <p class="arrow"></p><!--z dedykacją dla ulu-->
+            </div>
+        </section>
+    </a>
+
+    <section>
+
+
+        <section id="pakiety"><!--Pakiety-->
+            <div class="container">
+                <div class="section-title">
+                    <div class="line"></div>
+                    <h2>Pakiety</h2>
+                </div>
+
+
+
+
+                <div class="grid">
+
+                    <label class="card normal selectn">
+                        <input type="radio" name="pakiet" value="Basic" hidden data-price="110">
+
+                        <div class="card-top">
+                            <h3>Basic</h3>
+                            <div class="price-normal">od 110zł</div>
+                        </div>
+
+                        <p>
+                            Pakiet obejmuje odkurzanie wnętrza pojazdu oraz czyszcenie plastików, przywracające świeży
+                            wygląd
+                            i czystość całemu wnętrzu samochodu.
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+                                <li>
+                                    <div class="dot"></div>Odkurzanie wnętrza
+                                </li>
+                            </a>
+                            <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
+                                <li>
+                                    <div class="dot"></div>Czyszczenie Plastików
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card normal selectn">
+                        <input type="radio" name="pakiet" value="Standard" hidden data-price="205">
+                        <div class="card-top">
+                            <h3>Standard</h3>
+                            <div class="price-normal">od 205zł</div>
+                        </div>
+
+                        <p>
+                            Mycie zewnętrzne pojazdu, odkurzanie wnętrza oraz czyszcenie plastików, przywracające świeży
+                            wygląd
+                            i czystość całemu wnętrzu samochodu.
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#mycie-zewnetrzne" onclick="highlightCard('mycie-zewnetrzne')">
+                                <li>
+                                    <div class="dot"></div>Mycie Zewnętrzne
+                                </li>
+                            </a>
+                            <a href="#czyszczenie-plastikow" onclick="highlightCard('czyszczenie-plastikow')">
+                                <li>
+                                    <div class="dot"></div>Czyszczenie Plastików
+                                </li>
+                            </a>
+                            <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+                                <li>
+                                    <div class="dot"></div>Odkurzanie Wnętrza
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card premium selectpr">
+                        <input type="radio" name="pakiet" value="StandardP" hidden>
+                        <div class="card-top">
+                            <h3>Standard <span class="premium-text">PREMIUM</span></h3>
+                            <div class="price-premium">od 280zł</div>
+                        </div>
+
+                        <p>
+                            Mycie zewnętrzne pojazdu <span class="premium-text">z dokładnym czyszczeniem felg oraz
+                                opon</span>, <span class="dressing-text">aplikacją dressingu opon</span>, odkurzanie
+                            wnętrza oraz czyszczenie plastików <span class="premium-text">zakończone aplikacją
+                                QD</span>, przywracające świeży wygląd i czystość
+                            całemu wnętrzu samochodu.
+
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#czyszczenie-plastikow-premium"
+                                onclick="highlightCard('czyszczenie-plastikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Czyszcenie Plastików <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+                                <li>
+                                    <div class="dot"></div>Odkurzanie Wnętrza
+                                </li>
+                            </a>
+                            <a>
+                                <li>
+                                    <div class="dot-dressing"></div>Dressing Opon
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card pranie">
+                        <input type="radio" name="pakiet" value="Pranie" hidden>
+                        <div class="card-top">
+                            <h3>Pranie</h3>
+                            <div class="price-pranie">od 285zł</div>
+                        </div>
+
+                        <p>
+                            Pakiet obejmuje kompleksowe pranie tapicerki, foteli, dywaników oraz podłogi, usuwające
+                            zabrudzenia i nieprzyjemne zapachy, a także przywraca wnętrzu
+                            świeży i zadbany wygląd.
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#wszystkie-fotele" onclick="highlightCard('wszystkie-fotele')">
+                                <li>
+                                    <div class="dot-pranie"></div>Pranie Wszystkich Foteli
+                                </li>
+                            </a>
+                            <a href="#pranie-drzwi" onclick="highlightCard('pranie-drzwi')">
+                                <li>
+                                    <div class="dot-pranie"></div>Pranie Podłokietników
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card premium">
+                        <input type="radio" name="pakiet" value="SkoraP" hidden>
+                        <div class="card-top">
+                            <h3>Skóra <span class="premium-text">PREMIUM</span></h3>
+                            <div class="price-premium">od 435zł</div>
+                        </div>
+
+                        <p>
+                            Kompleksowe czyszczenie i pielęgnacja skórzanej tapicerki obejmujące dokładne usunięcie
+                            zabrudzeń, odtłuszczenie
+                            powierzchni, bezpieczne czyszczenie skóry <span class="premium-text"> oraz impregnację
+                                zabezpieczającą przed wysychaniem i pękaniem</span>,
+                            przywracając
+                            świeży wygląd i miękkość tapicerki.
+                        </p>
+
+                        <ul class="package-list">
+                            </a>
+                            <li>
+                                <div class="dot-premium"></div>Impregnacja Skóry
+                            </li>
+                            </a>
+                            <a href="#skora" onclick="highlightCard('skora')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Skóry
+                                </li>
+                            </a>
+                            <a href="#skora-kanapy" onclick="highlightCard('skora-kanapy')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Foteli I Kanapy
+                                </li>
+                            </a>
+                            <a href="#czyszcenie-podlokietnikow" onclick="highlightCard('czyszcenie-podlokietnikow')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Podłokietników
+                                </li>
+                            </a>
+                            <a href="#czyszcenie-boczkow-drzwi" onclick="highlightCard('czyszcenie-boczkow-drzwi')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Boczków Drzwi
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card full">
+                        <input type="radio" name="pakiet" value="FullPakiet" hidden>
+                        <div class="card-top">
+                            <h3>Full Pakiet</h3>
+                            <div class="price-full">od 505zł</div>
+                        </div>
+
+                        <p>
+                            Kompleksowe odświeżenie auta obejmujące dokładne czyszczenie wnętrza oraz mycie zewnętrzne.
+                            Pakiet stworzony dla osób, które chcą przywrócić samochodowi świeży, zadbany wygląd i
+                            czystość w każdym detalu.
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#czyszczenie-plastikow-premium"
+                                onclick="highlightCard('czyszczenie-plastikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+                                <li>
+                                    <div class="dot"></div>Odkurzanie Wnętrza
+                                </li>
+                            </a>
+                            <a>
+                                <li>
+                                    <div class="dot-dressing"></div>Dressing Opon
+                                </li>
+                            </a>
+                            <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#wszystkie-fotele" onclick="highlightCard('wszystkie-fotele')">
+                                <li>
+                                    <div class="dot-pranie"></div>Pranie Wszystkich Foteli
+                                </li>
+                            </a>
+                            <a href="#pranie-drzwi" onclick="highlightCard('pranie-drzwi')">
+                                <li>
+                                    <div class="dot-pranie"></div>Pranie Tapicerki Na Drzwiach
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                    <label class="card full">
+                        <input type="radio" name="pakiet" value="FullPakietSkora" hidden>
+                        <div class="card-top">
+                            <h3>Full Pakiet Skóra</h3>
+                            <div class="price-full">od 570zł</div>
+                        </div>
+
+                        <p>
+                            Kompletne odświeżenie samochodu stworzone dla osób, które chcą przywrócić autu świeżość,
+                            czystość i zadbany wygląd w każdym detalu. Usługa obejmuje kompleksową pielęgnację wnętrza
+                            oraz karoserii, dzięki czemu
+                            samochód prezentuje się estetycznie zarówno z zewnątrz, jak i w środku. Idealny wybór dla
+                            kierowców ceniących
+                            perfekcyjną czystość, komfort oraz efekt maksymalnie odświeżonego auta.
+                        </p>
+
+                        <ul class="package-list">
+                            <a href="#mycie-zewnetrzne-premium" onclick="highlightCard('mycie-zewnetrzne-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#czyszczenie-plastikow-premium"
+                                onclick="highlightCard('czyszczenie-plastikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a href="#odkurzanie-wnetrza" onclick="highlightCard('odkurzanie-wnetrza')">
+                                <li>
+                                    <div class="dot"></div>Odkurzanie Wnętrza
+                                </li>
+                            </a>
+                            <a>
+                                <li>
+                                    <div class="dot-dressing"></div>Dressing Opon
+                                </li>
+                            </a>
+                            <a href="#pranie-dywanikow-premium" onclick="highlightCard('pranie-dywanikow-premium')">
+                                <li>
+                                    <div class="dot-premium"></div>
+                                    <div>Pranie Dywaników <span class="premium-text">PREMIUM</span></div>
+                                </li>
+                            </a>
+                            <a>
+                                <li>
+                                    <div class="dot-premium"></div>Impregnacja Skóry
+                                </li>
+                            </a>
+                            <a href="#skora" onclick="highlightCard('skora')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Skóry
+                                </li>
+                            </a>
+                            <a href="#skora-kanapy" onclick="highlightCard('skora-kanapy')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Foteli I Kanapy
+                                </li>
+                            </a>
+                            <a href="#czyszcenie-podlokietnikow" onclick="highlightCard('czyszcenie-podlokietnikow')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Podłokietników
+                                </li>
+                            </a>
+                            <a href="#czyszcenie-boczkow-drzwi" onclick="highlightCard('czyszcenie-boczkow-drzwi')">
+                                <li>
+                                    <div class="dot-skora"></div>Czyszczenie Boczków Drzwi
+                                </li>
+                            </a>
+                        </ul>
+                    </label>
+
+                </div>
+        </section>
+
+        <section><!--Usługi-->
+            <div class="container">
+                <div class="section-title">
+                    <div class="line"></div>
+                    <h2>Usługi</h2>
+                </div>
+
+                <p class="note">
+                    Ceny usług są zależne od wielkości samochodu: miejskie, standardowe, kombi, SUV oraz VAN. Dokładna
+                    wycena
+                    ustalana jest indywidualnie.
+                </p>
+
+                <div class="podpunkt">
+                    <h3 class="podpunkt-header">
+                        Zewnętrzne
+                    </h3>
+                    <div class="podpunkt-linia"></div>
+                </div>
+
+                <div class="grid">
+
+                    <label class="card normal selectn" id="mycie-zewnetrzne">
+                        <input type="checkbox" value="Mycie Zewnątrz" data-price="105" hidden>
+                        <div class="card-top">
+                            <h3>Mycie Zewnętrzne</h3>
+                            <div class="price-normal">od 105zł</div>
+                        </div>
+                        <p>
+                            Dokładne usuwanie zabrudzeń po owadach oraz ręczne mycie aktywną pianą,
+                            wraz z czyszczeniem szyb, dla pełnego odświeżenia wyglądu
+                            auta.
+                        </p>
+                    </label>
+
+                    <label class="card premium" id="mycie-zewnetrzne-premium">
+                        <div class="card-top">
+                            <h3>Mycie Zewnętrzne <span class="premium-text">PREMIUM</span></h3>
+                            <div class="price-premium">od 160zł</div>
+                        </div>
+                        <p>
+                            Dokładne usuwanie zabrudzeń po owadach oraz ręczne mycie aktywną pianą,
+                            wraz z czyszczeniem szyb,<span class="premium-text"> dokładnym czyszczeniem felg
+                                oraz opon</span>, dla pełnego odświeżenia
+                            wyglądu
+                            auta.
+                        </p>
+                    </label>
+
+                </div><!--Grid-->
+
+                <div class="podpunkt">
+                    <h3 class="podpunkt-header">
+                        Wewnętrzne
+                    </h3>
+                    <div class="podpunkt-linia"></div>
+                </div>
+
+                <div class="grid">
+
+                    <label class="card normal" id="odkurzanie-wnetrza">
+                        <div class="card-top">
+                            <h3>Odkurzanie Wnętrza</h3>
+                            <div class="price price-normal">od 55zł</div>
+                        </div>
+                        <p>
+                            Dokładne odkurzenie dywaników, podłogi, foteli, wnęk drzwi oraz bagażnika, usuwające kurz,
+                            piasek i drobne
+                            zanieczyszczenia.
+                        </p>
+                    </label>
+
+
+                    <label class="card normal" id="czyszczenie-plastikow">
+                        <div class="card-top">
+                            <h3>Czyszczenie Plastików</h3>
+                            <div class="price price-normal">od 65zł</div>
+                        </div>
+                        <p>
+                            Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy,
+                            usuwające kurz i codzienne
+                            zanieczyszczenia.
+                        </p>
+                    </label>
+
+
+                    <label class="card premium" id="czyszczenie-plastikow-premium">
+                        <div class="card-top">
+                            <h3>Czyszczenie Plastików <span class="premium-text">PREMIUM</span></h3>
+                            <div class="price-premium">od 95zł</div>
+                        </div>
+                        <p>
+                            Dokładne czyszczenie kokpitu, boczków drzwi, progów oraz elementów wokół kierownicy,
+                            usuwające kurz i codzienne
+                            zanieczyszczenia, <span class="premium-text">zakończone aplikacją QD nadającego świeży
+                                wygląd i lekką warstwę
+                                ochronną.</span>
+                        </p>
+                    </label>
+
+                </div><!--Grid-->
+
+                <div class="podpunkt">
+                    <h3 class="podpunkt-header-pranie">
+                        Pranie
+                    </h3>
+                    <div class="podpunkt-linia"></div>
+                </div>
+
+                <div class="grid">
+
+                    <div class="card pranie giga">
+                        <div class="card-top">
+                            <h3>Pranie Foteli</h3>
+                        </div>
+                        <p>
+                            Dokładne pranie tapicerki foteli, usuwające zabrudzenia, plamy i nieprzyjemne zapachy,
+                            przywracające świeżość,
+                            czystość
+                            oraz estetyczny wygląd wnętrza.
+                        </p><br>
+                        <div class="container">
+                            <div class="grid-small">
+                                <label class="card pranie">
+                                    <h3>Pojedyńczy Fotel</h3>
+                                    <div class="price-pranie">40zł</div>
+                                </label>
+                                <label class="card pranie">
+                                    <h3>Komplet Przód</h3>
+                                    <div class="price-pranie">65zł</div>
+                                </label>
+                                <label class="card pranie">
+                                    <h3>Tylna Kanapa</h3>
+                                    <div class="price-pranie">od 85zł</div>
+                                </label>
+                                <label class="card pranie" id="wszystkie-fotele">
+                                    <h3>Wszytkie Fotele</h3>
+                                    <div class="price-pranie">od 140zł</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="card pranie" id="pranie-dywanikow">
+                        <div class="card-top">
+                            <h3>Pranie Dywaników</h3>
+                            <div class="price price-pranie">od 40zł</div>
+                        </div>
+                        <p>
+                            Dokładne pranie i odświeżenie dywaników samochodowych, usuwające brud, plamy oraz
+                            nieprzyjemne zapachy.
+                        </p>
+                    </label>
+
+                    <label class="card premium" id="pranie-dywanikow-premium">
+                        <div class="card-top">
+                            <h3>Pranie Dywaników <span class="premium-text">PREMIUM</span></h3>
+                            <div class="price price-premium">od 75zł</div>
+                        </div>
+                        <p>
+                            Dokładne pranie i odświeżenie dywaników samochodowych <span class="premium-text">oraz
+                                podłogi pod dywanikami</span>, usuwające brud, plamy oraz nieprzyjemne zapachy.
+                        </p>
+                    </label>
+
+                    <label class="card pranie" id="pranie-drzwi">
+                        <div class="card-top">
+                            <h3>Pranie Podłokietników</h3>
+                            <div class="price-pranie">od 55zł</div>
+                        </div>
+                        <p>
+                            Dokładne pranie materiałowych boczków drzwi, podłokietników usuwające zabrudzenia, plamy
+                            oraz odświeżające wnętrze samochodu.
+                        </p>
+                    </label>
+
+
+                </div><!--Grid-->
+
+                <div class="podpunkt">
+                    <h3 class="podpunkt-header-skora">
+                        Skóra
+                    </h3>
+                    <div class="podpunkt-linia"></div>
+                </div>
+
+                <div class="grid">
+
+                    <div class="card skora giga">
+                        <div class="card-top">
+                            <h3>Czyszczenie Foteli</h3>
+                        </div>
+                        <p>
+                            Czyszczenie oraz impregnacja skórzanych foteli, przywracające świeży wygląd i
+                            zabezpieczające tapicerkę przed
+                            wysychaniem, pękaniem oraz codziennym zużyciem.
+                        </p><br>
+                        <div class="container">
+                            <div class="grid-small">
+                                <div class="card skora">
+                                    <h3>Pojedyńczy Fotel</h3>
+                                    <div class="price-skora">70zł</div>
+                                </div>
+                                <div class="card skora">
+                                    <h3>Komplet Przód</h3>
+                                    <div class="price-skora">130zł</div>
+                                </div>
+                                <div class="card skora">
+                                    <h3>Tylna Kanapa</h3>
+                                    <div class="price-skora">od 145zł</div>
+                                </div>
+                                <div class="card skora" id="wszystkie-fotele-skora">
+                                    <h3>Wszytkie Fotele</h3>
+                                    <div class="price-skora">od 255zł</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card skora" id="skora">
+                        <div class="card-top">
+                            <h3>Czyszczenie Skóry</h3>
+                            <div class="price price-skora">od 105zł</div>
+                        </div>
+                        <p>
+                            Dokładne czyszczenie deski rozdzielczej, kierownicy, gałki zmiany biegów oraz elementów
+                            wokół kokpitu, usuwające kurz,
+                            zabrudzenia i tłuste osady, przywracające czysty i estetyczny wygląd skórzanego wnętrza.
+                        </p>
+                    </div>
+
+                    <div class="card skora" id="czyszcenie-spodlokietnikow">
+                        <div class="card-top">
+                            <h3>Czyszczenie Podłokietników</h3>
+                            <div class="price price-skora">od 120zł</div>
+                        </div>
+                        <p>
+                            Dokładne czyszczenie skórzanych podłokietników oraz skórzanych boczków drzwi, usuwające
+                            zabrudzenia, tłuste ślady i kurz, przywracające czystość oraz
+                            estetyczny wygląd elementów wnętrza.
+                        </p>
+                    </div>
+
+                </div><!--Grid-->
+            </div>
+        </section>
+    </section>
+
+    <section><!--Umowa-->
+        <div class="container" id="umowa">
+            <div class="contract">
+
+                <div class="section-title">
+                    <div class="line"></div>
+                    <h2>Umowa Usługi</h2>
+                </div>
+
+                <div class="contract-content">
+                    <p>
+                        Zamówienie terminu usługi kosztuje 10zł, koszt ten zostanie odjęty od całkowietego kosztu usługi
+                    </p>
+
+                    <p>
+                        Oddanie pojazdu do usługi oznacza akceptację warunków detailingowych oraz zgodę na wykonanie
+                        wybranych usług.
+                    </p>
+
+                    <p>
+                        Zleceniobiorca nie odpowiada za wcześniej istniejące uszkodzenia lakieru, elementów wnętrza lub
+                        ukryte wady materiałów.
+                    </p>
+
+                    <p>
+                        Klient zobowiązuje się odebrać pojazd w ustalonym terminie po zakończeniu realizacji usługi.
+                    </p>
+
+                    <p>
+                        Szczegółowa umowa może zostać przekazana klientowi przed rozpoczęciem realizacji usługi.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+                    <h3>Kontakt</h3>
+
+                    <p>+48 698 186 213 - Maksym Kapuśniak</p>
+                    <p>+48 733 987 701 - Kamil Kucharzyk</p>
+                </div>
+
+                <div>
+                    <h3>Social Media</h3>
+
+                    <a href="https://www.instagram.com/brothersdetaling/">Instagram</a><br>
+                    <a href="https://www.tiktok.com/@brothers_detaling_s">TikTok</a>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 DETAILING — Wszystkie prawa zastrzeżone.
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script>
+        function highlightCard(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            // scroll do elementu
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // reset efektu
+            el.classList.remove("highlight");
+
+            // odpalenie highlight OD RAZU po kliknięciu
+            setTimeout(() => {
+                el.classList.add("highlight");
+            }, 500);
+
+            // usunięcie efektu
+            setTimeout(() => {
+                el.classList.remove("highlight");
+            }, 2000);
+        }
+
+        function highlightCard(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            el.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            el.classList.remove("highlight");
+
+            setTimeout(() => {
+                el.classList.add("highlight");
+            }, 300);
+
+            setTimeout(() => {
+                el.classList.remove("highlight");
+            }, 2000);
+        }
+
+        const sidebar = document.getElementById("sidebar");
+        const listEls = document.querySelectorAll("#list, #list-form");
+        const totalEls = document.querySelectorAll("#total, #total-form");
+
+        // wszystkie inputy z ceną
+        const serviceInputs = document.querySelectorAll('.card input[data-price]');
+
+        // aktualizacja koszyka
+        function update() {
+            let total = 0;
+            let items = [];
+
+            // reset zaznaczeń kart
+            document.querySelectorAll(".card").forEach(card => {
+                card.classList.remove("selected");
+            });
+
+            serviceInputs.forEach(input => {
+                const card = input.closest(".card");
+                const price = parseInt(input.dataset.price) || 0;
+
+                if (!card) return;
+
+                // RADIO (pakiety)
+                if (input.type === "radio" && input.checked) {
+                    total += price;
+
+                    items.push({
+                        name: input.value,
+                        price
+                    });
+
+                    card.classList.add("selected");
+                }
+
+                // CHECKBOX (usługi)
+                if (input.type === "checkbox" && input.checked) {
+                    total += price;
+
+                    items.push({
+                        name: input.value,
+                        price
+                    });
+
+                    card.classList.add("selected");
+                }
+            });
+
+            // 🔥 aktualizacja wszystkich totali
+            totalEls.forEach(el => {
+                el.textContent = total;
+            });
+
+            // 🔥 aktualizacja wszystkich list
+            listEls.forEach(el => {
+                el.innerHTML = "";
+
+                items.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.innerHTML = `
+        <span>${item.name}</span>
+        <span>${item.price}zł</span>
+      `;
+                    el.appendChild(div);
+                });
+            });
+
+            // pokaz / ukryj sidebar
+            if (items.length > 0) {
+                sidebar.classList.add("show");
+            } else {
+                sidebar.classList.remove("show");
+            }
+        }
+
+        // nasłuchiwanie zmian
+        serviceInputs.forEach(input => {
+            input.addEventListener("change", update);
+        });
+
+        // przycisk -> scroll do formularza
+        const sidebarBtn = sidebar.querySelector("button");
+
+        sidebarBtn.addEventListener("click", () => {
+            document.querySelector("form").scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+
+        // czyszczenie koszyka
+        document.getElementById("clear-cart").addEventListener("click", () => {
+            serviceInputs.forEach(input => {
+                input.checked = false;
+            });
+
+            update();
+        });
+
+        // start
+        update();
+
+        function goPay(event) {
+            event.preventDefault();
+
+            const firstName = document.getElementById("firstName");
+            const lastName = document.getElementById("lastName");
+            const phone = document.getElementById("phone");
+            const email = document.getElementById("email");
+
+            // WYBRANE USŁUGI
+            const checkedServices = document.querySelectorAll(
+                '.card input[data-price]:checked'
+            );
+
+            // CHECKBOX UMOWY
+            const agreement = document.querySelector(
+                '.zapoznanie input[type="checkbox"]'
+            );
+
+            // Czyści stare błędy
+            document.querySelectorAll(".error").forEach(el => el.remove());
+
+            let valid = true;
+
+            function showError(input, message) {
+                const error = document.createElement("div");
+
+                error.className = "error";
+
+                error.innerText = message;
+
+                input.parentElement.appendChild(error);
+
+                valid = false;
+            }
+
+            // Imię
+            if (firstName.value.trim().length < 2) {
+                showError(firstName, "Wpisz poprawne imię");
+            }
+
+            // Nazwisko
+            if (lastName.value.trim().length < 2) {
+                showError(lastName, "Wpisz poprawne nazwisko");
+            }
+
+            // Telefon
+            const phoneRegex = /^[0-9]{9}$/;
+
+            if (!phoneRegex.test(phone.value.trim())) {
+                showError(phone, "Numer musi mieć 9 cyfr");
+            }
+
+            // Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email.value.trim())) {
+                showError(email, "Wpisz poprawny e-mail");
+            }
+
+            // CZY WYBRANO USŁUGĘ
+            if (checkedServices.length === 0) {
+
+                const error = document.createElement("div");
+
+                error.className = "error";
+
+                error.innerText = "Wybierz przynajmniej jedną usługę";
+
+                document.getElementById("list").appendChild(error);
+
+                valid = false;
+            }
+
+            // CZY ZAAKCEPTOWANO UMOWĘ
+            if (!agreement.checked) {
+
+                const error = document.createElement("div");
+
+                error.className = "error";
+
+                error.innerText = "Musisz zaakceptować umowę";
+
+                agreement.parentElement.appendChild(error);
+
+                valid = false;
+            }
+
+            // GOTOWE
+            if (valid) {
+                window.location.href = "pay.html";
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
